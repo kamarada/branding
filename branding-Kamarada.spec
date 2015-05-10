@@ -120,12 +120,32 @@ grep -v SUSEgreeter files.kdebase4-workspace-branding-openSUSE > t && mv t files
 # Grub2 #
 #########
 
-mv $RPM_BUILD_ROOT/boot/grub2/themes/openSUSE/ $RPM_BUILD_ROOT/boot/grub2/themes/%{distro_name}/
-mv $RPM_BUILD_ROOT/usr/share/grub2/backgrounds/openSUSE/ $RPM_BUILD_ROOT/usr/share/grub2/backgrounds/%{distro_name}/
-mv $RPM_BUILD_ROOT/usr/share/grub2/themes/openSUSE/ $RPM_BUILD_ROOT/usr/share/grub2/themes/%{distro_name}/
+mv $RPM_BUILD_ROOT/boot/grub2/themes/openSUSE/ $RPM_BUILD_ROOT/boot/grub2/themes/%{distro}/
+mv $RPM_BUILD_ROOT/usr/share/grub2/backgrounds/openSUSE/ $RPM_BUILD_ROOT/usr/share/grub2/backgrounds/%{distro}/
+mv $RPM_BUILD_ROOT/usr/share/grub2/themes/openSUSE/ $RPM_BUILD_ROOT/usr/share/grub2/themes/%{distro}/
 
-mv files.grub2-branding-openSUSE files.grub2-branding-%{distro_name}
-sed -i -e 's,openSUSE,%{distro_name},' files.grub2-branding-%{distro_name}
+mv files.grub2-branding-openSUSE files.grub2-branding-%{distro}
+sed -i -e 's,openSUSE,%{distro},' files.grub2-branding-%{distro}
+
+
+###################
+# Tema do QtCurve #
+###################
+
+mkdir $RPM_BUILD_ROOT%{_kde4_appsdir}/QtCurve
+cp %{_kde4_appsdir}/QtCurve/Google+.qtcurve $RPM_BUILD_ROOT%{_kde4_appsdir}/QtCurve/%{distro}.qtcurve
+
+# Exibir ícones nos menus
+sed -i 's/menuIcons=false/menuIcons=true/g' $RPM_BUILD_ROOT%{_kde4_appsdir}/QtCurve/%{distro}.qtcurve
+
+mv files.kdebase4-runtime-branding-openSUSE files.kdebase4-runtime-branding-%{distro}
+echo "%{_kde4_appsdir}/QtCurve/%{distro}.qtcurve" >> files.kdebase4-runtime-branding-%{distro}
+
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key widgetStyle qtcurve
+
+echo "%dir /etc/skel/.config/qtcurve" >> files.kdebase4-runtime-branding-%{distro}
+echo "/etc/skel/.config/qtcurve/stylerc" >> files.kdebase4-runtime-branding-%{distro}
+echo "/etc/skel/.config/qtcurve/gtk-icons" >> files.kdebase4-runtime-branding-%{distro}
 
 
 #########
@@ -224,8 +244,8 @@ kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSpl
 # branding-openSUSE.spec #
 ##########################
 
-%package -n grub2-branding-%{distro_name}-exp
-Summary:        %{distro_name} branding for GRUB2's graphical console
+%package -n grub2-branding-%{distro}
+Summary:        %{distro} branding for GRUB2's graphical console
 License:        CC-BY-SA-3.0
 Group:          System/Fhs
 Requires:       grub2
@@ -236,23 +256,23 @@ Conflicts:      otherproviders(grub2-branding)
 BuildArch:      noarch
 
 
-%description -n grub2-branding-%{distro_name}-exp
-%{distro_name} %{version} branding for the GRUB2's graphical console
+%description -n grub2-branding-%{distro}
+%{distro} %{version} branding for the GRUB2's graphical console
 
 
-%files -f files.grub2-branding-%{distro_name} -n grub2-branding-%{distro_name}-exp
+%files -f files.grub2-branding-%{distro} -n grub2-branding-%{distro}
 
 
-%post -n grub2-branding-%{distro_name}-exp
-%{_datadir}/grub2/themes/%{distro_name}/activate-theme
+%post -n grub2-branding-%{distro}
+%{_datadir}/grub2/themes/%{distro}/activate-theme
 if test -e /boot/grub2/grub.cfg ; then
   /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg || true
 fi
 
 
-%postun -n grub2-branding-%{distro_name}-exp
+%postun -n grub2-branding-%{distro}
 if [ $1 = 0 ] ; then
-  rm -rf /boot/grub2/themes/%{distro_name}
+  rm -rf /boot/grub2/themes/%{distro}
 fi
 
 
