@@ -19,16 +19,20 @@
 %define distro Kamarada
 %define version 13.2
 
-Name:           branding-%{distro}-exp
+Name:           branding-%{distro}
 Version:        %{version}
 Release:        1
 Url:            http://github.com/kamarada/branding-Kamarada
 Source0:        LICENSE
+Source1:        rootcopy.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        %{distro} Brand File
 License:        GPL-2.0+
 Group:          System/Fhs
 BuildArch:      noarch
+
+# branding-openSUSE.spec
+# BuildRequires:  wallpaper-branding-openSUSE
 
 
 %description
@@ -39,12 +43,16 @@ a trigger for installation of correct vendor brand packages.
 %prep
 cp -a %{SOURCE0} COPYING
 
+mkdir rootcopy
+tar -zxvf %{SOURCE1} -C rootcopy
+
 
 %build
 
 
 %install
 packages=""
+# packages="$packages wallpaper-branding-openSUSE"
 
 for i in $packages; do
   echo "%defattr(-,root,root)" > files.$i
@@ -76,3 +84,29 @@ for i in $packages; do
     fi
   done
 done
+
+cp -R $RPM_BUILD_DIR/rootcopy/* $RPM_BUILD_ROOT
+
+
+##########################
+# branding-openSUSE.spec #
+##########################
+
+%package -n wallpaper-branding-%{distro}
+Summary:        %{distro} default wallpapers
+License:        GPL-2.0+
+Group:          System/Fhs
+Provides:       wallpaper-branding = %{version}
+Provides:       wallpaper-branding-openSUSE
+Conflicts:      otherproviders(wallpaper-branding)
+BuildArch:      noarch
+
+
+%description -n wallpaper-branding-%{distro}
+%{distro} %{version} default wallpapers
+
+
+%files -n wallpaper-branding-%{distro}
+%defattr(-,root,root)
+%doc COPYING
+/usr/share/wallpapers/
