@@ -1,0 +1,10 @@
+# criado pelo KDE, seg nov 17 12:54:19 2014
+#
+# Se você não deseja que o KDE substitua suas configurações GTK,
+# selecione as opções Aparência -> Cores nas Configurações do Sistema e desabilite
+# a caixa de seleção "Aplicar cores aos aplicativos que não sejam do KDE4"
+#
+#
+
+gtk-alternative-button-order = 1
+

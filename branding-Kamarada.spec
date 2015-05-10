@@ -39,6 +39,12 @@ BuildRequires:  grub2-branding-openSUSE
 BuildRequires:  plymouth-branding-openSUSE
 # BuildRequires:  wallpaper-branding-openSUSE
 
+# gtk2-branding-openSUSE.spec
+BuildRequires:  gtk2-branding-openSUSE
+
+# gtk3-branding-openSUSE.spec
+BuildRequires:  gtk3-branding-openSUSE
+
 # kde-branding-openSUSE.spec
 BuildRequires:  kdm-branding-openSUSE
 # BuildRequires:  ksplashx-branding-openSUSE
@@ -73,6 +79,8 @@ packages="$packages MozillaFirefox-branding-openSUSE"
 packages="$packages grub2-branding-openSUSE"
 # packages="$packages plymouth-branding-openSUSE"
 # packages="$packages wallpaper-branding-openSUSE"
+packages="$packages gtk2-branding-openSUSE"
+packages="$packages gtk3-branding-openSUSE"
 packages="$packages kdm-branding-openSUSE"
 # packages="$packages ksplashx-branding-openSUSE"
 packages="$packages kdebase4-runtime-branding-openSUSE"
@@ -149,7 +157,6 @@ echo "%{_kde4_appsdir}/QtCurve/%{distro}.qtcurve" >> files.kdebase4-runtime-bran
 
 echo "%dir /etc/skel/.config/qtcurve" >> files.kdebase4-runtime-branding-%{distro}
 echo "/etc/skel/.config/qtcurve/stylerc" >> files.kdebase4-runtime-branding-%{distro}
-echo "/etc/skel/.config/qtcurve/gtk-icons" >> files.kdebase4-runtime-branding-%{distro}
 
 
 #########
@@ -165,6 +172,54 @@ echo "%{_kde4_appsdir}/color-schemes/%{distro}.colors" >> files.kdebase4-runtime
 
 # kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key ColorScheme %{distro}
 # kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key Name %{distro}
+
+
+###############
+# Tema do GTK #
+###############
+
+grep -v Adwaita $RPM_BUILD_ROOT/etc/gtk-2.0/gtkrc > t && mv t $RPM_BUILD_ROOT/etc/gtk-2.0/gtkrc
+grep -v gnome $RPM_BUILD_ROOT/etc/gtk-2.0/gtkrc > t && mv t $RPM_BUILD_ROOT/etc/gtk-2.0/gtkrc
+
+cat >>$RPM_BUILD_ROOT/etc/gtk-2.0/gtkrc <<EOF
+include "/usr/share/themes/QtCurve/gtk-2.0/gtkrc"
+style "user-font" 
+{
+	font_name="Droid Sans Regular"
+}
+widget_class "*" style "user-font"
+gtk-font-name="Droid Sans Regular 9"
+gtk-theme-name = "QtCurve"
+gtk-icon-theme-name = "oxygen"
+gtk-fallback-icon-theme="gnome"
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
+gtk-menu-images=1
+gtk-button-images=1
+EOF
+
+cat >>$RPM_BUILD_ROOT/etc/gtk-3.0/settings.ini <<EOF
+[Settings]
+gtk-cursor-theme-name = Bluecurve
+gtk-enable-primary-paste = true
+gtk-font-name=Droid Sans Regular 9
+gtk-theme-name=oxygen-gtk
+gtk-icon-theme-name=oxygen
+gtk-fallback-icon-theme=gnome
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
+gtk-menu-images=1
+gtk-button-images=1
+EOF
+
+mv files.gtk2-branding-openSUSE files.gtk2-branding-%{distro}
+mv files.gtk3-branding-openSUSE files.gtk3-branding-%{distro}
+
+echo "/usr/share/kde4/env/kde_gtk2_config.Kamarada.sh" >> files.gtk2-branding-%{distro}
+echo "/usr/share/kde4/env/kde_gtk3_config.Kamarada.sh" >> files.gtk3-branding-%{distro}
+
+echo "/etc/kde4/share/config/gtkrc" >> files.kdebase4-runtime-branding-%{distro}
+echo "/etc/kde4/share/config/gtkrc-2.0" >> files.kdebase4-runtime-branding-%{distro}
+
+echo "/etc/skel/.config/qtcurve/gtk-icons" >> files.kdebase4-runtime-branding-%{distro}
 
 
 #########################
@@ -379,6 +434,82 @@ BuildArch:      noarch
 %defattr(-,root,root)
 %doc COPYING
 /usr/share/wallpapers/
+
+
+###############################
+# gtk2-branding-openSUSE.spec #
+###############################
+
+%define gtk2_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk2)
+%define gtk2_version %(rpm -q --qf '%%{version}' %{gtk2_real_package})
+
+%package -n gtk2-branding-%{distro}
+Summary:        The GTK+ toolkit library (version 2) -- %{distro} theme configuration
+License:        BSD-3-Clause
+Group:          System/Libraries
+# Requires:       %{gtk2_real_package} = %{gtk2_version}
+Requires:       %{gtk2_real_package}
+# Requires:       gtk2-metatheme-adwaita
+Requires:       gnome-icon-theme
+Requires:       google-droid-fonts
+Requires:       kde-gtk-config
+Requires:       oxygen-icon-theme
+Requires:       qtcurve-gtk2
+Provides:       gtk2-branding = %{gtk2_version}
+Provides:       gtk2-branding-openSUSE
+Conflicts:      otherproviders(gtk2-branding)
+Supplements:    packageand(gtk2:branding-openSUSE)
+BuildArch:      noarch
+
+
+%description -n gtk2-branding-%{distro}
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects
+ranging from small one-off projects to complete application suites.
+
+This package provides the %{distro} theme configuration for
+widgets and icon themes.
+
+
+%files -f files.gtk2-branding-%{distro} -n gtk2-branding-%{distro}
+
+
+###############################
+# gtk3-branding-openSUSE.spec #
+###############################
+
+%define gtk3_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk3)
+%define gtk3_version %(rpm -q --qf '%%{version}' %{gtk3_real_package})
+
+%package -n gtk3-branding-%{distro}
+Summary:        The GTK+ toolkit library (version 3) -- %{distro} theme configuration
+License:        BSD-3-Clause
+Group:          System/Libraries
+# Requires:       %{gtk3_real_package} = %{gtk3_version}
+Requires:       %{gtk3_real_package}
+# Requires:       gtk3-metatheme-adwaita
+Requires:       gnome-icon-theme
+Requires:       google-droid-fonts
+Requires:       gtk3-theme-oxygen
+Requires:       kde-gtk-config
+Requires:       oxygen-icon-theme
+Provides:       gtk3-branding = %{gtk3_version}
+Provides:       gtk3-branding-openSUSE
+Conflicts:      otherproviders(gtk3-branding)
+Supplements:    packageand(gtk3:branding-openSUSE)
+BuildArch:      noarch
+
+
+%description -n gtk3-branding-%{distro}
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects
+ranging from small one-off projects to complete application suites.
+
+This package provides the %{distro} theme configuration for
+widgets and icon themes.
+
+
+%files -f files.gtk3-branding-%{distro} -n gtk3-branding-%{distro}
 
 
 ##############################
