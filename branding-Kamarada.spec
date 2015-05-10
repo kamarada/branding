@@ -32,6 +32,7 @@ Group:          System/Fhs
 BuildArch:      noarch
 
 # branding-openSUSE.spec
+BuildRequires:  plymouth-branding-openSUSE
 # BuildRequires:  wallpaper-branding-openSUSE
 
 # kde-branding-openSUSE.spec
@@ -64,6 +65,7 @@ tar -zxvf %{SOURCE1} -C rootcopy
 
 %install
 packages=""
+# packages="$packages plymouth-branding-openSUSE"
 # packages="$packages wallpaper-branding-openSUSE"
 packages="$packages kdm-branding-openSUSE"
 # packages="$packages ksplashx-branding-openSUSE"
@@ -207,6 +209,47 @@ kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSpl
 ##########################
 # branding-openSUSE.spec #
 ##########################
+
+%package -n plymouth-branding-%{distro}
+Summary:        %{distro} branding for Plymouth bootsplash
+License:        GPL-2.0+
+Group:          System/Fhs
+# PreReq:         plymouth-plugin-script
+PreReq:         plymouth-plugin-two-step
+PreReq:         plymouth-scripts
+Supplements:    packageand(plymouth:branding-openSUSE)
+Provides:       plymouth-branding = %{version}
+Provides:       plymouth-branding-openSUSE
+Conflicts:      otherproviders(plymouth-branding)
+BuildArch:      noarch
+
+
+%description -n plymouth-branding-%{distro}
+%{distro} %{version} branding for the plymouth bootsplash
+
+
+%files -n plymouth-branding-%{distro}
+%defattr(-, root, root)
+%{_datadir}/plymouth/themes/%{distro}/
+
+
+%post -n plymouth-branding-%{distro}
+if [ ! -e /.buildenv ]; then
+   export LIB=%{_libdir}
+   if [ "$(%{_sbindir}/plymouth-set-default-theme)" == "text" -o "$(%{_sbindir}/plymouth-set-default-theme)" == "openSUSE" -o "$(%{_sbindir}/plymouth-set-default-theme)" == "%{distro}" ]; then
+      %{_sbindir}/plymouth-set-default-theme -R %{distro}
+   fi
+fi
+
+
+%postun -n plymouth-branding-%{distro}
+if [ $1 -eq 0 ]; then
+    export LIB=%{_libdir}
+    if [ "$(%{_sbindir}/plymouth-set-default-theme)" == "%{distro}" ]; then
+        %{_sbindir}/plymouth-set-default-theme -R --reset
+    fi
+fi
+
 
 %package -n wallpaper-branding-%{distro}
 Summary:        %{distro} default wallpapers
