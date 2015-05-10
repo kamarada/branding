@@ -39,6 +39,7 @@ BuildArch:      noarch
 
 # kdebase4-openSUSE.spec
 BuildRequires:  kdebase4-runtime-branding-openSUSE
+BuildRequires:  kdebase4-workspace-branding-openSUSE
 
 # Outros
 BuildRequires:  google-plus-qtcurve-theme
@@ -65,6 +66,7 @@ packages=""
 # packages="$packages wallpaper-branding-openSUSE"
 # packages="$packages ksplashx-branding-openSUSE"
 packages="$packages kdebase4-runtime-branding-openSUSE"
+packages="$packages kdebase4-workspace-branding-openSUSE"
 
 for i in $packages; do
   echo "%defattr(-,root,root)" > files.$i
@@ -99,6 +101,13 @@ done
 
 # work arounds
 export NO_BRP_STALE_LINK_ERROR=yes
+rm -f $RPM_BUILD_ROOT/usr/share/kde4/apps/konsole/Root*
+grep -v konsole/Root files.kdebase4-workspace-branding-openSUSE > t && mv t files.kdebase4-workspace-branding-openSUSE
+
+grep SUSEgreeter files.kdebase4-workspace-branding-openSUSE | grep -v %dir | while read file; do
+  rm -rf $RPM_BUILD_ROOT/$file
+done
+grep -v SUSEgreeter files.kdebase4-workspace-branding-openSUSE > t && mv t files.kdebase4-workspace-branding-openSUSE
 
 
 #########
@@ -106,14 +115,14 @@ export NO_BRP_STALE_LINK_ERROR=yes
 #########
 
 rm $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/*.colors
-cp %{_kde4_appsdir}/color-schemes/Google.colors $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/%{distro_name}.colors
-sed -i 's/Google+/%{distro_name}/g' $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/%{distro_name}.colors
+cp %{_kde4_appsdir}/color-schemes/Google.colors $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/%{distro}.colors
+sed -i 's/Google+/%{distro}/g' $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/%{distro}.colors
 
-grep -v .colors files.kdebase4-runtime-branding-%{distro_name} > t && mv t files.kdebase4-runtime-branding-%{distro_name}
-echo "%{_kde4_appsdir}/color-schemes/%{distro_name}.colors" >> files.kdebase4-runtime-branding-%{distro_name}
+grep -v .colors files.kdebase4-runtime-branding-%{distro} > t && mv t files.kdebase4-runtime-branding-%{distro}
+echo "%{_kde4_appsdir}/color-schemes/%{distro}.colors" >> files.kdebase4-runtime-branding-%{distro}
 
-# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key ColorScheme %{distro_name}
-# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key Name %{distro_name}
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key ColorScheme %{distro}
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key Name %{distro}
 
 
 #########################
@@ -127,6 +136,18 @@ grep -v desktoptheme files.kdebase4-runtime-branding-%{distro} > t && mv t files
 echo "%{_kde4_appsdir}/desktoptheme/Kamarada/" >> files.kdebase4-runtime-branding-%{distro}
 
 kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasmarc --group Theme --key name %{distro}
+
+
+####################
+# Área de trabalho #
+####################
+
+mv files.kdebase4-workspace-branding-openSUSE files.kdebase4-workspace-branding-%{distro}
+
+# Ícone do Kickoff
+echo "%dir /usr/share/icons/oxygen/256x256/" >> files.kdebase4-workspace-branding-%{distro}
+echo "%dir /usr/share/icons/oxygen/256x256/places/" >> files.kdebase4-workspace-branding-%{distro}
+echo "/usr/share/icons/oxygen/256x256/places/start-here-branding.png" >> files.kdebase4-workspace-branding-%{distro}
 
 
 ##################
@@ -246,3 +267,29 @@ This package contains all run-time dependencies of KDE applications.
 
 
 %files -f files.kdebase4-runtime-branding-%{distro} -n kdebase4-runtime-branding-%{distro}
+
+
+%package -n kdebase4-workspace-branding-%{distro}
+Summary:        %{distro} KDE Extension
+License:        GPL-2.0+
+Group:          System/GUI/KDE
+PreReq:         %fillup_prereq
+Requires:       kdebase4-workspace
+# Explicitly require kdebase4-runtime-branding-oS, until kde#320855 is properly resolved
+Requires:       kdebase4-runtime-branding-%{distro} = %{version}
+Requires:       ksplashx-branding-%{distro} = %{version}
+# Requires:       susegreeter-branding-%{distro} = %{version}
+Requires:       wallpaper-branding-%{distro} = %{version}
+Supplements:    packageand(kdebase4-workspace:branding-openSUSE)
+Provides:       kdebase4-workspace-branding = %{_kde_branding_version}
+Provides:       kdebase4-workspace-branding-openSUSE
+Conflicts:      otherproviders(kdebase4-workspace-branding)
+%kde4_runtime_requires
+BuildArch:      noarch
+
+
+%description -n kdebase4-workspace-branding-%{distro}
+This package contains the standard %{distro} desktop and extensions.
+
+
+%files -f files.kdebase4-workspace-branding-%{distro} -n kdebase4-workspace-branding-%{distro}
