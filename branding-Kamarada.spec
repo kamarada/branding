@@ -31,6 +31,9 @@ License:        GPL-2.0+
 Group:          System/Fhs
 BuildArch:      noarch
 
+# MozillaFirefox-branding-openSUSE.spec
+BuildRequires:  MozillaFirefox-branding-openSUSE
+
 # branding-openSUSE.spec
 BuildRequires:  grub2-branding-openSUSE
 BuildRequires:  plymouth-branding-openSUSE
@@ -66,6 +69,7 @@ tar -zxvf %{SOURCE1} -C rootcopy
 
 %install
 packages=""
+packages="$packages MozillaFirefox-branding-openSUSE"
 packages="$packages grub2-branding-openSUSE"
 # packages="$packages plymouth-branding-openSUSE"
 # packages="$packages wallpaper-branding-openSUSE"
@@ -203,6 +207,18 @@ echo "%dir /usr/share/icons/oxygen/256x256/places/" >> files.kdebase4-workspace-
 echo "/usr/share/icons/oxygen/256x256/places/start-here-branding.png" >> files.kdebase4-workspace-branding-%{distro}
 
 
+###################
+# Mozilla Firefox #
+###################
+
+sed -i 's,chrome://susefox/content/susefox.properties,http://kamarada.sf.net,g' $RPM_BUILD_ROOT/usr/lib/firefox/browser/defaults/preferences/firefox-openSUSE.js
+sed -i 's,<DT><H3 ID="rdf:#$HNakM2">openSUSE</H3>,<DT><A HREF="http://kamarada.sf.net/">Kamarada</A>\n<DT><H3 ID="rdf:#$HNakM2">openSUSE</H3>,g' $RPM_BUILD_ROOT/usr/lib/firefox/browser/defaults/profile/bookmarks.html
+sed -i 's,openSUSE,%{distro},g' $RPM_BUILD_ROOT/usr/lib/firefox/distribution/distribution.ini
+
+# Mozilla Firefox como navegador padrão
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key BrowserApplication "firefox"
+
+
 ##################
 # Outros ajustes #
 ##################
@@ -238,6 +254,34 @@ cd $RPM_BUILD_DIR
 
 kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSplash --key Engine KSplashX
 kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSplash --key Theme ksplashx-%{distro}
+
+
+#########################################
+# MozillaFirefox-branding-openSUSE.spec #
+#########################################
+
+%define mozilla_firefox_branding_version %(rpm -q --qf '%%{version}' MozillaFirefox-branding-openSUSE)
+
+%package -n MozillaFirefox-branding-%{distro}
+Summary:        %{distro} branding of Mozilla Firefox
+License:        BSD-3-Clause and GPL-2.0+
+Group:          Productivity/Networking/Web/Browsers
+Supplements:    packageand(MozillaFirefox:branding-openSUSE)
+Supplements:    packageand(firefox-esr:branding-openSUSE)
+Provides:       MozillaFirefox-branding = %{mozilla_firefox_branding_version}
+Provides:       MozillaFirefox-branding-openSUSE
+Provides:       firefox-esr-branding = %{mozilla_firefox_branding_version}
+Conflicts:      otherproviders(MozillaFirefox-branding)
+Conflicts:      otherproviders(firefox-esr-branding)
+Requires:       MozillaFirefox
+BuildArch:      noarch
+
+
+%description -n MozillaFirefox-branding-%{distro}
+This package provides %{distro} Look and Feel for Firefox.
+
+
+%files -f files.MozillaFirefox-branding-openSUSE -n MozillaFirefox-branding-%{distro}
 
 
 ##########################
