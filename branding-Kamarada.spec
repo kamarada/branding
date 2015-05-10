@@ -35,6 +35,7 @@ BuildArch:      noarch
 # BuildRequires:  wallpaper-branding-openSUSE
 
 # kde-branding-openSUSE.spec
+BuildRequires:  kdm-branding-openSUSE
 # BuildRequires:  ksplashx-branding-openSUSE
 
 # kdebase4-openSUSE.spec
@@ -64,6 +65,7 @@ tar -zxvf %{SOURCE1} -C rootcopy
 %install
 packages=""
 # packages="$packages wallpaper-branding-openSUSE"
+packages="$packages kdm-branding-openSUSE"
 # packages="$packages ksplashx-branding-openSUSE"
 packages="$packages kdebase4-runtime-branding-openSUSE"
 packages="$packages kdebase4-workspace-branding-openSUSE"
@@ -136,6 +138,21 @@ grep -v desktoptheme files.kdebase4-runtime-branding-%{distro} > t && mv t files
 echo "%{_kde4_appsdir}/desktoptheme/Kamarada/" >> files.kdebase4-runtime-branding-%{distro}
 
 kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasmarc --group Theme --key name %{distro}
+
+
+###############
+# Tema do KDM #
+###############
+
+mv $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/openSUSE $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/%{distro}
+ln -f -s /usr/share/wallpapers/%{distro}/contents/images/1280x1024.jpeg $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/%{distro}/background-1280x1024.jpg
+ln -f -s /usr/share/wallpapers/%{distro}/contents/images/1600x1200.jpeg $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/%{distro}/background-1600x1200.jpg
+ln -f -s /usr/share/wallpapers/%{distro}/contents/images/1920x1080.jpeg $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/%{distro}/background-1920x1080.jpg
+ln -f -s /usr/share/wallpapers/%{distro}/contents/images/1920x1200.jpeg $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/%{distro}/background-1920x1200.jpg
+rm $RPM_BUILD_ROOT/usr/share/kde4/apps/kdm/themes/%{distro}/openSUSE.xml
+
+mv files.kdm-branding-openSUSE files.kdm-branding-%{distro}
+sed -i -e 's,openSUSE,%{distro},g' files.kdm-branding-%{distro}
 
 
 ####################
@@ -214,6 +231,40 @@ BuildArch:      noarch
 ##############################
 # kde-branding-openSUSE.spec #
 ##############################
+
+%package -n kdm-branding-%{distro}
+Summary:        %{distro} branding for KDE login and display manager
+License:        GPL-2.0+
+Group:          System/GUI/KDE
+PreReq:         %fillup_prereq
+Supplements:    packageand(kdm:branding-openSUSE)
+Provides:       kdm-branding = %{_kde_branding_version}
+Provides:       kdm-branding-openSUSE
+Conflicts:      otherproviders(kdm-branding)
+BuildArch:      noarch
+Requires:       wallpaper-branding-%{distro}
+Requires(post): kdm
+
+
+%description -n kdm-branding-%{distro}
+This package contains %{distro} %{version} branding for kdm, the login and session manager for KDE.
+
+
+%post -n kdm-branding-%{distro}
+%{fillup_only -n displaymanager -s kdm}
+if [ -f /usr/share/kde4/config/kdm/kdmrc ]; then
+    sed -i -e 's/elarun/%{distro}/g' /usr/share/kde4/config/kdm/kdmrc
+fi
+
+
+%postun -n kdm-branding-%{distro}
+if [ $1 -eq 0 -a -f /usr/share/kde4/config/kdm/kdmrc ]; then
+   sed -i -e 's/%{distro}/elarun/g' /usr/share/kde4/config/kdm/kdmrc
+fi
+
+
+%files -f files.kdm-branding-%{distro} -n kdm-branding-%{distro}
+
 
 %package -n ksplashx-branding-%{distro}
 Summary:        %{distro} branding for KDE splash
