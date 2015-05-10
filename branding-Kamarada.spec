@@ -41,6 +41,7 @@ BuildArch:      noarch
 BuildRequires:  kdebase4-runtime-branding-openSUSE
 
 # Outros
+BuildRequires:  google-plus-qtcurve-theme
 BuildRequires:  plasma-theme-smoother
 
 
@@ -95,6 +96,24 @@ for i in $packages; do
     fi
   done
 done
+
+# work arounds
+export NO_BRP_STALE_LINK_ERROR=yes
+
+
+#########
+# Cores #
+#########
+
+rm $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/*.colors
+cp %{_kde4_appsdir}/color-schemes/Google.colors $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/%{distro_name}.colors
+sed -i 's/Google+/%{distro_name}/g' $RPM_BUILD_ROOT%{_kde4_appsdir}/color-schemes/%{distro_name}.colors
+
+grep -v .colors files.kdebase4-runtime-branding-%{distro_name} > t && mv t files.kdebase4-runtime-branding-%{distro_name}
+echo "%{_kde4_appsdir}/color-schemes/%{distro_name}.colors" >> files.kdebase4-runtime-branding-%{distro_name}
+
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key ColorScheme %{distro_name}
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key Name %{distro_name}
 
 
 #########################
