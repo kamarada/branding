@@ -310,6 +310,10 @@ sed -i 's,openSUSE,%{distro},g' $RPM_BUILD_ROOT/usr/lib/firefox/distribution/dis
 
 cp -R $RPM_BUILD_DIR/rootcopy/* $RPM_BUILD_ROOT
 
+grep -v "package_yast_software.png" files.desktop-data-%{distro} > t && mv t files.desktop-data-%{distro}
+echo "%dir /usr/share/icons/oxygen/256x256/apps" >> files.desktop-data-%{distro}
+echo "/usr/share/icons/*/*/apps/package_yast_software.png" >> files.desktop-data-%{distro}
+
 # Pastas pessoais
 grep -v "default/documents.directory" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
 echo "/usr/share/kde4/config/SuSE/default/*.directory" >> files.kdebase4-workspace-branding-%{distro}
