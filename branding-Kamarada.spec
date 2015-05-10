@@ -38,6 +38,7 @@ BuildRequires:  MozillaFirefox-branding-openSUSE
 BuildRequires:  grub2-branding-openSUSE
 BuildRequires:  plymouth-branding-openSUSE
 # BuildRequires:  wallpaper-branding-openSUSE
+BuildRequires:  yast2-qt-branding-openSUSE
 
 # desktop-data-openSUSE.spec
 BuildRequires:  desktop-data-openSUSE
@@ -55,6 +56,9 @@ BuildRequires:  kdm-branding-openSUSE
 # kdebase4-openSUSE.spec
 BuildRequires:  kdebase4-runtime-branding-openSUSE
 BuildRequires:  kdebase4-workspace-branding-openSUSE
+
+# yast2-theme.spec
+BuildRequires:  yast2-branding-openSUSE
 
 # Outros
 BuildRequires:  google-plus-qtcurve-theme
@@ -82,6 +86,7 @@ packages="$packages MozillaFirefox-branding-openSUSE"
 packages="$packages grub2-branding-openSUSE"
 # packages="$packages plymouth-branding-openSUSE"
 # packages="$packages wallpaper-branding-openSUSE"
+packages="$packages yast2-qt-branding-openSUSE"
 packages="$packages desktop-data-openSUSE"
 packages="$packages gtk2-branding-openSUSE"
 packages="$packages gtk3-branding-openSUSE"
@@ -89,6 +94,7 @@ packages="$packages kdm-branding-openSUSE"
 # packages="$packages ksplashx-branding-openSUSE"
 packages="$packages kdebase4-runtime-branding-openSUSE"
 packages="$packages kdebase4-workspace-branding-openSUSE"
+packages="$packages yast2-branding-openSUSE"
 
 for i in $packages; do
   echo "%defattr(-,root,root)" > files.$i
@@ -514,6 +520,24 @@ BuildArch:      noarch
 /usr/share/wallpapers/
 
 
+%package -n yast2-qt-branding-%{distro}
+Summary:        %{distro} branding for yast2-qt
+License:        BSD-3-Clause
+Group:          System/Fhs
+Provides:       yast2-qt-branding = %{version}
+Provides:       yast2-qt-branding-openSUSE
+Conflicts:      otherproviders(yast2-qt-branding)
+Supplements:    packageand(yast2-qt:branding-openSUSE)
+BuildArch:      noarch
+
+
+%description -n yast2-qt-branding-%{distro}
+%{distro} %{version} branding and themes for yast2-qt
+
+
+%files -f files.yast2-qt-branding-openSUSE -n yast2-qt-branding-%{distro}
+
+
 ##############################
 # desktop-data-openSUSE.spec #
 ##############################
@@ -756,3 +780,38 @@ This package contains the standard %{distro} desktop and extensions.
 
 
 %files -f files.kdebase4-workspace-branding-%{distro} -n kdebase4-workspace-branding-%{distro}
+
+
+####################
+# yast2-theme.spec #
+####################
+
+%package -n yast2-branding-%{distro}
+Summary:        YaST2 - Theme (%{distro})
+Group:          System/YaST
+Provides:       yast2-branding = %{version}
+Provides:       yast2_theme = %{version}
+Conflicts:      otherproviders(yast2-branding)
+Supplements:    packageand(yast2:branding-openSUSE)
+Conflicts:      yast2-theme-SLE
+PreReq:         /bin/ln
+Requires:       hicolor-icon-theme
+Obsoletes:      yast2-theme-openSUSE-Crystal < %{version}
+Provides:       yast2-theme-openSUSE-Oxygen = %{version}
+Obsoletes:      yast2-theme-openSUSE < %{version}
+Obsoletes:      yast2-theme-openSUSE-Oxygen < %{version}
+Provides:       yast2-theme-openSUSE = %{version}
+
+
+%description -n yast2-branding-%{distro}
+This package contains the %{distro} theme for YaST2.
+
+
+%files -f files.yast2-branding-openSUSE -n yast2-branding-%{distro}
+
+
+%pre -n yast2-branding-%{distro}
+# used to be a symlink, we need to remove it so rpm can update to the directory
+if test -L %{yast_themedir}/current ; then
+  rm %{yast_themedir}/current
+fi
