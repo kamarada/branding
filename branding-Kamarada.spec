@@ -32,6 +32,7 @@ Group:          System/Fhs
 BuildArch:      noarch
 
 # branding-openSUSE.spec
+BuildRequires:  grub2-branding-openSUSE
 BuildRequires:  plymouth-branding-openSUSE
 # BuildRequires:  wallpaper-branding-openSUSE
 
@@ -65,6 +66,7 @@ tar -zxvf %{SOURCE1} -C rootcopy
 
 %install
 packages=""
+packages="$packages grub2-branding-openSUSE"
 # packages="$packages plymouth-branding-openSUSE"
 # packages="$packages wallpaper-branding-openSUSE"
 packages="$packages kdm-branding-openSUSE"
@@ -112,6 +114,18 @@ grep SUSEgreeter files.kdebase4-workspace-branding-openSUSE | grep -v %dir | whi
   rm -rf $RPM_BUILD_ROOT/$file
 done
 grep -v SUSEgreeter files.kdebase4-workspace-branding-openSUSE > t && mv t files.kdebase4-workspace-branding-openSUSE
+
+
+#########
+# Grub2 #
+#########
+
+mv $RPM_BUILD_ROOT/boot/grub2/themes/openSUSE/ $RPM_BUILD_ROOT/boot/grub2/themes/%{distro_name}/
+mv $RPM_BUILD_ROOT/usr/share/grub2/backgrounds/openSUSE/ $RPM_BUILD_ROOT/usr/share/grub2/backgrounds/%{distro_name}/
+mv $RPM_BUILD_ROOT/usr/share/grub2/themes/openSUSE/ $RPM_BUILD_ROOT/usr/share/grub2/themes/%{distro_name}/
+
+mv files.grub2-branding-openSUSE files.grub2-branding-%{distro_name}
+sed -i -e 's,openSUSE,%{distro_name},' files.grub2-branding-%{distro_name}
 
 
 #########
@@ -209,6 +223,38 @@ kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSpl
 ##########################
 # branding-openSUSE.spec #
 ##########################
+
+%package -n grub2-branding-%{distro_name}-exp
+Summary:        %{distro_name} branding for GRUB2's graphical console
+License:        CC-BY-SA-3.0
+Group:          System/Fhs
+Requires:       grub2
+Provides:       grub2-branding = %{version}
+Provides:       grub2-branding-openSUSE
+Supplements:    packageand(grub2:branding-openSUSE)
+Conflicts:      otherproviders(grub2-branding)
+BuildArch:      noarch
+
+
+%description -n grub2-branding-%{distro_name}-exp
+%{distro_name} %{version} branding for the GRUB2's graphical console
+
+
+%files -f files.grub2-branding-%{distro_name} -n grub2-branding-%{distro_name}-exp
+
+
+%post -n grub2-branding-%{distro_name}-exp
+%{_datadir}/grub2/themes/%{distro_name}/activate-theme
+if test -e /boot/grub2/grub.cfg ; then
+  /usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg || true
+fi
+
+
+%postun -n grub2-branding-%{distro_name}-exp
+if [ $1 = 0 ] ; then
+  rm -rf /boot/grub2/themes/%{distro_name}
+fi
+
 
 %package -n plymouth-branding-%{distro}
 Summary:        %{distro} branding for Plymouth bootsplash
