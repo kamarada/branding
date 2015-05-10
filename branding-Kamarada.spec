@@ -39,6 +39,9 @@ BuildRequires:  grub2-branding-openSUSE
 BuildRequires:  plymouth-branding-openSUSE
 # BuildRequires:  wallpaper-branding-openSUSE
 
+# desktop-data-openSUSE.spec
+BuildRequires:  desktop-data-openSUSE
+
 # gtk2-branding-openSUSE.spec
 BuildRequires:  gtk2-branding-openSUSE
 
@@ -79,6 +82,7 @@ packages="$packages MozillaFirefox-branding-openSUSE"
 packages="$packages grub2-branding-openSUSE"
 # packages="$packages plymouth-branding-openSUSE"
 # packages="$packages wallpaper-branding-openSUSE"
+packages="$packages desktop-data-openSUSE"
 packages="$packages gtk2-branding-openSUSE"
 packages="$packages gtk3-branding-openSUSE"
 packages="$packages kdm-branding-openSUSE"
@@ -233,6 +237,23 @@ grep -v desktoptheme files.kdebase4-runtime-branding-%{distro} > t && mv t files
 echo "%{_kde4_appsdir}/desktoptheme/Kamarada/" >> files.kdebase4-runtime-branding-%{distro}
 
 kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasmarc --group Theme --key name %{distro}
+
+
+###########################
+# Tema do cursor do mouse #
+###########################
+
+# X
+mv $RPM_BUILD_ROOT/var/adm/fillup-templates/sysconfig.windowmanager-desktop-data-openSUSE $RPM_BUILD_ROOT/var/adm/fillup-templates/sysconfig.windowmanager-desktop-data-%{distro}
+
+mv files.desktop-data-openSUSE files.desktop-data-%{distro}
+grep -v sysconfig.windowmanager files.desktop-data-%{distro} > t && mv t files.desktop-data-%{distro}
+echo "/var/adm/fillup-templates/sysconfig.windowmanager-desktop-data-%{distro}" >> files.desktop-data-%{distro}
+
+sed -i -e 's,DMZ,Bluecurve,g' $RPM_BUILD_ROOT/var/adm/fillup-templates/sysconfig.windowmanager-desktop-data-%{distro}
+
+# KDE
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kcminputrc --group Mouse --key cursorTheme Bluecurve
 
 
 ###############
@@ -447,6 +468,56 @@ BuildArch:      noarch
 %defattr(-,root,root)
 %doc COPYING
 /usr/share/wallpapers/
+
+
+##############################
+# desktop-data-openSUSE.spec #
+##############################
+
+%package -n desktop-data-%{distro}
+# BuildRequires:  fdupes
+# BuildRequires:  hicolor-icon-theme
+# BuildRequires:  perl-RPC-XML
+# BuildRequires:  update-desktop-files
+# BuildRequires:  xdg-menu
+# BuildRequires:  xdg-utils
+# Version:        13.2
+# Release:        0
+Summary:        Shared Desktop Files for %{distro}
+License:        GPL-2.0+
+Group:          System/GUI/Other
+Obsoletes:      susewm
+Provides:       desktop-data
+Obsoletes:      desktop-data-NLD < 11.0
+PreReq:         /bin/rm
+PreReq:         %fillup_prereq
+# some soft Requires: Crystalcursors
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Requires:       hicolor-icon-theme
+Requires:       xdg-utils
+# This is the default cursor theme we reference in /etc/sysconfig/windowmanager
+# Requires:       dmz-icon-theme-cursors
+Requires:       bluecurve-cursor-theme
+Requires:       wallpaper-branding = %{version}
+# Source:         desktop-data.tar.bz2
+# Source1:        %name.fillup
+# Source2:        update_rpm
+BuildArch:      noarch
+Provides:       desktop-data-openSUSE
+Provides:       desktop-data-SuSE = 11.0
+Obsoletes:      CheckHardware <= 0.1
+Obsoletes:      desktop-data-SuSE <= 11.0
+Provides:       CheckHardware = 0.1
+Obsoletes:      gnome2-SuSE <= 10.3
+Provides:       desktop-branding = %{version}
+
+
+%description -n desktop-data-%{distro}
+This package contains shared desktop files, like the default
+applications menu structure and the default wallpaper.
+
+
+%files -f files.desktop-data-%{distro} -n desktop-data-%{distro}
 
 
 ###############################
