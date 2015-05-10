@@ -34,6 +34,9 @@ BuildArch:      noarch
 # branding-openSUSE.spec
 # BuildRequires:  wallpaper-branding-openSUSE
 
+# kde-branding-openSUSE.spec
+# BuildRequires:  ksplashx-branding-openSUSE
+
 # kdebase4-openSUSE.spec
 BuildRequires:  kdebase4-runtime-branding-openSUSE
 
@@ -59,6 +62,7 @@ tar -zxvf %{SOURCE1} -C rootcopy
 %install
 packages=""
 # packages="$packages wallpaper-branding-openSUSE"
+# packages="$packages ksplashx-branding-openSUSE"
 packages="$packages kdebase4-runtime-branding-openSUSE"
 
 for i in $packages; do
@@ -113,6 +117,36 @@ kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasmarc --group Theme
 cp -R $RPM_BUILD_DIR/rootcopy/* $RPM_BUILD_ROOT
 
 
+###################
+# Tema do KSplash #
+###################
+
+cd $RPM_BUILD_ROOT%{_kde4_appsdir}/ksplash/Themes
+
+# 1920x1200
+DIR=`ls -d ksplashx-%{distro}/*/`
+mv $DIR ksplashx-%{distro}/1920x1200
+ln -s /usr/share/wallpapers/%{distro}/contents/images/1920x1200.jpeg ksplashx-%{distro}/1920x1200/background.jpeg
+sed -i 's/background0.png/background.jpeg/g' ksplashx-%{distro}/1920x1200/description.txt
+
+# 1280x1024
+mkdir ksplashx-%{distro}/1280x1024
+ln -s /usr/share/wallpapers/%{distro}/contents/images/1280x1024.jpeg ksplashx-%{distro}/1280x1024/background.jpeg
+
+# 1600x1200
+mkdir ksplashx-%{distro}/1600x1200
+ln -s /usr/share/wallpapers/%{distro}/contents/images/1600x1200.jpeg ksplashx-%{distro}/1600x1200/background.jpeg
+
+# 1920x1080
+mkdir ksplashx-%{distro}/1920x1080
+ln -s /usr/share/wallpapers/%{distro}/contents/images/1920x1080.jpeg ksplashx-%{distro}/1920x1080/background.jpeg
+
+cd $RPM_BUILD_DIR
+
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSplash --key Engine KSplashX
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/ksplashrc --group KSplash --key Theme ksplashx-%{distro}
+
+
 ##########################
 # branding-openSUSE.spec #
 ##########################
@@ -135,6 +169,33 @@ BuildArch:      noarch
 %defattr(-,root,root)
 %doc COPYING
 /usr/share/wallpapers/
+
+
+##############################
+# kde-branding-openSUSE.spec #
+##############################
+
+%package -n ksplashx-branding-%{distro}
+Summary:        %{distro} branding for KDE splash
+License:        GPL-2.0+
+Group:          System/Fhs
+Provides:       ksplashx-branding = %{version}
+Provides:       ksplashx-branding-openSUSE
+Conflicts:      otherproviders(ksplashx-branding)
+Supplements:    packageand(kdebase4-workspace:branding-openSUSE)
+BuildArch:      noarch
+# links its images
+Requires:       wallpaper-branding-%{distro}
+
+
+%description -n ksplashx-branding-%{distro}
+%{distro} branding for KDE splash (splashx engine)
+
+
+%files -n ksplashx-branding-%{distro}
+%defattr(-,root,root)
+%doc COPYING
+%{_kde4_appsdir}/ksplash/Themes/ksplashx-%{distro}
 
 
 ##########################
