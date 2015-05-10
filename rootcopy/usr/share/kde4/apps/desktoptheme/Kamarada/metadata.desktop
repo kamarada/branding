@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Kamarada
+Comment=Default Kamarada theme
+Comment[pt_BR]=Tema padrão do Kamarada
+
+X-KDE-PluginInfo-Author=Kamarada Project
+X-KDE-PluginInfo-Author[pt_BR]=Projeto Kamarada
+X-KDE-PluginInfo-Email=kamaradalinux@gmail.com
+X-KDE-PluginInfo-Name=Kamarada-Desktop-Theme
+X-KDE-PluginInfo-Version=1.2
+X-KDE-PluginInfo-Website=http://github.com/kamarada
+X-KDE-PluginInfo-Category=Plasma Theme
+X-KDE-PluginInfo-Depends=KDE4.2 and above
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true

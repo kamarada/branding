@@ -34,6 +34,12 @@ BuildArch:      noarch
 # branding-openSUSE.spec
 # BuildRequires:  wallpaper-branding-openSUSE
 
+# kdebase4-openSUSE.spec
+BuildRequires:  kdebase4-runtime-branding-openSUSE
+
+# Outros
+BuildRequires:  plasma-theme-smoother
+
 
 %description
 This package contains the file /etc/SUSE-brand, and its name is used as
@@ -53,6 +59,7 @@ tar -zxvf %{SOURCE1} -C rootcopy
 %install
 packages=""
 # packages="$packages wallpaper-branding-openSUSE"
+packages="$packages kdebase4-runtime-branding-openSUSE"
 
 for i in $packages; do
   echo "%defattr(-,root,root)" > files.$i
@@ -85,6 +92,24 @@ for i in $packages; do
   done
 done
 
+
+#########################
+# Tema do Plasma do KDE #
+#########################
+
+rm -rf $RPM_BUILD_ROOT/usr/share/kde4/apps/desktoptheme/*
+cp -R /usr/share/kde4/apps/desktoptheme/Smoother/ $RPM_BUILD_ROOT/usr/share/kde4/apps/desktoptheme/%{distro}/
+
+grep -v desktoptheme files.kdebase4-runtime-branding-%{distro} > t && mv t files.kdebase4-runtime-branding-%{distro}
+echo "%{_kde4_appsdir}/desktoptheme/Kamarada/" >> files.kdebase4-runtime-branding-%{distro}
+
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasmarc --group Theme --key name %{distro}
+
+
+##################
+# Outros ajustes #
+##################
+
 cp -R $RPM_BUILD_DIR/rootcopy/* $RPM_BUILD_ROOT
 
 
@@ -110,3 +135,34 @@ BuildArch:      noarch
 %defattr(-,root,root)
 %doc COPYING
 /usr/share/wallpapers/
+
+
+##########################
+# kdebase4-openSUSE.spec #
+##########################
+
+%package -n kdebase4-runtime-branding-%{distro}
+Summary:        The KDE Runtime Components
+License:        GPL-2.0+
+Group:          System/GUI/KDE
+PreReq:         %fillup_prereq
+Supplements:    packageand(kdebase4-runtime:branding-openSUSE)
+Provides:       kdebase4-runtime-branding = %{_kde_branding_version}
+Provides:       kdebase4-runtime-branding-openSUSE
+Conflicts:      otherproviders(kdebase4-runtime-branding)
+%kde4_runtime_requires
+Requires:       bluecurve-cursor-theme
+Requires:       chrome-grayscale-aurorae-theme
+Requires:       google-droid-fonts
+Requires:       kdebase4-runtime
+Requires:       ksplashx-branding-%{distro}
+Requires:       qtcurve-kde4
+Requires:       wallpaper-branding-%{distro}
+BuildArch:      noarch
+
+
+%description -n kdebase4-runtime-branding-%{distro}
+This package contains all run-time dependencies of KDE applications.
+
+
+%files -f files.kdebase4-runtime-branding-%{distro} -n kdebase4-runtime-branding-%{distro}
