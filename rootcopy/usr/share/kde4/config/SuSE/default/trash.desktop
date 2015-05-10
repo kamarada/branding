@@ -1,0 +1,11 @@
+[Desktop Entry]
+Comment=Contains removed files
+Comment[pt_BR]=Contém arquivos removidos
+EmptyIcon=user-trash
+Encoding=UTF-8
+Icon=user-trash-full
+Name=Trash
+Name[pt_BR]=Lixeira
+OnlyShowIn=KDE
+Type=Link
+URL=trash:/

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+GenericName=Personal Files
+GenericName[pt_BR]=Arquivos Pessoais
+Icon=user-home
+Name=Home
+Name[pt_BR]=Pasta do Usuário
+OnlyShowIn=KDE
+Type=Link
+URL[$e]=file://$HOME/.

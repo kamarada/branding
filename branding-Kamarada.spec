@@ -254,7 +254,16 @@ sed -i -e 's,openSUSE,%{distro},g' files.kdm-branding-%{distro}
 # Área de trabalho #
 ####################
 
+# Ícones da área de trabalho
+rm $RPM_BUILD_ROOT/usr/share/kde4/config/SuSE/default/*.desktop
+
 mv files.kdebase4-workspace-branding-openSUSE files.kdebase4-workspace-branding-%{distro}
+grep -v "default/live-installer.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
+grep -v "default/MozillaFirefox.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
+grep -v "default/Office.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
+grep -v "default/SuSE.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
+grep -v "default/Support.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
+echo "/usr/share/kde4/config/SuSE/default/*.desktop" >> files.kdebase4-workspace-branding-%{distro}
 
 # Ícone do Kickoff
 echo "%dir /usr/share/icons/oxygen/256x256/" >> files.kdebase4-workspace-branding-%{distro}
@@ -279,6 +288,10 @@ sed -i 's,openSUSE,%{distro},g' $RPM_BUILD_ROOT/usr/lib/firefox/distribution/dis
 ##################
 
 cp -R $RPM_BUILD_DIR/rootcopy/* $RPM_BUILD_ROOT
+
+# Pastas pessoais
+grep -v "default/documents.directory" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
+echo "/usr/share/kde4/config/SuSE/default/*.directory" >> files.kdebase4-workspace-branding-%{distro}
 
 
 ###################
