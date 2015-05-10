@@ -178,6 +178,20 @@ echo "%{_kde4_appsdir}/color-schemes/%{distro}.colors" >> files.kdebase4-runtime
 # kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key Name %{distro}
 
 
+##########
+# Fontes #
+##########
+
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key font "Droid Sans,9,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key fixed "Droid Sans Mono,9,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key smallestReadableFont "Droid Sans,8,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key toolBarFont "Droid Sans,8,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key menuFont "Droid Sans,9,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group WM --key activeFont "Droid Sans,8,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key taskbarFont "Droid Sans,9,-1,5,50,0,0,0,0,0"
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group General --key desktopFont "Droid Sans,9,-1,5,50,0,0,0,0,0" 
+
+
 ###############
 # Tema do GTK #
 ###############
@@ -224,6 +238,18 @@ echo "/etc/kde4/share/config/gtkrc" >> files.kdebase4-runtime-branding-%{distro}
 echo "/etc/kde4/share/config/gtkrc-2.0" >> files.kdebase4-runtime-branding-%{distro}
 
 echo "/etc/skel/.config/qtcurve/gtk-icons" >> files.kdebase4-runtime-branding-%{distro}
+
+
+#######################
+# Decoração da janela #
+#######################
+
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kwinrc --group Style --key PluginLib kwin3_aurorae
+
+echo "" > $RPM_BUILD_ROOT/etc/kde4/share/config/auroraerc
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/auroraerc --group Engine --key ThemeName chrome-grayscale
+
+echo "/etc/kde4/share/config/auroraerc" >> files.kdebase4-runtime-branding-%{distro}
 
 
 #########################
@@ -275,6 +301,13 @@ sed -i -e 's,openSUSE,%{distro},g' files.kdm-branding-%{distro}
 # Área de trabalho #
 ####################
 
+# Apenas 1 área de trabalho virtual
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kwinrc --group Desktops --key Number 1
+
+# Papel de parede
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasmarc --group Defaults --key wallpaper /usr/share/wallpapers/%{distro}/
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/plasma-desktoprc --group Defaults --key wallpaper /usr/share/wallpapers/%{distro}/contents/images/1920x1200.jpeg
+
 # Ícones da área de trabalho
 rm $RPM_BUILD_ROOT/usr/share/kde4/config/SuSE/default/*.desktop
 
@@ -285,6 +318,13 @@ grep -v "default/Office.desktop" files.kdebase4-workspace-branding-%{distro} > t
 grep -v "default/SuSE.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
 grep -v "default/Support.desktop" files.kdebase4-workspace-branding-%{distro} > t && mv t files.kdebase4-workspace-branding-%{distro}
 echo "/usr/share/kde4/config/SuSE/default/*.desktop" >> files.kdebase4-workspace-branding-%{distro}
+
+# Um clique para selecionar, duplo clique para abrir
+# kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kdeglobals --group KDE --key SingleClick false
+
+# Kickoff
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kickoffrc --group Branding --key Homepage http://www.kde.org/
+kwriteconfig --file $RPM_BUILD_ROOT/etc/kde4/share/config/kickoffrc --group Favorites --key FavoriteURLs /usr/share/applications/firefox.desktop,/usr/share/applications/kde4/Kontact.desktop,/usr/share/applications/pidgin.desktop,/usr/share/applications/kde4/dolphin.desktop,/usr/share/applications/writer.desktop,/usr/share/applications/kde4/konsole.desktop,/usr/share/applications/kde4/systemsettings.desktop,/usr/share/applications/YaST.desktop
 
 # Ícone do Kickoff
 echo "%dir /usr/share/icons/oxygen/256x256/" >> files.kdebase4-workspace-branding-%{distro}
