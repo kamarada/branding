@@ -5,7 +5,7 @@
 # For complete list of available settings see devhelp documentation in
 # gtk2-doc package, section GTK+ Core Reference -> Resource Files
 #
-# This is a default for openSUSE:
-gtk-theme-name = "Adwaita"
+# This is a default for Kamarada:
+gtk-theme-name = "Adapta"
 gtk-icon-theme-name = "Adwaita"
 gtk-fallback-icon-theme = "hicolor"

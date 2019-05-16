@@ -6,7 +6,7 @@ toolkit-accessibility = false
 # cursor-theme = ""
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
 # icon-theme = ""
-# gtk-theme = ""
+gtk-theme = "Adapta"
 
 [org.gnome.desktop.background]
 ## Default wallpaper
