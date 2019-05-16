@@ -7,5 +7,5 @@
 #
 # This is a default for Kamarada:
 gtk-theme-name = "Adapta"
-gtk-icon-theme-name = "Adwaita"
+gtk-icon-theme-name = "Papirus"
 gtk-fallback-icon-theme = "hicolor"
