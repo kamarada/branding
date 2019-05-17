@@ -17,6 +17,9 @@ BuildRequires:  glib2-devel
 # gtk2-branding
 BuildRequires:  gtk2
 
+# gtk3-branding
+BuildRequires:  gtk3
+
 
 %description
 %{ubranding_name} branding
@@ -91,6 +94,39 @@ This package provides the %{ubranding_name} theme configuration for
 widgets and icon themes.
 
 
+################################################################################
+# gtk3-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/gtk3-branding/gtk3-branding.spec?expand=1
+################################################################################
+
+%define gtk3_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk3)
+%define gtk3_version %(rpm -q --qf '%%{version}' %{gtk3_real_package})
+
+%package -n gtk3-branding-%{branding_name}
+Summary:        The GTK+ toolkit library (version 3) -- %{ubranding_name} theme configuration
+License:        BSD-3-Clause
+Group:          System/Libraries
+
+Supplements:    packageand(gtk3:branding-%{branding_name})
+Provides:       gtk3-branding = %{gtk3_version}
+Conflicts:      gtk3-branding
+
+Requires:       %{gtk3_real_package} = %{gtk3_version}
+Requires:       gtk3-metatheme-adapta
+Requires:       papirus-icon-theme
+
+
+%description -n gtk3-branding-%{branding_name}
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects
+ranging from small one-off projects to complete application suites.
+
+This package provides the %{ubranding_name} theme configuration for
+widgets and icon themes.
+
+
 %prep
 %setup -q -n branding-kamarada-15.1-dev
 
@@ -112,6 +148,12 @@ cd ..
 cd gtk2
 install -d %{buildroot}%{_sysconfdir}/gtk-2.0
 install -m0644 gtkrc %{buildroot}%{_sysconfdir}/gtk-2.0/
+cd ..
+
+# gtk3-branding
+cd gtk3
+install -d %{buildroot}%{_sysconfdir}/gtk-3.0
+install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 
 
 %files -n gio-branding-%{branding_name}
@@ -123,6 +165,10 @@ install -m0644 gtkrc %{buildroot}%{_sysconfdir}/gtk-2.0/
 %files -n gtk2-branding-%{branding_name}
 %defattr (-, root, root)
 %config %{_sysconfdir}/gtk-2.0/gtkrc
+
+
+%files -n gtk3-branding-%{branding_name}
+%config(noreplace) %{_sysconfdir}/gtk-3.0/settings.ini
 
 
 %changelog
