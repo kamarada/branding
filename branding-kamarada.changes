@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue May 21 02:31:29 UTC 2019 - Antônio Vinicius Menezes Medeiros <linuxkamarada@gmail.com>
+
+- Added the wallpaper-branding package
+
+-------------------------------------------------------------------
 Fri May 17 02:35:45 UTC 2019 - Antônio Vinicius Menezes Medeiros <linuxkamarada@gmail.com>
 
 - First packaging, with gio-branding, gtk2-branding and gtk3-branding packages

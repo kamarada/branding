@@ -8,7 +8,7 @@ Release:        0
 License:        GPL-3.0+
 Group:          System/Fhs
 URL:            https://github.com/kamarada/branding
-Source:         https://github.com/kamarada/branding/archive/15.1-dev.tar.gz#/branding-kamarada-15.1-dev.tar.gz
+Source:         https://github.com/kamarada/branding/archive/15.1-dev.tar.gz#/%{name}.tar.gz
 BuildArch:      noarch
 
 # gio-branding
@@ -127,8 +127,30 @@ This package provides the %{ubranding_name} theme configuration for
 widgets and icon themes.
 
 
+################################################################################
+# wallpaper-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package -n wallpaper-branding-%{branding_name}
+Summary:        %{ubranding_name} default wallpapers
+License:        BSD-3-Clause
+Group:          System/Fhs
+
+#Provides:       wallpaper-branding = %{version}
+#Conflicts:      otherproviders(wallpaper-branding)
+
+Requires:       floripa-wallpaper-pack
+
+
+%description -n wallpaper-branding-%{branding_name}
+%{ubranding_name} %{version} default wallpapers
+
+
 %prep
-%setup -q -n branding-kamarada-15.1-dev
+%setup -q -n %{name}
 
 
 %build
@@ -169,6 +191,9 @@ install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 
 %files -n gtk3-branding-%{branding_name}
 %config(noreplace) %{_sysconfdir}/gtk-3.0/settings.ini
+
+
+%files -n wallpaper-branding-%{branding_name}
 
 
 %changelog
