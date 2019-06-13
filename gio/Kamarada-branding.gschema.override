@@ -38,6 +38,8 @@ theme-name = "freedesktop"
 [org.gnome.desktop.wm.preferences]
 # Audible bell is more annoying than useful
 audible-bell = false
+## Minimize and maximize buttons
+button-layout = 'appmenu:minimize,maximize,close'
 ### For the theme, we stay with the defaults
 # titlebar-uses-system-font = false
 # titlebar-font = ""
