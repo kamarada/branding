@@ -16,7 +16,8 @@ primary-color = "#258c06"
 secondary-color = "#258c06"
 
 [org.gnome.desktop.screensaver]
-picture-uri = "file:///usr/share/wallpapers/openSUSE-default.xml"
+## Default lock screen
+picture-uri = "file:///usr/share/wallpapers/Praia-da-Joaquina/Praia-da-Joaquina.xml"
 picture-options = "stretched"
 primary-color = "#258c06"
 secondary-color = "#258c06"
