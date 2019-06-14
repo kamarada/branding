@@ -74,7 +74,7 @@ help = "Help"
 [org.gnome.shell]
 enabled-extensions=['user-theme@gnome-shell-extensions.gcampax.github.com']
 ## Default apps shown in the gnome-shell dash
-favorite-apps = [ 'firefox.desktop', 'evolution.desktop', 'empathy.desktop', 'gnome-music.desktop', 'shotwell.desktop', 'writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Documents.desktop' ]
+favorite-apps = ['chromium-browser.desktop', 'evolution.desktop', 'org.gnome.Nautilus.desktop', 'writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Screenshot.desktop']
 
 [org.gnome.gnome-panel.applet.window-list]
 ## Display all workspaces in the gnome-panel window list applet
