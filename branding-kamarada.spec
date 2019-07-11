@@ -144,6 +144,8 @@ Group:          System/Fhs
 #Conflicts:      otherproviders(wallpaper-branding)
 
 Requires:       floripa-wallpaper-pack
+# Just in case anyone wants to revert to openSUSE defaults, it does not hurt
+Requires:       wallpaper-branding-openSUSE
 
 
 %description -n wallpaper-branding-%{branding_name}
