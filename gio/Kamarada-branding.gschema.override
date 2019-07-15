@@ -51,7 +51,7 @@ button-layout = 'appmenu:minimize,maximize,close'
 # titlebar-font = ""
 # theme = ""
 ## Window title font
-titlebar-font "Cantarell Bold 11"
+titlebar-font = "Cantarell Bold 11"
 
 [org.gnome.desktop.peripherals.touchpad]
 ## Enable tap-to-click by default (bnc#554884,fate#310811)
