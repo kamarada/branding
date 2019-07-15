@@ -7,6 +7,12 @@ toolkit-accessibility = false
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
 icon-theme = "Papirus"
 gtk-theme = "Adapta"
+## Interface font
+font-name = "Noto Sans 11"
+## Document font
+document-font-name = "Sans 11"
+## Monospace font
+monospace-font-name = "Hack 11"
 
 [org.gnome.desktop.background]
 ## Default wallpaper
@@ -44,6 +50,8 @@ button-layout = 'appmenu:minimize,maximize,close'
 # titlebar-uses-system-font = false
 # titlebar-font = ""
 # theme = ""
+## Window title font
+titlebar-font "Cantarell Bold 11"
 
 [org.gnome.desktop.peripherals.touchpad]
 ## Enable tap-to-click by default (bnc#554884,fate#310811)

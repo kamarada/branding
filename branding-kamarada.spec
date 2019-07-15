@@ -46,13 +46,17 @@ Provides:       gio-branding = %{gio_version}
 Conflicts:      gio-branding
 
 %glib2_gsettings_schema_requires
+Requires:       cantarell-fonts
 Requires:       desktop-file-utils
 Requires:       %{gio_real_package} = %{gio_version}
 Requires:       gnome-shell-extension-user-theme
 Requires:       gnome-shell-theme-adapta
 Requires:       gtk2-metatheme-adapta
 Requires:       gtk3-metatheme-adapta
+Requires:       hack-fonts
+Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme
+Requires:       google-roboto-fonts
 Requires:       sound-theme-freedesktop
 Requires:       wallpaper-branding-%{branding_name}
 
