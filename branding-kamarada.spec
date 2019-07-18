@@ -133,6 +133,33 @@ widgets and icon themes.
 
 
 ################################################################################
+# plymouth-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package -n plymouth-branding-%{branding_name}
+Summary:        %{ubranding_name} branding for Plymouth bootsplash
+License:        GPL-2.0+
+Group:          System/Fhs
+
+Supplements:    packageand(plymouth:branding-%{branding_name})
+Provides:       plymouth-branding = %{version}
+Conflicts:      otherproviders(plymouth-branding)
+
+PreReq:         plymouth-plugin-script
+PreReq:         plymouth-scripts
+BuildRequires:  plymouth-plugin-two-step
+Requires:       plymouth-plugin-two-step
+Requires(%post): plymouth-plugin-two-step
+
+
+%description -n plymouth-branding-%{branding_name}
+%{ubranding_name} %{version} branding for the plymouth bootsplash
+
+
+################################################################################
 # wallpaper-branding
 #
 # Based on:
@@ -183,6 +210,37 @@ cd ..
 cd gtk3
 install -d %{buildroot}%{_sysconfdir}/gtk-3.0
 install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
+cd ..
+
+# plymouth-branding
+cd plymouth
+install -d %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}
+install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}/
+
+
+%post -n plymouth-branding-%{branding_name}
+OTHEME="$(%{_sbindir}/plymouth-set-default-theme)"
+if [ "$OTHEME" == "text" -o "$OTHEME" == "openSUSE" -o "$OTHEME" == "%{ubranding_name}" ]; then
+   if [ ! -e /.buildenv ]; then
+     %{_sbindir}/plymouth-set-default-theme %{ubranding_name}
+     %{?regenerate_initrd_post}
+   else
+     %{_sbindir}/plymouth-set-default-theme %{ubranding_name}
+   fi 
+fi
+
+
+%postun -n plymouth-branding-%{branding_name}
+if [ $1 -eq 0 ]; then
+    if [ "$(%{_sbindir}/plymouth-set-default-theme)" == "%{ubranding_name}" ]; then
+        %{_sbindir}/plymouth-set-default-theme --reset
+        %{?regenerate_initrd_post}
+    fi
+fi
+
+
+%posttrans -n plymouth-branding-%{branding_name}
+%{?regenerate_initrd_posttrans}
 
 
 %files -n gio-branding-%{branding_name}
@@ -198,6 +256,10 @@ install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 
 %files -n gtk3-branding-%{branding_name}
 %config(noreplace) %{_sysconfdir}/gtk-3.0/settings.ini
+
+
+%files -n plymouth-branding-%{branding_name}
+%{_datadir}/plymouth/themes/%{ubranding_name}/
 
 
 %files -n wallpaper-branding-%{branding_name}
