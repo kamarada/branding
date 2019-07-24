@@ -11,6 +11,9 @@ URL:            https://github.com/kamarada/branding
 Source:         https://github.com/kamarada/branding/archive/15.1-dev.tar.gz#/%{name}.tar.gz
 BuildArch:      noarch
 
+# gdm-branding
+BuildRequires:  gdm
+
 # gio-branding
 BuildRequires:  glib2-devel
 
@@ -23,6 +26,33 @@ BuildRequires:  gtk3
 
 %description
 %{ubranding_name} branding
+
+
+################################################################################
+# gdm-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/gdm-branding-openSUSE/gdm-branding-openSUSE.spec?expand=1
+################################################################################
+
+%define gdm_version %(rpm -q --qf '%%{version}' gdm)
+
+%package -n gdm-branding-%{branding_name}
+Summary:        The GNOME Display Manager -- %{ubranding_name} default configuration
+Group:          System/GUI/GNOME
+
+Supplements:    packageand(gdm:branding-%{branding_name})
+Provides:       gdm-branding
+Conflicts:      gdm-branding
+
+Requires:       gdm
+
+
+%description -n gdm-branding-%{branding_name}
+The GNOME Display Manager is a system service that is responsible for
+providing graphical log-ins and managing local and remote displays.
+
+This package provides the %{ubranding_name} default configuration for gdm.
 
 
 ################################################################################
@@ -192,6 +222,14 @@ Requires:       wallpaper-branding-openSUSE
 
 %install
 
+#gdm-branding
+cd gdm
+install -d %{buildroot}%{_sysconfdir}/gdm
+install -m0644 custom.conf %{buildroot}%{_sysconfdir}/gdm/custom.conf
+mkdir -p %{buildroot}%{_datadir}/gdm/greeter/images/
+install -m0644 distributor.svg %{buildroot}%{_datadir}/gdm/greeter/images/
+cd ..
+
 # gio-branding
 cd gio
 install -d %{buildroot}%{_sysconfdir}
@@ -241,6 +279,12 @@ fi
 
 %posttrans -n plymouth-branding-%{branding_name}
 %{?regenerate_initrd_posttrans}
+
+
+%files -n gdm-branding-%{branding_name}
+%config(noreplace) %{_sysconfdir}/gdm/custom.conf
+%{_datadir}/gdm/greeter/images/distributor.svg
+%dir %{_datadir}/gdm/greeter/images/
 
 
 %files -n gio-branding-%{branding_name}
