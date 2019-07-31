@@ -1,7 +1,7 @@
 /* Richtext: richtext.css */
 #steps {
 padding: 80px 2em 1em 0.5em;
-background: url(logo.svg) no-repeat top;
+background: url(logo.png) no-repeat top;
 background-color:#173f4f;
 min-width: 210px;
 color: #fff;

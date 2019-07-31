@@ -288,9 +288,12 @@ install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}/
 cd ..
 
 # yast2-qt-branding
+cd yast2-qt
 install -d %{buildroot}%{_datadir}/YaST2/theme/current/wizard
 cp -a %{_datadir}/YaST2/theme/current/wizard/* %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
-install -m0644 gdm/distributor.svg %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.svg
+rm %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.svg
+install -m0644 logo.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
+install -m0644 style.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 
 
 %post -n plymouth-branding-%{branding_name}
