@@ -1,0 +1,44 @@
+/* Richtext: richtext.css */
+#steps {
+padding: 80px 2em 1em 0.5em;
+background: url(logo.svg) no-repeat top;
+background-color:#173f4f;
+min-width: 210px;
+color: #fff;
+}
+.current-step-name {
+color:#fff;
+  font-family:"Source Sans Pro Semibold",sans;
+}
+.done-step-name {
+color:#fff;
+font-family:"Source Sans Pro Light",sans;
+}
+.todo-step-name {
+color:#fff;
+font-family:"Source Sans Pro Light",sans;
+}
+.steps_heading {
+  font-family:"Source Sans Pro",sans;
+  color: #35b9ab;
+  font-weight:bold;
+}
+.todo-step-status {
+   max-width: 14px;
+   min-width: 14px;
+}
+
+.done-step-status {
+   qproperty-pixmap: url(step-done.svg);
+   max-width: 14px;
+   min-width: 14px;
+}
+
+.current-step-status {
+   qproperty-pixmap: url(step-current.svg);
+   max-width: 14px;
+   min-width: 14px;
+}
+QSplitter::handle {
+  height: 0px;
+}
