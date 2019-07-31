@@ -23,6 +23,15 @@ BuildRequires:  gtk2
 # gtk3-branding
 BuildRequires:  gtk3
 
+# plymouth-branding
+BuildRequires:  plymouth-plugin-two-step
+
+# yast2-qt-branding
+# To be in sync with upstream, like gdm-branding-openSUSE does with gdm-branding-upstream
+# WARNING: As this package conflicts with yast2-qt-branding-openSUSE, you cannot
+#          reuse build root. You have to build in a clean build root every time!
+BuildRequires:  yast2-qt-branding-openSUSE
+
 
 %description
 %{ubranding_name} branding
@@ -180,7 +189,6 @@ Conflicts:      otherproviders(plymouth-branding)
 
 PreReq:         plymouth-plugin-script
 PreReq:         plymouth-scripts
-BuildRequires:  plymouth-plugin-two-step
 Requires:       plymouth-plugin-two-step
 Requires(%post): plymouth-plugin-two-step
 
@@ -201,7 +209,7 @@ Summary:        %{ubranding_name} default wallpapers
 License:        BSD-3-Clause
 Group:          System/Fhs
 
-#Provides:       wallpaper-branding = %{version}
+#Provides:       wallpaper-branding = %%{version}
 #Conflicts:      otherproviders(wallpaper-branding)
 
 Requires:       floripa-wallpaper-pack
@@ -211,6 +219,29 @@ Requires:       wallpaper-branding-openSUSE
 
 %description -n wallpaper-branding-%{branding_name}
 %{ubranding_name} %{version} default wallpapers
+
+
+################################################################################
+# yast2-qt-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package -n yast2-qt-branding-%{branding_name}
+Summary:        %{ubranding_name} branding for yast2-qt
+License:        BSD-3-Clause
+Group:          System/Fhs
+
+Provides:       yast2-qt-branding = %{version}
+Conflicts:      otherproviders(yast2-qt-branding)
+
+Requires:       adobe-sourcesanspro-fonts
+Requires:       google-opensans-fonts
+
+
+%description -n yast2-qt-branding-%{branding_name}
+%{ubranding_name} %{version} branding and themes for yast2-qt
 
 
 %prep
@@ -254,6 +285,12 @@ cd ..
 cd plymouth
 install -d %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}
 install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}/
+cd ..
+
+# yast2-qt-branding
+install -d %{buildroot}%{_datadir}/YaST2/theme/current/wizard
+cp -a %{_datadir}/YaST2/theme/current/wizard/* %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
+install -m0644 gdm/distributor.svg %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.svg
 
 
 %post -n plymouth-branding-%{branding_name}
@@ -307,6 +344,13 @@ fi
 
 
 %files -n wallpaper-branding-%{branding_name}
+
+
+%files -n yast2-qt-branding-%{branding_name}
+%dir %{_datadir}/YaST2
+%dir %{_datadir}/YaST2/theme
+%dir %{_datadir}/YaST2/theme/current
+%{_datadir}/YaST2/theme/current/wizard
 
 
 %changelog
