@@ -292,6 +292,7 @@ cd yast2-qt
 install -d %{buildroot}%{_datadir}/YaST2/theme/current/wizard
 cp -a %{_datadir}/YaST2/theme/current/wizard/* %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 rm %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.svg
+install -m0644 installation.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 install -m0644 logo.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 install -m0644 style.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 
