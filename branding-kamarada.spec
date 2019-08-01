@@ -88,6 +88,7 @@ Conflicts:      gio-branding
 Requires:       cantarell-fonts
 Requires:       desktop-file-utils
 Requires:       %{gio_real_package} = %{gio_version}
+Requires:       gnome-shell-extension-dash-to-dock
 Requires:       gnome-shell-extension-user-theme
 Requires:       gnome-shell-theme-adapta
 Requires:       gtk2-metatheme-adapta
