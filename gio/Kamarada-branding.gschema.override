@@ -109,6 +109,8 @@ default-zoom-level = 'small'
 name = 'Adapta'
 
 [org.gnome.shell.extensions.dash-to-dock]
+## Disable Intelligent autohide
+dock-fixed = true
 ## Enable Panel mode: extend to the screen edge
 extend-height = true
 
