@@ -20,6 +20,8 @@ picture-uri = "file:///usr/share/wallpapers/Barra-da-Lagoa/Barra-da-Lagoa.xml"
 picture-options = "stretched"
 primary-color = "#258c06"
 secondary-color = "#258c06"
+## Show icons on desktop
+show-desktop-icons = true
 
 [org.gnome.desktop.screensaver]
 ## Default lock screen
