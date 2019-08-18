@@ -26,7 +26,7 @@ YQDialog { background: #EEEEEE; color:#333;  }
 #steps {
   padding: 80px 2em 1em 0.5em;
   background: url(logo.png) no-repeat top;
-  background-color:#173f4f;
+  background-color:#212121;
   min-width: 210px;
   color: #fff;
 }
@@ -44,7 +44,7 @@ YQDialog { background: #EEEEEE; color:#333;  }
 }
 .steps_heading {
   font-family:"Source Sans Pro",sans;
-  color: #35b9ab;
+  color: #73ba25;
   font-weight:bold;
 }
 .todo-step-status {
