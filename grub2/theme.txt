@@ -1,6 +1,6 @@
-# openSUSE grub2 theme
+# Kamarada GRUB2 theme
 
-desktop-color: "#0D202F"
+desktop-color: "#212121"
 
 title-text: ""
 title-color: "#fff"
@@ -12,7 +12,7 @@ terminal-font: "Gnu Unifont Mono Regular 16"
   width = 198
   height = 45
   left = 20
-  top = 10
+  top = 20
   file = "logo.png"
 }
 
@@ -50,10 +50,10 @@ terminal-font: "Gnu Unifont Mono Regular 16"
   font = "DejaVu Sans Bold 14"
 
   text_color = "#fff"
-  fg_color = "#0D202F"
+  fg_color = "#212121"
 
-  bg_color = "#0D202F"
-  border_color = "#0D202F"
+  bg_color = "#212121"
+  border_color = "#212121"
 
   text = "@TIMEOUT_NOTIFICATION_SHORT@"
 }

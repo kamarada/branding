@@ -17,6 +17,11 @@ BuildRequires:  gdm
 # gio-branding
 BuildRequires:  glib2-devel
 
+# grub2-branding
+BuildRequires:  grub2
+# To be in sync with upstream (read below)
+BuildRequires:  grub2-branding-openSUSE
+
 # gtk2-branding
 BuildRequires:  gtk2
 
@@ -105,6 +110,34 @@ Requires:       wallpaper-branding-%{branding_name}
 %description -n gio-branding-%{branding_name}
 This package provides %{ubranding_name} defaults for settings stored with
 GSettings and applications used by the MIME system.
+
+
+################################################################################
+# grub2-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package -n grub2-branding-%{branding_name}
+Summary:        %{ubranding_name} branding for GRUB2's graphical console
+Group:          System/Fhs
+
+Supplements:    packageand(grub2:branding-openSUSE)
+Provides:       grub2-branding = %{version}
+Conflicts:      otherproviders(grub2-branding)
+
+%if 0%{?update_bootloader_requires:1}
+%update_bootloader_requires
+%endif
+# grub2 is required in all cases in order to have /etc/default/grub in place during post.
+# Otherwise it may happen that grub2 is installed after the branding packae.
+Requires:       grub2
+
+
+%description -n grub2-branding-%{branding_name}
+%{ubranding_name} %{version} branding for the GRUB2's graphical console
+
 
 
 ################################################################################
@@ -271,6 +304,17 @@ install -d %{buildroot}%{_datadir}/glib-2.0/schemas
 install -m0644 %{ubranding_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
 cd ..
 
+# grub2-branding
+cd grub2
+install -d %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}
+cp -ar %{_datadir}/grub2/themes/openSUSE/* %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
+rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/logo.png
+rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/theme.txt
+install -m0644 logo.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
+install -m0644 theme.txt %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
+sed -i 's/openSUSE/%{ubranding_name}/g' %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/activate-theme
+cd ..
+
 # gtk2-branding
 cd gtk2
 install -d %{buildroot}%{_sysconfdir}/gtk-2.0
@@ -297,6 +341,27 @@ rm %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.svg
 install -m0644 installation.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 install -m0644 logo.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 install -m0644 style.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
+
+
+%post -n grub2-branding-%{branding_name}
+%{_datadir}/grub2/themes/%{ubranding_name}/activate-theme
+%if 0%{?update_bootloader_check_type_refresh_post:1} 
+%update_bootloader_check_type_refresh_post grub2 grub2-efi
+%else
+if test -e /boot/grub2/grub.cfg ; then
+  %{_sbindir}/grub2-mkconfig -o /boot/grub2/grub.cfg || true
+fi
+%endif
+
+
+%posttrans -n grub2-branding-%{branding_name}
+%{?update_bootloader_posttrans}
+
+
+%postun -n grub2-branding-%{branding_name}
+if [ $1 = 0 ] ; then
+  rm -rf /boot/grub2/themes/%{ubranding_name}
+fi
 
 
 %post -n plymouth-branding-%{branding_name}
@@ -334,6 +399,13 @@ fi
 %defattr (-, root, root)
 %config (noreplace) %{_sysconfdir}/gnome_defaults.conf
 %{_datadir}/glib-2.0/schemas/%{ubranding_name}-branding.gschema.override
+
+
+%files -n grub2-branding-%{branding_name}
+%{_datadir}/grub2
+#%%dir /boot/grub2
+#%%dir /boot/grub2/themes
+%ghost /boot/grub2/themes/%{ubranding_name}
 
 
 %files -n gtk2-branding-%{branding_name}
