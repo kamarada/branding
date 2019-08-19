@@ -14,6 +14,11 @@ BuildArch:      noarch
 # gdm-branding
 BuildRequires:  gdm
 
+# gfxboot-branding
+BuildRequires:  gfxboot-devel
+# To be in sync with upstream (read below)
+BuildRequires:  gfxboot-branding-openSUSE
+
 # gio-branding
 BuildRequires:  glib2-devel
 
@@ -21,6 +26,7 @@ BuildRequires:  glib2-devel
 BuildRequires:  grub2
 # To be in sync with upstream (read below)
 BuildRequires:  grub2-branding-openSUSE
+BuildRequires:  update-bootloader-rpm-macros
 
 # gtk2-branding
 BuildRequires:  gtk2
@@ -67,6 +73,29 @@ The GNOME Display Manager is a system service that is responsible for
 providing graphical log-ins and managing local and remote displays.
 
 This package provides the %{ubranding_name} default configuration for gdm.
+
+
+################################################################################
+# gfxboot-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package        -n gfxboot-branding-%{branding_name}
+Summary:        Graphical bootloader %{ubranding_name} theme
+Group:          System/Boot
+
+Supplements:    packageand(gfxboot:branding-%{branding_name})
+Provides:       gfxboot-branding = %{version}
+Provides:       gfxboot-theme = %{version}
+Conflicts:      otherproviders(gfxboot-branding)
+
+PreReq:         gfxboot >= 4
+
+
+%description -n gfxboot-branding-%{branding_name}
+%{ubranding_name} theme for gfxboot (graphical bootloader for grub).
 
 
 ################################################################################
@@ -296,6 +325,16 @@ mkdir -p %{buildroot}%{_datadir}/gdm/greeter/images/
 install -m0644 distributor.svg %{buildroot}%{_datadir}/gdm/greeter/images/
 cd ..
 
+# gfxboot-branding
+cd gfxboot
+install -d %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}
+cp -ar %{_sysconfdir}/bootsplash/themes/openSUSE/* %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/
+rm %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/back.jpg
+rm %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/gfxboot.cfg
+install -m0644 back.jpg %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/
+install -m0644 gfxboot.cfg %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/
+cd ..
+
 # gio-branding
 cd gio
 install -d %{buildroot}%{_sysconfdir}
@@ -341,6 +380,10 @@ rm %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.svg
 install -m0644 installation.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 install -m0644 logo.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 install -m0644 style.qss %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
+
+
+%post -n gfxboot-branding-%{branding_name}
+gfxboot --update-theme %{ubranding_name}
 
 
 %post -n grub2-branding-%{branding_name}
@@ -393,6 +436,11 @@ fi
 %config(noreplace) %{_sysconfdir}/gdm/custom.conf
 %{_datadir}/gdm/greeter/images/distributor.svg
 %dir %{_datadir}/gdm/greeter/images/
+
+
+%files -n gfxboot-branding-%{branding_name}
+%{_sysconfdir}/bootsplash
+%ghost /boot/message
 
 
 %files -n gio-branding-%{branding_name}
