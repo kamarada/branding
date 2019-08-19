@@ -3,7 +3,7 @@
 toolkit-accessibility = false
 ### For the theme, we stay with the defaults
 ## Note: for non-GNOME sessions, the cursor theme is defined in /var/adm/fillup-templates/sysconfig.windowmanager-desktop-data-openSUSE from desktop-data-openSUSE
-# cursor-theme = ""
+cursor-theme = "Paper"
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
 icon-theme = "Papirus"
 gtk-theme = "Adapta"

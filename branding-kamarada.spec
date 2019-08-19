@@ -130,6 +130,7 @@ Requires:       gtk2-metatheme-adapta
 Requires:       gtk3-metatheme-adapta
 Requires:       hack-fonts
 Requires:       noto-sans-fonts
+Requires:       (paper-icon-theme or paper-icon-theme-cursors)
 Requires:       papirus-icon-theme
 Requires:       google-roboto-fonts
 Requires:       sound-theme-freedesktop
