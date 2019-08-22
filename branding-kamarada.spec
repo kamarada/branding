@@ -12,6 +12,8 @@ Source:         https://github.com/kamarada/branding/archive/15.1-dev.tar.gz#/%{
 BuildArch:      noarch
 
 # calamares-branding
+# Needed for directory ownership
+BuildRequires:  calamares
 # To be in sync with upstream (read below)
 BuildRequires:  calamares-branding-upstream
 
@@ -349,6 +351,7 @@ Requires:       google-opensans-fonts
 cd calamares
 install -d %{buildroot}%{_datadir}/calamares
 cp -ar %{_datadir}/calamares/* %{buildroot}%{_datadir}/calamares/
+rm -rf %{buildroot}%{_datadir}/calamares/qml
 mv %{buildroot}%{_datadir}/calamares/branding/default %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}
 rm %{buildroot}%{_datadir}/calamares/settings.conf
 install -m0644 settings.conf %{buildroot}%{_datadir}/calamares/
