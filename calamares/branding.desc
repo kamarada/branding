@@ -62,7 +62,7 @@ images:
 # $productIcon appears in left upper corner of installer
     productIcon:         "squid.png"
 # $productWelcome appears in center of welcome screen
-    productWelcome:      "languages.png"
+    productWelcome:      "languages.jpg"
 
 slideshow:               "show.qml"
 
