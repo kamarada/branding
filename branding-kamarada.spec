@@ -355,8 +355,10 @@ rm -rf %{buildroot}%{_datadir}/calamares/qml
 mv %{buildroot}%{_datadir}/calamares/branding/default %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}
 rm %{buildroot}%{_datadir}/calamares/settings.conf
 install -m0644 settings.conf %{buildroot}%{_datadir}/calamares/
-rm %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}/branding.desc
-install -m0644 branding.desc %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}/
+rm %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}/{branding.desc,languages.png,squid.png}
+install -m0644 {branding.desc,languages.jpg,logo.png} %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}/
+rm %{buildroot}%{_datadir}/calamares/modules/shellprocess.conf
+install -m0644 shellprocess.conf %{buildroot}%{_datadir}/calamares/modules/
 cd ..
 
 # gdm-branding

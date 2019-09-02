@@ -84,7 +84,7 @@ help = "Help"
 [org.gnome.shell]
 enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'TopIcons@phocean.net', 'user-theme@gnome-shell-extensions.gcampax.github.com']
 ## Default apps shown in the gnome-shell dash
-favorite-apps = ['chromium-browser.desktop', 'evolution.desktop', 'org.gnome.Nautilus.desktop', 'writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Screenshot.desktop']
+favorite-apps = ['chromium-browser.desktop', 'evolution.desktop', 'org.gnome.Nautilus.desktop', 'writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Screenshot.desktop', 'calamares.desktop']
 
 [org.gnome.gnome-panel.applet.window-list]
 ## Display all workspaces in the gnome-panel window list applet

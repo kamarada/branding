@@ -58,15 +58,19 @@ strings:
 #    releaseNotesUrl:     http://calamares.io/about/
 
 images:
-    productLogo:         "squid.png"
+    productLogo:         "logo.png"
 # $productIcon appears in left upper corner of installer
-    productIcon:         "squid.png"
+    productIcon:         "logo.png"
 # $productWelcome appears in center of welcome screen
     productWelcome:      "languages.jpg"
 
 slideshow:               "show.qml"
 
 style:
-   sidebarBackground:    "#292F34"
+   sidebarBackground:    "#424242"
    sidebarText:          "#FFFFFF"
-   sidebarTextSelect:    "#292F34"
+   sidebarTextSelect:    "#73BA25"
+   sidebarTextHighlight: "#212121"
+
+windowExpanding:         noexpand
+windowSize:              800px,640px
