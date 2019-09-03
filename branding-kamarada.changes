@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Sep  3 12:57:23 UTC 2019 - Antônio Vinicius Menezes Medeiros <linuxkamarada@gmail.com>
+
+- Because of calamares/calamares#582, let's use YaST Firstboot to manage locale, keyboard and users settings
+
+-------------------------------------------------------------------
 Mon Sep  2 03:29:40 UTC 2019 - Antônio Vinicius Menezes Medeiros <linuxkamarada@gmail.com>
 
 - More Calamares branding
