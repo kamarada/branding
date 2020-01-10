@@ -115,4 +115,18 @@ name = 'Adapta'
 dock-fixed = true
 ## Enable Panel mode: extend to the screen edge
 extend-height = true
+## Icon size limit
+dash-max-icon-size = 32
+## Enable Shrink the dash
+custom-theme-shrink = true
+## Customize windows counter indicators
+running-indicator-style = 'DOTS'
+## Enable Customize opacity
+transparency-mode = 'DYNAMIC'
+## Enable Customize minimum and maximum opacity values
+customize-alphas = true
+## Maximum opacity
+min-alpha = 0.5
+## Minimum opacity
+max-alpha = 1
 
