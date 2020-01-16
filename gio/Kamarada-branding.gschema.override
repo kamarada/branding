@@ -13,6 +13,8 @@ font-name = "Noto Sans 11"
 document-font-name = "Sans 11"
 ## Monospace font
 monospace-font-name = "Hack 11"
+## Show date next to time in the top bar
+clock-show-date = true
 
 [org.gnome.desktop.background]
 ## Default wallpaper
