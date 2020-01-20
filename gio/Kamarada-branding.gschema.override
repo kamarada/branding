@@ -132,3 +132,6 @@ min-alpha = 0.5
 ## Minimum opacity
 max-alpha = 1
 
+[org.gnome.gedit.preferences.editor]
+## Display line numbers
+display-line-numbers = true
