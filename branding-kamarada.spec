@@ -11,12 +11,6 @@ URL:            https://github.com/kamarada/branding
 Source:         https://github.com/kamarada/branding/archive/15.1-dev.tar.gz#/%{name}.tar.gz
 BuildArch:      noarch
 
-# calamares-branding
-# Needed for directory ownership
-BuildRequires:  calamares
-# To be in sync with upstream (read below)
-BuildRequires:  calamares-branding-upstream
-
 # gdm-branding
 BuildRequires:  gdm
 
@@ -52,29 +46,6 @@ BuildRequires:  yast2-qt-branding-openSUSE
 
 %description
 %{ubranding_name} branding
-
-
-################################################################################
-# calamares-branding
-#
-# Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/calamares/calamares.spec?expand=1
-################################################################################
-
-%package -n calamares-branding-%{branding_name}
-Summary:        %{ubranding_name} branding for Calamares
-Group:          System/Management
-
-Supplements:    packageand(calamares:branding-%{branding_name})
-Provides:       calamares-branding = %{version}
-Conflicts:      otherproviders(calamares-branding)
-
-Requires:       calamares
-
-
-%description -n calamares-branding-%{branding_name}
-This package provides %{ubranding_name} configuration files and "look and feel"
-for Calamares installer.
 
 
 ################################################################################
@@ -347,20 +318,6 @@ Requires:       google-opensans-fonts
 
 %install
 
-# calamares-branding
-cd calamares
-install -d %{buildroot}%{_datadir}/calamares
-cp -ar %{_datadir}/calamares/* %{buildroot}%{_datadir}/calamares/
-rm -rf %{buildroot}%{_datadir}/calamares/qml
-mv %{buildroot}%{_datadir}/calamares/branding/default %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}
-rm %{buildroot}%{_datadir}/calamares/settings.conf
-install -m0644 settings.conf %{buildroot}%{_datadir}/calamares/
-rm %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}/{branding.desc,languages.png,squid.png}
-install -m0644 {branding.desc,languages.jpg,logo.png} %{buildroot}%{_datadir}/calamares/branding/%{ubranding_name}/
-rm %{buildroot}%{_datadir}/calamares/modules/{packages.conf,shellprocess.conf}
-install -m0644 {packages.conf,shellprocess.conf} %{buildroot}%{_datadir}/calamares/modules/
-cd ..
-
 # gdm-branding
 cd gdm
 install -d %{buildroot}%{_sysconfdir}/gdm
@@ -474,13 +431,6 @@ fi
 
 %posttrans -n plymouth-branding-%{branding_name}
 %{?regenerate_initrd_posttrans}
-
-
-%files -n calamares-branding-%{branding_name}
-%{_datadir}/calamares/settings.conf
-%dir %{_datadir}/calamares/branding/
-%{_datadir}/calamares/branding/%{ubranding_name}/
-%{_datadir}/calamares/modules/
 
 
 %files -n gdm-branding-%{branding_name}

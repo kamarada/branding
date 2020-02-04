@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Tue Feb  4 21:55:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
+
+- Moving the Calamares branding from the branding-kamarada package (/usr/share/calamares/) to the KIWI appliance (/etc/calamares/)
+
+-------------------------------------------------------------------
 Thu Jan 16 17:25:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
 
 - Show date next to time in the top bar
