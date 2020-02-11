@@ -135,3 +135,7 @@ max-alpha = 1
 [org.gnome.gedit.preferences.editor]
 ## Display line numbers
 display-line-numbers = true
+
+[org.gnome.terminal.legacy.settings]
+## Open new terminals in tabs
+new-terminal-mode = 'tab'
