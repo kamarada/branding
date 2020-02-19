@@ -137,5 +137,7 @@ max-alpha = 1
 display-line-numbers = true
 
 [org.gnome.Terminal.Legacy.Settings]
-## Open new terminals in tabs
+## Theme variant: Dark
+theme-variant = 'dark'
+## Open new terminals in: Tab
 new-terminal-mode = 'tab'
