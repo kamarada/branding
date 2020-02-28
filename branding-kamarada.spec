@@ -3,12 +3,12 @@
 
 Name:           branding-%{branding_name}
 Summary:        %{ubranding_name} branding
-Version:        15.1
+Version:        15.2
 Release:        0
 License:        GPL-3.0+
 Group:          System/Fhs
 URL:            https://github.com/kamarada/branding
-Source:         https://github.com/kamarada/branding/archive/15.1-dev.tar.gz#/%{name}.tar.gz
+Source:         https://github.com/kamarada/branding/archive/15.2-dev.tar.gz#/%{name}.tar.gz
 BuildArch:      noarch
 
 # gdm-branding
