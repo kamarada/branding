@@ -119,6 +119,10 @@ dock-fixed = true
 extend-height = true
 ## Icon size limit
 dash-max-icon-size = 32
+
+## Disable Show trash can
+show-trash=false
+
 ## Enable Shrink the dash
 custom-theme-shrink = true
 ## Customize windows counter indicators
