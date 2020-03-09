@@ -6,7 +6,7 @@ toolkit-accessibility = false
 cursor-theme = "Paper"
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
 icon-theme = "Papirus"
-gtk-theme = "Adapta"
+gtk-theme = "Materia-openSUSE"
 ## Interface font
 font-name = "Noto Sans 11"
 ## Document font
@@ -112,7 +112,7 @@ overrides = {'Gtk/ShellShowsAppMenu': <0>}
 default-zoom-level = 'small'
 
 [org.gnome.shell.extensions.user-theme]
-name = 'Adapta'
+name = 'Materia-openSUSE-dark-compact'
 
 [org.gnome.shell.extensions.dash-to-dock]
 ## Disable Intelligent autohide

@@ -125,9 +125,7 @@ Requires:       %{gio_real_package} = %{gio_version}
 Requires:       gnome-shell-extension-dash-to-dock
 Requires:       gnome-shell-extension-topicons-plus
 Requires:       gnome-shell-extension-user-theme
-Requires:       gnome-shell-theme-adapta
-Requires:       gtk2-metatheme-adapta
-Requires:       gtk3-metatheme-adapta
+Requires:       materia-opensuse-gtk-theme
 Requires:       hack-fonts
 Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
@@ -190,7 +188,7 @@ Provides:       gtk2-branding = %{gtk2_version}
 Conflicts:      gtk2-branding
 
 Requires:       %{gtk2_real_package} = %{gtk2_version}
-Requires:       gtk2-metatheme-adapta
+Requires:       materia-opensuse-gtk-theme
 Requires:       papirus-icon-theme
 
 
@@ -223,7 +221,7 @@ Provides:       gtk3-branding = %{gtk3_version}
 Conflicts:      gtk3-branding
 
 Requires:       %{gtk3_real_package} = %{gtk3_version}
-Requires:       gtk3-metatheme-adapta
+Requires:       materia-opensuse-gtk-theme
 Requires:       papirus-icon-theme
 
 
