@@ -119,7 +119,6 @@ Provides:       gio-branding = %{gio_version}
 Conflicts:      gio-branding
 
 %glib2_gsettings_schema_requires
-Requires:       cantarell-fonts
 Requires:       desktop-file-utils
 Requires:       %{gio_real_package} = %{gio_version}
 Requires:       gnome-shell-extension-dash-to-dock
