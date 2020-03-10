@@ -128,7 +128,7 @@ Requires:       materia-opensuse-gtk-theme
 Requires:       hack-fonts
 Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
-Requires:       papirus-icon-theme
+Requires:       papirus-opensuse-icon-theme
 Requires:       google-roboto-fonts
 Requires:       sound-theme-materia
 Requires:       wallpaper-branding-%{branding_name}
@@ -188,7 +188,7 @@ Conflicts:      gtk2-branding
 
 Requires:       %{gtk2_real_package} = %{gtk2_version}
 Requires:       materia-opensuse-gtk-theme
-Requires:       papirus-icon-theme
+Requires:       papirus-opensuse-icon-theme
 
 
 %description -n gtk2-branding-%{branding_name}
@@ -221,7 +221,7 @@ Conflicts:      gtk3-branding
 
 Requires:       %{gtk3_real_package} = %{gtk3_version}
 Requires:       materia-opensuse-gtk-theme
-Requires:       papirus-icon-theme
+Requires:       papirus-opensuse-icon-theme
 
 
 %description -n gtk3-branding-%{branding_name}

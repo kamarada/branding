@@ -7,5 +7,5 @@
 #
 # This is a default for Kamarada:
 gtk-theme-name = "Materia-openSUSE"
-gtk-icon-theme-name = "Papirus"
+gtk-icon-theme-name = "Papirus-openSUSE"
 gtk-fallback-icon-theme = "hicolor"
