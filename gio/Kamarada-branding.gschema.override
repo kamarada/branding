@@ -45,7 +45,10 @@ group-per-window = false
 [org.gnome.desktop.sound]
 ## Make sure to have event sounds by default
 event-sounds = true
-theme-name = "freedesktop"
+## Input feedback sounds
+input-feedback-sounds = true
+## Sound theme name
+theme-name = 'Materia'
 
 [org.gnome.desktop.wm.preferences]
 # Audible bell is more annoying than useful

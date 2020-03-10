@@ -130,7 +130,7 @@ Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
 Requires:       papirus-icon-theme
 Requires:       google-roboto-fonts
-Requires:       sound-theme-freedesktop
+Requires:       sound-theme-materia
 Requires:       wallpaper-branding-%{branding_name}
 
 
