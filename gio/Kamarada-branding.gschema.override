@@ -22,8 +22,8 @@ show-battery-percentage=true
 ## Default wallpaper
 picture-uri = "file:///usr/share/wallpapers/Praia-de-Itaguacu/Praia-de-Itaguacu.xml"
 picture-options = "stretched"
-primary-color = "#258c06"
-secondary-color = "#258c06"
+primary-color = "#023431"
+secondary-color = "#023431"
 ## Show icons on desktop
 show-desktop-icons = true
 
@@ -31,8 +31,8 @@ show-desktop-icons = true
 ## Default lock screen
 picture-uri = "file:///usr/share/wallpapers/Prainha-da-Barra-da-Lagoa/Prainha-da-Barra-da-Lagoa.xml"
 picture-options = "stretched"
-primary-color = "#258c06"
-secondary-color = "#258c06"
+primary-color = "#023431"
+secondary-color = "#023431"
 
 [org.gnome.login-screen]
 ## Logo in the gdm login dialog
