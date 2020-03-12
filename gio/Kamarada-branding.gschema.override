@@ -20,7 +20,7 @@ show-battery-percentage=true
 
 [org.gnome.desktop.background]
 ## Default wallpaper
-picture-uri = "file:///usr/share/wallpapers/Barra-da-Lagoa/Barra-da-Lagoa.xml"
+picture-uri = "file:///usr/share/wallpapers/Praia-de-Itaguacu/Praia-de-Itaguacu.xml"
 picture-options = "stretched"
 primary-color = "#258c06"
 secondary-color = "#258c06"
@@ -29,7 +29,7 @@ show-desktop-icons = true
 
 [org.gnome.desktop.screensaver]
 ## Default lock screen
-picture-uri = "file:///usr/share/wallpapers/Praia-da-Joaquina/Praia-da-Joaquina.xml"
+picture-uri = "file:///usr/share/wallpapers/Prainha-da-Barra-da-Lagoa/Prainha-da-Barra-da-Lagoa.xml"
 picture-options = "stretched"
 primary-color = "#258c06"
 secondary-color = "#258c06"
