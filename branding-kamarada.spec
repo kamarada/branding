@@ -34,7 +34,7 @@ BuildRequires:  gtk2
 BuildRequires:  gtk3
 
 # plymouth-branding
-BuildRequires:  plymouth-plugin-two-step
+BuildRequires:  plymouth-theme-bgrt
 
 # yast2-qt-branding
 # To be in sync with upstream, like gdm-branding-openSUSE does with gdm-branding-upstream
@@ -232,21 +232,20 @@ widgets and icon themes.
 # plymouth-branding
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.2/branding-openSUSE/branding-openSUSE.spec?expand=1
 ################################################################################
 
 %package -n plymouth-branding-%{branding_name}
 Summary:        %{ubranding_name} branding for Plymouth bootsplash
-License:        GPL-2.0+
+License:        GPL-2.0-or-later
 
-Supplements:    packageand(plymouth:branding-%{branding_name})
+Supplements:    (plymouth and branding-%{branding_name})
 Provides:       plymouth-branding = %{version}
-Conflicts:      otherproviders(plymouth-branding)
+Conflicts:      plymouth-branding
 
-PreReq:         plymouth-plugin-script
+PreReq:         plymouth-theme-bgrt
 PreReq:         plymouth-scripts
-Requires:       plymouth-plugin-two-step
-Requires(%post): plymouth-plugin-two-step
+Requires:       plymouth-theme-bgrt
 
 
 %description -n plymouth-branding-%{branding_name}
@@ -358,8 +357,7 @@ cd ..
 
 # plymouth-branding
 cd plymouth
-install -d %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}
-install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/%{ubranding_name}/
+install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/spinner/
 cd ..
 
 # yast2-qt-branding
@@ -397,31 +395,6 @@ if [ $1 = 0 ] ; then
 fi
 
 
-%post -n plymouth-branding-%{branding_name}
-OTHEME="$(%{_sbindir}/plymouth-set-default-theme)"
-if [ "$OTHEME" == "text" -o "$OTHEME" == "openSUSE" -o "$OTHEME" == "%{ubranding_name}" ]; then
-   if [ ! -e /.buildenv ]; then
-     %{_sbindir}/plymouth-set-default-theme %{ubranding_name}
-     %{?regenerate_initrd_post}
-   else
-     %{_sbindir}/plymouth-set-default-theme %{ubranding_name}
-   fi 
-fi
-
-
-%postun -n plymouth-branding-%{branding_name}
-if [ $1 -eq 0 ]; then
-    if [ "$(%{_sbindir}/plymouth-set-default-theme)" == "%{ubranding_name}" ]; then
-        %{_sbindir}/plymouth-set-default-theme --reset
-        %{?regenerate_initrd_post}
-    fi
-fi
-
-
-%posttrans -n plymouth-branding-%{branding_name}
-%{?regenerate_initrd_posttrans}
-
-
 %files -n gdm-branding-%{branding_name}
 %config(noreplace) %{_sysconfdir}/gdm/custom.conf
 %{_datadir}/gdm/greeter/images/distributor.svg
@@ -456,7 +429,7 @@ fi
 
 
 %files -n plymouth-branding-%{branding_name}
-%{_datadir}/plymouth/themes/%{ubranding_name}/
+%{_datadir}/plymouth/themes/spinner/watermark.png
 
 
 %files -n wallpaper-branding-%{branding_name}
