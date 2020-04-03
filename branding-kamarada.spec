@@ -6,7 +6,6 @@ Summary:        %{ubranding_name} branding
 Version:        15.2
 Release:        0
 License:        GPL-3.0+
-Group:          System/Fhs
 URL:            https://github.com/kamarada/branding
 Source:         https://github.com/kamarada/branding/archive/15.2-dev.tar.gz#/%{name}.tar.gz
 BuildArch:      noarch
@@ -59,7 +58,6 @@ BuildRequires:  yast2-qt-branding-openSUSE
 
 %package -n gdm-branding-%{branding_name}
 Summary:        The GNOME Display Manager -- %{ubranding_name} default configuration
-Group:          System/GUI/GNOME
 
 Supplements:    packageand(gdm:branding-%{branding_name})
 Provides:       gdm-branding
@@ -84,7 +82,6 @@ This package provides the %{ubranding_name} default configuration for gdm.
 
 %package        -n gfxboot-branding-%{branding_name}
 Summary:        Graphical bootloader %{ubranding_name} theme
-Group:          System/Boot
 
 Supplements:    packageand(gfxboot:branding-%{branding_name})
 Provides:       gfxboot-branding = %{version}
@@ -110,7 +107,6 @@ PreReq:         gfxboot >= 4
 
 %package -n gio-branding-%{branding_name}
 Summary:        %{ubranding_name} definitions of default settings and applications
-Group:          System/GUI/GNOME
 
 Supplements:    packageand(%{gio_real_package}:branding-%{branding_name})
 Provides:       glib2-branding-%{branding_name} = %{version}
@@ -150,7 +146,6 @@ GSettings and applications used by the MIME system.
 
 %package -n grub2-branding-%{branding_name}
 Summary:        %{ubranding_name} branding for GRUB2's graphical console
-Group:          System/Fhs
 
 Supplements:    packageand(grub2:branding-openSUSE)
 Provides:       grub2-branding = %{version}
@@ -182,7 +177,6 @@ Requires:       grub2
 %package -n gtk2-branding-%{branding_name}
 Summary:        The GTK+ toolkit library (version 2) -- %{ubranding_name} theme configuration
 License:        BSD-3-Clause
-Group:          System/Libraries
 
 Supplements:    packageand(gtk2:branding-%{branding_name})
 Provides:       gtk2-branding = %{gtk2_version}
@@ -215,7 +209,6 @@ widgets and icon themes.
 %package -n gtk3-branding-%{branding_name}
 Summary:        The GTK+ toolkit library (version 3) -- %{ubranding_name} theme configuration
 License:        BSD-3-Clause
-Group:          System/Libraries
 
 Supplements:    packageand(gtk3:branding-%{branding_name})
 Provides:       gtk3-branding = %{gtk3_version}
@@ -245,7 +238,6 @@ widgets and icon themes.
 %package -n plymouth-branding-%{branding_name}
 Summary:        %{ubranding_name} branding for Plymouth bootsplash
 License:        GPL-2.0+
-Group:          System/Fhs
 
 Supplements:    packageand(plymouth:branding-%{branding_name})
 Provides:       plymouth-branding = %{version}
@@ -271,7 +263,6 @@ Requires(%post): plymouth-plugin-two-step
 %package -n wallpaper-branding-%{branding_name}
 Summary:        %{ubranding_name} default wallpapers
 License:        BSD-3-Clause
-Group:          System/Fhs
 
 #Provides:       wallpaper-branding = %%{version}
 #Conflicts:      otherproviders(wallpaper-branding)
@@ -295,7 +286,6 @@ Requires:       wallpaper-branding-openSUSE
 %package -n yast2-qt-branding-%{branding_name}
 Summary:        %{ubranding_name} branding for yast2-qt
 License:        BSD-3-Clause
-Group:          System/Fhs
 
 Provides:       yast2-qt-branding = %{version}
 Conflicts:      otherproviders(yast2-qt-branding)
