@@ -357,6 +357,7 @@ cd ..
 
 # plymouth-branding
 cd plymouth
+install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
 install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/spinner/
 cd ..
 
