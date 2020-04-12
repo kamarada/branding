@@ -7,7 +7,7 @@ Version:        15.2
 Release:        0
 License:        GPL-3.0+
 URL:            https://github.com/kamarada/branding
-Source:         https://github.com/kamarada/branding/archive/15.2-dev.tar.gz#/%{name}.tar.gz
+Source:         https://github.com/kamarada/branding/archive/15.2.tar.gz#/%{name}.tar.gz
 BuildArch:      noarch
 
 # gdm-branding
