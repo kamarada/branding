@@ -336,8 +336,10 @@ cd ..
 cd grub2
 install -d %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}
 cp -ar %{_datadir}/grub2/themes/openSUSE/* %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
+rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/highlight_c.png
 rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/logo.png
 rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/theme.txt
+install -m0644 highlight_c.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
 install -m0644 logo.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
 install -m0644 theme.txt %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
 sed -i 's/openSUSE/%{ubranding_name}/g' %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/activate-theme
