@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg3039"
+   version="1.1"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   width="13"
+   height="13"
+   sodipodi:docname="inst_radio-button-checked.svg"
+   inkscape:export-filename="/suse/wimer/Repos/branding/yast/inst_radio-button-checked.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata3045">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3043">
+    <linearGradient
+       gradientTransform="matrix(0.44240271,0,0,0.44952974,-22.832736,-56.893631)"
+       id="selected_bg_color"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#6da741;stop-opacity:1;"
+         offset="0"
+         id="stop5956" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#2d2d2d"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1088"
+     inkscape:window-height="681"
+     id="namedview3041"
+     showgrid="false"
+     showborder="false"
+     inkscape:zoom="8.3181818"
+     inkscape:cx="-11.598361"
+     inkscape:cy="0.80874318"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3039"
+     inkscape:showpageshadow="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3049"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <rect
+     rx="6.4999995"
+     y="4.5367432e-07"
+     x="5e-07"
+     height="12.999999"
+     width="12.999999"
+     id="rect5147-9-1-7-2"
+     style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#73ba25;fill-opacity:1;fill-rule:nonzero;stroke:#999999;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+     ry="6.4999995" />
+  <rect
+     rx="1.8560995"
+     y="4.6428504"
+     x="4.6428571"
+     height="3.7142866"
+     width="3.7142875"
+     id="use15101-5-7"
+     style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;fill:#f9fafb;fill-opacity:1;stroke:none;stroke-width:1.93921983;marker:none;enable-background:accumulate"
+     ry="1.8571433" />
+</svg>
