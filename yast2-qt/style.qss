@@ -20,7 +20,7 @@ font-family:"Source Sans Pro Light",sans;
 }
 .steps_heading {
   font-family:"Source Sans Pro",sans;
-  color: #73ba25;
+  color: #43a047;
   font-weight:bold;
 }
 .todo-step-status {
