@@ -72,6 +72,10 @@ tap-to-click = true
 ignore-paths = ['/boot/efi']
 
 [org.gnome.settings-daemon.plugins.power]
+## Energy Star compliant configuration is disabled for SLE and Leap from vendor level
+## The recommended way to enable this is via GNOME Control Center, dconf-editor or gsettings
+sleep-inactive-ac-timeout = 0
+sleep-inactive-battery-timeout = 0
 
 [org.gnome.settings-daemon.plugins.xsettings]
 ## the PackageKit gtk+ module is too spammy, fdo#23917
