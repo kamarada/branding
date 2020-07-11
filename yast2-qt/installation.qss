@@ -78,7 +78,7 @@ YQRichText > YQTextBrowser {
   border-radius: 2px;
   border: 1px solid #ddd;
   background-color: #fff;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 
@@ -88,7 +88,7 @@ QLabel {
 
   color: #333;
   background-color: none;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 
@@ -113,7 +113,7 @@ QTreeView, QTreeWidget {
   background-color: #fff;
   border: 1px solid #bbb;
   alternate-background-color: #2a2a2a;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
   border-radius: 2px;
   icon-size: 22px;
@@ -125,7 +125,7 @@ QTableView {
   color: #333;
   background-color: #EEEEEE;
   border: 1px solid #bbb;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
   border-radius: 2px;
 }
@@ -133,7 +133,7 @@ YQTree, YQTable {
 
   color: #333;
   background-color: #EEEEEE;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 
@@ -142,7 +142,7 @@ YQPakageSelector {
   color: #333;
   background-color: #fff;
   border: 1px solid #bbb;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
   border-radius: 2px; 
 }
@@ -157,7 +157,7 @@ QListWidget {
 
   color: #333;
   background-color: #EEEEEE;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 
@@ -179,7 +179,7 @@ QListWidget {
 
 QSpinBox,
 QDateEdit,
-QTimeEdit {  color: #333; background-color: #EEEEEE; padding: 3px 8px; min-height:24px; selection-background-color: #73ba25; selection-color: #fff; }
+QTimeEdit {  color: #333; background-color: #EEEEEE; padding: 3px 8px; min-height:24px; selection-background-color: #43a047; selection-color: #fff; }
 
 QDateEdit::disabled, QTimeEdit::disabled{ color: gray; background-color: #EEEEEE;  }
 
@@ -193,7 +193,7 @@ QLineEdit {
   border-radius: 2px;
   padding: 3px 8px;
   min-height: 24px;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
   border: 1px solid #bbb;
 }
@@ -300,7 +300,7 @@ QComboBox {
   min-height: 24px;
   padding: 3px 12px;
   background: #f6f6f6;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 QComboBox::disabled {
@@ -309,14 +309,14 @@ QComboBox::disabled {
   border: 1px solid #bbb;
 }
 QComboBox:focus {
-  background-color: #73ba25;
-  border: 1px solid #73ba25;
+  background-color: #43a047;
+  border: 1px solid #43a047;
   color: #fff;
 }
 
 QComboBox:editable:focus {
   background-color: #f6f6f6;
-  border: 1px solid #73ba25;
+  border: 1px solid #43a047;
   color: #333;
 }
 
@@ -341,7 +341,7 @@ QComboBox::down-arrow:on { /* shift the arrow when popup is open */
 QComboBox QAbstractItemView,
 QMenuBar {
   background-color: #EEEEEE;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 
@@ -365,7 +365,7 @@ QMenuBar::item:pressed {
 QMenu {
   color: #333333;
   background: #fff;
-  selection-background-color: #73ba25;
+  selection-background-color: #43a047;
   selection-color: #fff;
 }
 QGroupBox {
@@ -392,7 +392,7 @@ QPushButton {
 QPushButton:focus, QPushButton:focus:default {
 }
 QPushButton:focus:default {
-  background-color: #73ba25;
+  background-color: #43a047;
   color:#f6f6f6;
 }
 QPushButton:disabled,
@@ -401,8 +401,8 @@ QPushButton:default:disabled {
 }
 QPushButton:default:pressed, QPushButton:pressed {
   color: #EEEEEE;
-  background-color: #73ba25;
-  border-color: #73ba25;
+  background-color: #43a047;
+  border-color: #43a047;
 }
 QPushButton:default:hover  {
   background-color: #96cb5c;
@@ -414,8 +414,8 @@ QPushButton:hover  {
   color:#333;
 }
 QPushButton:default {
-  background-color: #73ba25;
-  border-color: #73ba25;
+  background-color: #43a047;
+  border-color: #43a047;
   color:#f6f6f6;
 }
 /* odd dropdown button widget */
@@ -462,7 +462,7 @@ QProgressBar {
   background-color: #ddd;
 }
 QProgressBar::chunk {
-  background-color: #73ba25;
+  background-color: #43a047;
   border-radius: 2px;
 }
 
@@ -486,7 +486,7 @@ QScrollBar::handle:vertical:hover {
   background-color: #DDDDDD;
 }
 QScrollBar::handle:vertical:pressed {
-  background-color: #73ba25;
+  background-color: #43a047;
 }
 QScrollBar::add-line:vertical {
   subcontrol-position: bottom;
@@ -529,7 +529,7 @@ QScrollBar::handle:horizontal:hover {
   background-color: #DDDDDD;
 }
 QScrollBar::handle:horizontal:pressed {
-  background-color: #73ba25;
+  background-color: #43a047;
 }
 QScrollBar::add-line:horizontal {
   border: none;
@@ -556,7 +556,7 @@ QScrollBar::left-arrow:horizontal { background-image: none; }
 BusyBar {
  qproperty-frameShape: NoShape;
  border-width: 3px;
- border: 1px solid #73ba25;
+ border: 1px solid #43a047;
  border-radius: 2px;
 }
 QToolTip {
