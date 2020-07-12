@@ -9,7 +9,7 @@ title-font: "DejaVu Sans Bold 14"
 terminal-font: "Gnu Unifont Mono Regular 16"
 
 + image {
-  width = 198
+  width = 202
   height = 45
   left = 20
   top = 20

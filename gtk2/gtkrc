@@ -6,6 +6,6 @@
 # gtk2-doc package, section GTK+ Core Reference -> Resource Files
 #
 # This is a default for Kamarada:
-gtk-theme-name = "Materia-openSUSE"
-gtk-icon-theme-name = "Papirus-openSUSE"
+gtk-theme-name = "Materia-Kamarada"
+gtk-icon-theme-name = "Papirus-Kamarada"
 gtk-fallback-icon-theme = "hicolor"

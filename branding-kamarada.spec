@@ -120,11 +120,11 @@ Requires:       %{gio_real_package} = %{gio_version}
 Requires:       gnome-shell-extension-dash-to-dock
 Requires:       gnome-shell-extension-topicons-plus
 Requires:       gnome-shell-extension-user-theme
-Requires:       materia-opensuse-gtk-theme
+Requires:       materia-%{branding_name}-gtk-theme
 Requires:       hack-fonts
 Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
-Requires:       papirus-opensuse-icon-theme
+Requires:       papirus-%{branding_name}-icon-theme
 Requires:       sound-theme-materia
 Requires:       wallpaper-branding-%{branding_name}
 # Materia GTK theme depends on M+ and Roboto fonts:
@@ -183,8 +183,8 @@ Provides:       gtk2-branding = %{gtk2_version}
 Conflicts:      gtk2-branding
 
 Requires:       %{gtk2_real_package} = %{gtk2_version}
-Requires:       materia-opensuse-gtk-theme
-Requires:       papirus-opensuse-icon-theme
+Requires:       materia-%{branding_name}-gtk-theme
+Requires:       papirus-%{branding_name}-icon-theme
 
 
 %description -n gtk2-branding-%{branding_name}
@@ -215,8 +215,8 @@ Provides:       gtk3-branding = %{gtk3_version}
 Conflicts:      gtk3-branding
 
 Requires:       %{gtk3_real_package} = %{gtk3_version}
-Requires:       materia-opensuse-gtk-theme
-Requires:       papirus-opensuse-icon-theme
+Requires:       materia-%{branding_name}-gtk-theme
+Requires:       papirus-%{branding_name}-icon-theme
 
 
 %description -n gtk3-branding-%{branding_name}
@@ -336,8 +336,10 @@ cd ..
 cd grub2
 install -d %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}
 cp -ar %{_datadir}/grub2/themes/openSUSE/* %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
+rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/highlight_c.png
 rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/logo.png
 rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/theme.txt
+install -m0644 highlight_c.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
 install -m0644 logo.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
 install -m0644 theme.txt %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
 sed -i 's/openSUSE/%{ubranding_name}/g' %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/activate-theme

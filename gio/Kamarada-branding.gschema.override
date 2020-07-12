@@ -5,8 +5,8 @@ toolkit-accessibility = false
 ## Note: for non-GNOME sessions, the cursor theme is defined in /var/adm/fillup-templates/sysconfig.windowmanager-desktop-data-openSUSE from desktop-data-openSUSE
 cursor-theme = "Paper"
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
-icon-theme = "Papirus-openSUSE"
-gtk-theme = "Materia-openSUSE"
+icon-theme = "Papirus-Kamarada"
+gtk-theme = "Materia-Kamarada"
 ## Interface font
 font-name = "Noto Sans 11"
 ## Document font
@@ -72,6 +72,10 @@ tap-to-click = true
 ignore-paths = ['/boot/efi']
 
 [org.gnome.settings-daemon.plugins.power]
+## Energy Star compliant configuration is disabled for SLE and Leap from vendor level
+## The recommended way to enable this is via GNOME Control Center, dconf-editor or gsettings
+sleep-inactive-ac-timeout = 0
+sleep-inactive-battery-timeout = 0
 
 [org.gnome.settings-daemon.plugins.xsettings]
 ## the PackageKit gtk+ module is too spammy, fdo#23917
@@ -83,7 +87,7 @@ help = ['Help', '<Super>F1']
 [org.gnome.shell]
 enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'TopIcons@phocean.net', 'user-theme@gnome-shell-extensions.gcampax.github.com']
 ## Default apps shown in the gnome-shell dash
-favorite-apps = ['chromium-browser.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Screenshot.desktop', 'calamares.desktop']
+favorite-apps = ['firefox.desktop', 'chromium-browser.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Screenshot.desktop', 'calamares.desktop']
 
 [org.gnome.gnome-panel.applet.window-list]
 ## Display all workspaces in the gnome-panel window list applet
@@ -107,7 +111,7 @@ overrides = {'Gtk/ShellShowsAppMenu': <0>}
 default-zoom-level = 'small'
 
 [org.gnome.shell.extensions.user-theme]
-name = 'Materia-openSUSE-dark-compact'
+name = 'Materia-Kamarada-dark-compact'
 
 [org.gnome.shell.extensions.dash-to-dock]
 ## Disable Intelligent autohide
