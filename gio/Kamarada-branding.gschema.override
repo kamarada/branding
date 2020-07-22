@@ -123,6 +123,8 @@ dash-max-icon-size = 32
 
 ## Disable Show trash can
 show-trash=false
+## Disable Show mounted volumes and devices
+show-mounts=false
 
 ## Enable Shrink the dash
 custom-theme-shrink = true
