@@ -128,8 +128,6 @@ show-mounts=false
 
 ## Enable Shrink the dash
 custom-theme-shrink = true
-## Customize windows counter indicators
-running-indicator-style = 'DOTS'
 ## Enable Customize opacity
 transparency-mode = 'DYNAMIC'
 ## Enable Customize minimum and maximum opacity values
