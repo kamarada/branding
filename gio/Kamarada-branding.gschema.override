@@ -141,10 +141,6 @@ max-alpha = 1
 ## Display line numbers
 display-line-numbers = true
 
-[org.gnome.nautilus.preferences]
-## List view
-default-folder-viewer = 'list-view'
-
 [org.gnome.nautilus.list-view]
 ## Enable Allow folders to be expanded
 use-tree-view = true
