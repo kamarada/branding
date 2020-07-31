@@ -127,6 +127,7 @@ Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
 Requires:       papirus-%{branding_name}-icon-theme
 Requires:       sound-theme-materia
+Requires:       sound-theme-freedesktop
 Requires:       wallpaper-branding-%{branding_name}
 # Materia GTK theme depends on M+ and Roboto fonts:
 Requires:       mplus-fonts
