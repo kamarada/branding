@@ -8,7 +8,6 @@ Release:        0
 License:        GPL-3.0+
 URL:            https://github.com/kamarada/branding
 Source:         https://github.com/kamarada/branding/archive/15.2-dev.tar.gz#/%{name}.tar.gz
-BuildArch:      noarch
 
 # gdm-branding
 BuildRequires:  gdm
@@ -71,6 +70,8 @@ Conflicts:      gdm-branding
 
 Requires:       gdm
 
+BuildArch:      noarch
+
 
 %description -n gdm-branding-%{branding_name}
 The GNOME Display Manager is a system service that is responsible for
@@ -95,6 +96,8 @@ Provides:       gfxboot-theme = %{version}
 Conflicts:      otherproviders(gfxboot-branding)
 
 PreReq:         gfxboot >= 4
+
+BuildArch:      noarch
 
 
 %description -n gfxboot-branding-%{branding_name}
@@ -139,6 +142,8 @@ Requires:       wallpaper-branding-%{branding_name}
 Requires:       mplus-fonts
 Requires:       google-roboto-fonts
 
+BuildArch:      noarch
+
 
 %description -n gio-branding-%{branding_name}
 This package provides %{ubranding_name} defaults for settings stored with
@@ -165,6 +170,8 @@ Conflicts:      otherproviders(grub2-branding)
 # grub2 is required in all cases in order to have /etc/default/grub in place during post.
 # Otherwise it may happen that grub2 is installed after the branding packae.
 Requires:       grub2
+
+BuildArch:      noarch
 
 
 %description -n grub2-branding-%{branding_name}
@@ -193,6 +200,8 @@ Conflicts:      gtk2-branding
 Requires:       %{gtk2_real_package} = %{gtk2_version}
 Requires:       materia-%{branding_name}-gtk-theme
 Requires:       papirus-%{branding_name}-icon-theme
+
+BuildArch:      noarch
 
 
 %description -n gtk2-branding-%{branding_name}
@@ -225,6 +234,8 @@ Conflicts:      gtk3-branding
 Requires:       %{gtk3_real_package} = %{gtk3_version}
 Requires:       materia-%{branding_name}-gtk-theme
 Requires:       papirus-%{branding_name}-icon-theme
+
+BuildArch:      noarch
 
 
 %description -n gtk3-branding-%{branding_name}
@@ -278,6 +289,8 @@ PreReq:         plymouth-theme-bgrt
 PreReq:         plymouth-scripts
 Requires:       plymouth-theme-bgrt
 
+BuildArch:      noarch
+
 
 %description -n plymouth-branding-%{branding_name}
 %{ubranding_name} %{version} branding for the plymouth bootsplash
@@ -301,6 +314,8 @@ Requires:       floripa-wallpaper-pack >= 1.1.0
 # Just in case anyone wants to revert to openSUSE defaults, it does not hurt
 Requires:       wallpaper-branding-openSUSE
 
+BuildArch:      noarch
+
 
 %description -n wallpaper-branding-%{branding_name}
 %{ubranding_name} %{version} default wallpapers
@@ -322,6 +337,8 @@ Conflicts:      otherproviders(yast2-qt-branding)
 
 Requires:       adobe-sourcesanspro-fonts
 Requires:       google-opensans-fonts
+
+BuildArch:      noarch
 
 
 %description -n yast2-qt-branding-%{branding_name}
@@ -390,8 +407,8 @@ cd ..
 
 # libreoffice-branding
 cd libreoffice
-install -d %{buildroot}%{_datadir}/libreoffice/share/registry
-install -m0644 %{branding_name}.xcd %{buildroot}%{_datadir}/libreoffice/share/registry/
+install -d %{buildroot}%{_libdir}/libreoffice/share/registry
+install -m0644 %{branding_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
 install -d %{buildroot}%{_datadir}/libreoffice/program/
 cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
 cd ..
@@ -476,8 +493,8 @@ fi
 
 %files -n libreoffice-branding-%{branding_name}
 %{_datadir}/libreoffice/program/
-%dir %{_datadir}/libreoffice/share/registry
-%{_datadir}/libreoffice/share/registry/%{branding_name}.xcd
+%dir %{_libdir}/libreoffice/share/registry
+%{_libdir}/libreoffice/share/registry/%{branding_name}.xcd
 
 
 %files -n wallpaper-branding-%{branding_name}
