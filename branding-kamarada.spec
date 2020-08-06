@@ -33,6 +33,10 @@ BuildRequires:  gtk2
 # gtk3-branding
 BuildRequires:  gtk3
 
+# libreoffice-branding
+# To be in sync with upstream (read below)
+BuildRequires:  libreoffice-branding-upstream
+
 # plymouth-branding
 BuildRequires:  plymouth-theme-bgrt
 
@@ -230,6 +234,29 @@ This package provides the %{ubranding_name} theme configuration for
 widgets and icon themes.
 
 
+
+################################################################################
+# libreoffice-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.2/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package -n libreoffice-branding-%{branding_name}
+Summary:        %{ubranding_name} %{version} branding for LibreOffice
+License:        BSD-3-Clause
+
+Supplements:    (libreoffice and branding-%{branding_name})
+Provides:       libreoffice-branding = %{version}
+Conflicts:      libreoffice-branding
+
+Requires:       libreoffice-icon-theme-papirus
+
+
+%description -n libreoffice-branding-%{branding_name}
+%{ubranding_name} %{version} branding for LibreOffice
+
+
 ################################################################################
 # plymouth-branding
 #
@@ -359,6 +386,14 @@ install -d %{buildroot}%{_sysconfdir}/gtk-3.0
 install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 cd ..
 
+# libreoffice-branding
+cd libreoffice
+install -d %{buildroot}%{_libdir}/libreoffice/share/registry
+install -m0644 %{branding_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
+install -d %{buildroot}%{_datadir}/libreoffice/program/
+cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
+cd ..
+
 # plymouth-branding
 cd plymouth
 install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
@@ -435,6 +470,11 @@ fi
 
 %files -n plymouth-branding-%{branding_name}
 %{_datadir}/plymouth/themes/spinner/watermark.png
+
+
+%files -n libreoffice-branding-%{branding_name}
+%{_libdir}/libreoffice/share/registry/%{branding_name}.xcd
+%{_datadir}/libreoffice/program/
 
 
 %files -n wallpaper-branding-%{branding_name}
