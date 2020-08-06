@@ -36,6 +36,8 @@ BuildRequires:  gtk3
 # libreoffice-branding
 # To be in sync with upstream (read below)
 BuildRequires:  libreoffice-branding-upstream
+# Depend on libreoffice-icon-themes for directory ownership
+BuildRequires:  libreoffice-icon-themes
 
 # plymouth-branding
 BuildRequires:  plymouth-theme-bgrt
@@ -474,6 +476,7 @@ fi
 
 %files -n libreoffice-branding-%{branding_name}
 %{_datadir}/libreoffice/program/
+%dir %{_datadir}/libreoffice/share/registry
 %{_datadir}/libreoffice/share/registry/%{branding_name}.xcd
 
 
