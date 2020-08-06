@@ -155,7 +155,7 @@ GSettings and applications used by the MIME system.
 %package -n grub2-branding-%{branding_name}
 Summary:        %{ubranding_name} branding for GRUB2's graphical console
 
-Supplements:    packageand(grub2:branding-openSUSE)
+Supplements:    packageand(grub2:branding-%{branding_name})
 Provides:       grub2-branding = %{version}
 Conflicts:      otherproviders(grub2-branding)
 
@@ -390,8 +390,8 @@ cd ..
 
 # libreoffice-branding
 cd libreoffice
-install -d %{buildroot}%{_libdir}/libreoffice/share/registry
-install -m0644 %{branding_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
+install -d %{buildroot}%{_datadir}/libreoffice/share/registry
+install -m0644 %{branding_name}.xcd %{buildroot}%{_datadir}/libreoffice/share/registry/
 install -d %{buildroot}%{_datadir}/libreoffice/program/
 cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
 cd ..
@@ -475,8 +475,8 @@ fi
 
 
 %files -n libreoffice-branding-%{branding_name}
-%{_libdir}/libreoffice/share/registry/%{branding_name}.xcd
 %{_datadir}/libreoffice/program/
+%{_datadir}/libreoffice/share/registry/%{branding_name}.xcd
 
 
 %files -n wallpaper-branding-%{branding_name}
