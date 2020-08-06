@@ -36,8 +36,6 @@ BuildRequires:  gtk3
 # libreoffice-branding
 # To be in sync with upstream (read below)
 BuildRequires:  libreoffice-branding-upstream
-# Depend on libreoffice for directory ownership
-BuildRequires:  libreoffice
 
 # plymouth-branding
 BuildRequires:  plymouth-theme-bgrt
