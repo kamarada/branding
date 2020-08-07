@@ -8,7 +8,6 @@ Release:        0
 License:        GPL-3.0+
 URL:            https://github.com/kamarada/branding
 Source:         https://github.com/kamarada/branding/archive/15.2.tar.gz#/%{name}.tar.gz
-BuildArch:      noarch
 
 # gdm-branding
 BuildRequires:  gdm
@@ -32,6 +31,13 @@ BuildRequires:  gtk2
 
 # gtk3-branding
 BuildRequires:  gtk3
+
+# libreoffice-branding
+# To be in sync with upstream (read below)
+BuildRequires:  libreoffice-branding-upstream
+# Depend on some packages for directory ownership
+BuildRequires:  libreoffice
+BuildRequires:  libreoffice-icon-themes
 
 # plymouth-branding
 BuildRequires:  plymouth-theme-bgrt
@@ -65,6 +71,8 @@ Conflicts:      gdm-branding
 
 Requires:       gdm
 
+BuildArch:      noarch
+
 
 %description -n gdm-branding-%{branding_name}
 The GNOME Display Manager is a system service that is responsible for
@@ -89,6 +97,8 @@ Provides:       gfxboot-theme = %{version}
 Conflicts:      otherproviders(gfxboot-branding)
 
 PreReq:         gfxboot >= 4
+
+BuildArch:      noarch
 
 
 %description -n gfxboot-branding-%{branding_name}
@@ -118,6 +128,7 @@ Conflicts:      gio-branding
 Requires:       desktop-file-utils
 Requires:       %{gio_real_package} = %{gio_version}
 Requires:       gnome-shell-extension-dash-to-dock
+Requires:       gnome-shell-extension-desktop-icons
 Requires:       gnome-shell-extension-topicons-plus
 Requires:       gnome-shell-extension-user-theme
 Requires:       materia-%{branding_name}-gtk-theme
@@ -126,10 +137,13 @@ Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
 Requires:       papirus-%{branding_name}-icon-theme
 Requires:       sound-theme-materia
+Requires:       sound-theme-freedesktop
 Requires:       wallpaper-branding-%{branding_name}
 # Materia GTK theme depends on M+ and Roboto fonts:
 Requires:       mplus-fonts
 Requires:       google-roboto-fonts
+
+BuildArch:      noarch
 
 
 %description -n gio-branding-%{branding_name}
@@ -147,7 +161,7 @@ GSettings and applications used by the MIME system.
 %package -n grub2-branding-%{branding_name}
 Summary:        %{ubranding_name} branding for GRUB2's graphical console
 
-Supplements:    packageand(grub2:branding-openSUSE)
+Supplements:    packageand(grub2:branding-%{branding_name})
 Provides:       grub2-branding = %{version}
 Conflicts:      otherproviders(grub2-branding)
 
@@ -157,6 +171,8 @@ Conflicts:      otherproviders(grub2-branding)
 # grub2 is required in all cases in order to have /etc/default/grub in place during post.
 # Otherwise it may happen that grub2 is installed after the branding packae.
 Requires:       grub2
+
+BuildArch:      noarch
 
 
 %description -n grub2-branding-%{branding_name}
@@ -185,6 +201,8 @@ Conflicts:      gtk2-branding
 Requires:       %{gtk2_real_package} = %{gtk2_version}
 Requires:       materia-%{branding_name}-gtk-theme
 Requires:       papirus-%{branding_name}-icon-theme
+
+BuildArch:      noarch
 
 
 %description -n gtk2-branding-%{branding_name}
@@ -218,6 +236,8 @@ Requires:       %{gtk3_real_package} = %{gtk3_version}
 Requires:       materia-%{branding_name}-gtk-theme
 Requires:       papirus-%{branding_name}-icon-theme
 
+BuildArch:      noarch
+
 
 %description -n gtk3-branding-%{branding_name}
 GTK+ is a multi-platform toolkit for creating graphical user interfaces.
@@ -226,6 +246,29 @@ ranging from small one-off projects to complete application suites.
 
 This package provides the %{ubranding_name} theme configuration for
 widgets and icon themes.
+
+
+
+################################################################################
+# libreoffice-branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.2/branding-openSUSE/branding-openSUSE.spec?expand=1
+################################################################################
+
+%package -n libreoffice-branding-%{branding_name}
+Summary:        %{ubranding_name} %{version} branding for LibreOffice
+License:        BSD-3-Clause
+
+Supplements:    (libreoffice and branding-%{branding_name})
+Provides:       libreoffice-branding = %{version}
+Conflicts:      libreoffice-branding
+
+Requires:       libreoffice-icon-theme-papirus
+
+
+%description -n libreoffice-branding-%{branding_name}
+%{ubranding_name} %{version} branding for LibreOffice
 
 
 ################################################################################
@@ -246,6 +289,8 @@ Conflicts:      plymouth-branding
 PreReq:         plymouth-theme-bgrt
 PreReq:         plymouth-scripts
 Requires:       plymouth-theme-bgrt
+
+BuildArch:      noarch
 
 
 %description -n plymouth-branding-%{branding_name}
@@ -270,6 +315,8 @@ Requires:       floripa-wallpaper-pack >= 1.1.0
 # Just in case anyone wants to revert to openSUSE defaults, it does not hurt
 Requires:       wallpaper-branding-openSUSE
 
+BuildArch:      noarch
+
 
 %description -n wallpaper-branding-%{branding_name}
 %{ubranding_name} %{version} default wallpapers
@@ -291,6 +338,8 @@ Conflicts:      otherproviders(yast2-qt-branding)
 
 Requires:       adobe-sourcesanspro-fonts
 Requires:       google-opensans-fonts
+
+BuildArch:      noarch
 
 
 %description -n yast2-qt-branding-%{branding_name}
@@ -357,6 +406,14 @@ install -d %{buildroot}%{_sysconfdir}/gtk-3.0
 install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 cd ..
 
+# libreoffice-branding
+cd libreoffice
+install -d %{buildroot}%{_libdir}/libreoffice/share/registry
+install -m0644 %{branding_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
+install -d %{buildroot}%{_datadir}/libreoffice/program/
+cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
+cd ..
+
 # plymouth-branding
 cd plymouth
 install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
@@ -379,7 +436,7 @@ gfxboot --update-theme %{ubranding_name}
 
 %post -n grub2-branding-%{branding_name}
 %{_datadir}/grub2/themes/%{ubranding_name}/activate-theme
-%if 0%{?update_bootloader_check_type_refresh_post:1} 
+%if 0%{?update_bootloader_check_type_refresh_post:1}
 %update_bootloader_check_type_refresh_post grub2 grub2-efi
 %else
 if test -e /boot/grub2/grub.cfg ; then
@@ -435,6 +492,11 @@ fi
 %{_datadir}/plymouth/themes/spinner/watermark.png
 
 
+%files -n libreoffice-branding-%{branding_name}
+%{_datadir}/libreoffice/program/
+%{_libdir}/libreoffice/share/registry/%{branding_name}.xcd
+
+
 %files -n wallpaper-branding-%{branding_name}
 
 
@@ -446,4 +508,3 @@ fi
 
 
 %changelog
-
