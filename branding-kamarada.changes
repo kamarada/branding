@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Thu Sep 10 02:30:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
+
+- Linux Kamarada 15.2 branding
+  * New logo
+  * New colors, combining the Material Design and the openSUSE color palettes
+  * New wallpapers
+  * GTK: Materia theme, replacing Adapta (development ended, project archived)
+  * Plymouth: new theme using your BGRT (UEFI logo)
+  * LibreOffice: Papirus as default icon style
+  * Mozilla Firefox as default web browser
+
+-------------------------------------------------------------------
 Tue Feb  4 21:55:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
 
 - Moving the Calamares branding from the branding-kamarada package (/usr/share/calamares/) to the KIWI appliance (/etc/calamares/)
