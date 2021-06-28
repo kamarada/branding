@@ -1,7 +1,7 @@
-Tema do Kamarada
-================
+Kamarada branding
+=================
 
-Faça checkout do branch da versão que deseja. Por exemplo:
+Checkout the branch from the version you want. For example:
 
 ```bash
 git checkout 13.2
