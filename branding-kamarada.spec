@@ -140,7 +140,7 @@ Requires:       materia-%{theme_name}-gtk-theme
 Requires:       mplus-fonts
 Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
-Requires:       papirus-%{theme_name}-icon-theme
+Requires:       papirus-icon-theme-%{theme_name}
 Requires:       sound-theme-freedesktop
 Requires:       sound-theme-materia
 Requires:       wallpaper-branding-%{theme_name}
@@ -193,7 +193,7 @@ Supplements:    (gtk2 and branding-%{theme_name})
 BuildArch:      noarch
 
 Requires:       materia-%{theme_name}-gtk-theme
-Requires:       papirus-%{theme_name}-icon-theme
+Requires:       papirus-icon-theme-%{theme_name}
 
 
 %description -n gtk2-branding-%{theme_name}
@@ -224,7 +224,7 @@ Provides:       gtk3-branding
 BuildArch:      noarch
 
 Requires:       materia-%{theme_name}-gtk-theme
-Requires:       papirus-%{theme_name}-icon-theme
+Requires:       papirus-icon-theme-%{theme_name}
 
 
 %description -n gtk3-branding-%{theme_name}
