@@ -291,9 +291,14 @@ Summary:        %{theme_version_clean} default wallpapers
 #Provides:       wallpaper-branding = %%{version}
 BuildArch:      noarch
 
-Requires:       floripa-wallpaper-pack >= 1.1.0
 # Just in case anyone wants to revert to openSUSE defaults, it does not hurt
 Requires:       wallpaper-branding-openSUSE
+
+# I decided to move the wallpapers and discontinue the floripa-wallpaper-pack package
+# https://en.opensuse.org/openSUSE:Package_dependencies#Renaming_a_package
+Provides:       floripa-wallpaper-pack
+Obsoletes:      floripa-wallpaper-pack <= 1.1.0
+Conflicts:      floripa-wallpaper-pack
 
 
 %description -n wallpaper-branding-%{theme_name}
@@ -395,6 +400,14 @@ install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
 install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/spinner/
 cd ..
 
+# wallpaper
+cd wallpaper
+rm -rf wallpapers/*/original
+mkdir -p %{buildroot}%{_datadir}/{gnome-background-properties,wallpapers}
+mv gnome-background-properties/%{theme_name}-default.xml %{buildroot}%{_datadir}/gnome-background-properties/
+mv wallpapers/* %{buildroot}%{_datadir}/wallpapers/
+cd ..
+
 # yast2-qt
 cd yast2-qt
 install -d %{buildroot}%{_datadir}/YaST2/theme/current/wizard
@@ -475,6 +488,8 @@ fi
 
 
 %files -n wallpaper-branding-%{theme_name}
+%{_datadir}/gnome-background-properties
+%{_datadir}/wallpapers
 
 
 %files -n yast2-qt-branding-%{theme_name}
