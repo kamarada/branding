@@ -129,9 +129,9 @@ Provides:       gio-branding
 BuildArch:      noarch
 
 Requires:       desktop-file-utils
+Requires:       gnome-shell-extension-appindicator
 Requires:       gnome-shell-extension-dash-to-dock
 Requires:       gnome-shell-extension-desktop-icons
-Requires:       gnome-shell-extension-topicons-plus
 Requires:       gnome-shell-extension-user-theme
 Requires:       google-roboto-fonts
 Requires:       hack-fonts
