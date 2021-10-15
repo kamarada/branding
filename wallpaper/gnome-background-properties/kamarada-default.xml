@@ -41,4 +41,14 @@
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>
+    <wallpaper deleted="false">
+        <name>Praia da Ponta do Recife</name>
+        <name xml:lang="pt">Praia da Ponta do Recife</name>
+        <name xml:lang="pt_BR">Praia da Ponta do Recife</name>
+        <filename>/usr/share/wallpapers/Praia-da-Ponta-do-Recife/Praia-da-Ponta-do-Recife.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
 </wallpapers>
