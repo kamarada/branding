@@ -49,6 +49,8 @@ BuildRequires:  libreoffice
 BuildRequires:  libreoffice-icon-themes
 
 # plymouth-branding
+# To be in sync with upstream (read below)
+BuildRequires:  plymouth-branding-openSUSE
 BuildRequires:  plymouth-theme-bgrt
 
 # yast2-qt-branding
@@ -397,6 +399,7 @@ cd ..
 # plymouth
 cd plymouth
 install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
+cp -a %{_datadir}/plymouth/plymouthd.defaults %{buildroot}%{_datadir}/plymouth/
 install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/spinner/
 cd ..
 
@@ -484,6 +487,7 @@ fi
 
 
 %files -n plymouth-branding-%{theme_name}
+%{_datadir}/plymouth/plymouthd.defaults
 %{_datadir}/plymouth/themes/spinner/watermark.png
 
 
