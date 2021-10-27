@@ -65,6 +65,26 @@ Linux %{theme_version_clean} branding
 
 
 ################################################################################
+# distribution-logos
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
+################################################################################
+
+%package        -n distribution-logos-%{theme_name}
+Summary:        %{theme_version_clean} logos
+BuildArch:      noarch
+
+Obsoletes:      distribution-logos
+Provides:       distribution-logos
+Conflicts:      distribution-logos
+
+
+%description -n distribution-logos-%{theme_name}
+Logos for the Linux %{theme_version_clean} distribution
+
+
+################################################################################
 # gdm
 #
 # Based on:
@@ -74,6 +94,7 @@ Linux %{theme_version_clean} branding
 %package        -n gdm-branding-%{theme_name}
 Summary:        The GNOME Display Manager -- %{theme_version_clean} default configuration
 Requires:       gdm
+Requires:       distribution-logos-%{theme_name}
 Supplements:    (gdm and branding-%{theme_name})
 Conflicts:      gdm-branding
 Provides:       gdm-branding
@@ -337,12 +358,18 @@ Linux %{theme_version_clean} branding for YaST2 Qt
 
 %install
 
+# distribution-logos
+cd distribution-logos
+mkdir -p %{buildroot}%{_datadir}/pixmaps/distribution-logos/
+install -m0644 ./* %{buildroot}%{_datadir}/pixmaps/distribution-logos/
+cd ..
+
 # gdm
 cd gdm
 install -d %{buildroot}%{_sysconfdir}/gdm
 install -m0644 custom.conf %{buildroot}%{_sysconfdir}/gdm/custom.conf
 mkdir -p %{buildroot}%{_datadir}/gdm/greeter/images/
-install -m0644 distributor.svg %{buildroot}%{_datadir}/gdm/greeter/images/
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.svg %{buildroot}%{_datadir}/gdm/greeter/images/distributor.svg
 cd ..
 
 # gfxboot
@@ -446,6 +473,10 @@ fi
 if [ $1 = 0 ] ; then
   rm -rf /boot/grub2/themes/%{theme_name}
 fi
+
+
+%files -n distribution-logos-%{theme_name}
+%{_datadir}/pixmaps/distribution-logos/
 
 
 %files -n gdm-branding-%{theme_name}
