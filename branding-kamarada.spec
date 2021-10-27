@@ -339,6 +339,7 @@ Linux %{theme_version_clean} default wallpapers
 %package        -n yast2-qt-branding-%{theme_name}
 Summary:        %{theme_version_clean} branding for YaST2 Qt
 Requires:       adobe-sourcesanspro-fonts
+Requires:       distribution-logos-%{theme_name}
 Requires:       google-opensans-fonts
 Supplements:    (libyui-qt and branding-%{theme_name})
 Conflicts:      yast2-qt-branding
@@ -447,6 +448,7 @@ do
     rm -rf %{buildroot}%{_datadir}/YaST2/theme/current/wizard/$file || true
     install -m0644 $file %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 done
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-dual-branding.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.png
 
 
 %post -n gfxboot-branding-%{theme_name}
