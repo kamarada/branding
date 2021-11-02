@@ -216,6 +216,7 @@ Supplements:    (gtk2 and branding-%{theme_name})
 BuildArch:      noarch
 
 Requires:       materia-gtk-theme-%{theme_name}
+Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
 
@@ -247,6 +248,7 @@ Provides:       gtk3-branding
 BuildArch:      noarch
 
 Requires:       materia-gtk-theme-%{theme_name}
+Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
 
