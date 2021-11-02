@@ -290,6 +290,7 @@ Linux %{theme_version_clean} branding for LibreOffice
 
 %package        -n plymouth-branding-%{theme_name}
 Summary:        %{theme_version_clean} branding for Plymouth bootsplash
+Requires:       distribution-logos-%{theme_name}
 Requires:       plymouth-theme-bgrt
 PreReq:         plymouth-theme-bgrt
 PreReq:         plymouth-scripts
@@ -340,6 +341,7 @@ Linux %{theme_version_clean} default wallpapers
 %package        -n yast2-qt-branding-%{theme_name}
 Summary:        %{theme_version_clean} branding for YaST2 Qt
 Requires:       adobe-sourcesanspro-fonts
+Requires:       distribution-logos-%{theme_name}
 Requires:       google-opensans-fonts
 Supplements:    (libyui-qt and branding-%{theme_name})
 Conflicts:      yast2-qt-branding
@@ -426,11 +428,9 @@ cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/pro
 cd ..
 
 # plymouth
-cd plymouth
 install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
 cp -a %{_datadir}/plymouth/plymouthd.defaults %{buildroot}%{_datadir}/plymouth/
-install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/spinner/
-cd ..
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.png %{buildroot}%{_datadir}/plymouth/themes/spinner/watermark.png
 
 # wallpaper
 cd wallpaper
@@ -450,6 +450,7 @@ do
     rm -rf %{buildroot}%{_datadir}/YaST2/theme/current/wizard/$file || true
     install -m0644 $file %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 done
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-dual-branding.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.png
 
 
 %post -n gfxboot-branding-%{theme_name}
