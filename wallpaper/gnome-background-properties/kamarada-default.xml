@@ -51,4 +51,14 @@
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>
+    <wallpaper deleted="false">
+        <name>Beira-mar Norte</name>
+        <name xml:lang="pt">Beira-mar Norte</name>
+        <name xml:lang="pt_BR">Beira-mar Norte</name>
+        <filename>/usr/share/wallpapers/Beira-mar-Norte/Beira-mar-Norte.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
 </wallpapers>
