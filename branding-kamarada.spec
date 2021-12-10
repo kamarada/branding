@@ -1,45 +1,56 @@
-%define branding_name   kamarada
-%define ubranding_name  Kamarada
+################################################################################
+# branding
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
+################################################################################
 
-Name:           branding-%{branding_name}
-Summary:        %{ubranding_name} branding
-Version:        15.2
+%define theme_name kamarada
+%define theme_version_clean Kamarada 15.3
+
+Name:           branding-%{theme_name}
+Version:        15.3
 Release:        0
-License:        GPL-3.0+
-URL:            https://github.com/kamarada/branding
-Source:         https://github.com/kamarada/branding/archive/15.2.tar.gz#/%{name}.tar.gz
+Summary:        %{theme_version_clean} branding
+License:        GPL-3.0
+URL:            https://gitlab.com/kamarada/branding
+Source:         https://gitlab.com/kamarada/branding/-/archive/%{version}/branding-%{version}.tar.gz#/%{name}.tar.gz
 
-# gdm-branding
+# gdm
+# For directory ownership
 BuildRequires:  gdm
 
-# gfxboot-branding
-BuildRequires:  gfxboot-devel
+# gfxboot
 # To be in sync with upstream (read below)
 BuildRequires:  gfxboot-branding-openSUSE
 
 # gio-branding
 BuildRequires:  glib2-devel
 
-# grub2-branding
+# grub2
 BuildRequires:  grub2
 # To be in sync with upstream (read below)
 BuildRequires:  grub2-branding-openSUSE
 BuildRequires:  update-bootloader-rpm-macros
 
 # gtk2-branding
+# For directory ownership
 BuildRequires:  gtk2
 
 # gtk3-branding
+# For directory ownership
 BuildRequires:  gtk3
 
 # libreoffice-branding
 # To be in sync with upstream (read below)
 BuildRequires:  libreoffice-branding-upstream
-# Depend on some packages for directory ownership
+# For directory ownership
 BuildRequires:  libreoffice
 BuildRequires:  libreoffice-icon-themes
 
 # plymouth-branding
+# To be in sync with upstream (read below)
+BuildRequires:  plymouth-branding-openSUSE
 BuildRequires:  plymouth-theme-bgrt
 
 # yast2-qt-branding
@@ -50,300 +61,296 @@ BuildRequires:  yast2-qt-branding-openSUSE
 
 
 %description
-%{ubranding_name} branding
+Linux %{theme_version_clean} branding
 
 
 ################################################################################
-# gdm-branding
+# distribution-logos
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/gdm-branding-openSUSE/gdm-branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
 ################################################################################
 
-%define gdm_version %(rpm -q --qf '%%{version}' gdm)
+%package        -n distribution-logos-%{theme_name}
+Summary:        %{theme_version_clean} logos
+BuildArch:      noarch
 
-%package -n gdm-branding-%{branding_name}
-Summary:        The GNOME Display Manager -- %{ubranding_name} default configuration
+Obsoletes:      distribution-logos
+Provides:       distribution-logos
+Conflicts:      distribution-logos
 
-Supplements:    packageand(gdm:branding-%{branding_name})
-Provides:       gdm-branding
-Conflicts:      gdm-branding
 
+%description -n distribution-logos-%{theme_name}
+Logos for the Linux %{theme_version_clean} distribution
+
+
+################################################################################
+# gdm
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/gdm-branding-openSUSE/gdm-branding-openSUSE.spec
+################################################################################
+
+%package        -n gdm-branding-%{theme_name}
+Summary:        The GNOME Display Manager -- %{theme_version_clean} default configuration
 Requires:       gdm
-
+Requires:       distribution-logos-%{theme_name}
+Supplements:    (gdm and branding-%{theme_name})
+Conflicts:      gdm-branding
+Provides:       gdm-branding
 BuildArch:      noarch
 
 
-%description -n gdm-branding-%{branding_name}
+%description -n gdm-branding-%{theme_name}
 The GNOME Display Manager is a system service that is responsible for
 providing graphical log-ins and managing local and remote displays.
 
-This package provides the %{ubranding_name} default configuration for gdm.
+This package provides the %{theme_version_clean} default configuration for gdm.
 
 
 ################################################################################
-# gfxboot-branding
+# gfxboot
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
 ################################################################################
 
-%package        -n gfxboot-branding-%{branding_name}
-Summary:        Graphical bootloader %{ubranding_name} theme
-
-Supplements:    packageand(gfxboot:branding-%{branding_name})
+%package        -n gfxboot-branding-%{theme_name}
+Summary:        %{theme_version_clean} branding for gfxboot
+PreReq:         gfxboot >= 4
+Requires(post): gfxboot >= 4
+Supplements:    (gfxboot and branding-%{theme_name})
+Conflicts:      gfxboot-branding
 Provides:       gfxboot-branding = %{version}
 Provides:       gfxboot-theme = %{version}
-Conflicts:      otherproviders(gfxboot-branding)
-
-PreReq:         gfxboot >= 4
-
 BuildArch:      noarch
 
 
-%description -n gfxboot-branding-%{branding_name}
-%{ubranding_name} theme for gfxboot (graphical bootloader for grub).
+%description -n gfxboot-branding-%{theme_name}
+%{theme_version_clean} branding for gfxboot (graphical bootloader for grub).
 
 
 ################################################################################
-# gio-branding
+# gio
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/glib2-branding/glib2-branding.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/glib2-branding/glib2-branding.spec
 ################################################################################
 
 %define gio_real_package %(rpm -q --qf '%%{name}' --whatprovides gio)
-%define gio_version %(rpm -q --qf '%%{version}' %{gio_real_package})
+# libgio-2_0-0
 
-%package -n gio-branding-%{branding_name}
-Summary:        %{ubranding_name} definitions of default settings and applications
-
-Supplements:    packageand(%{gio_real_package}:branding-%{branding_name})
-Provides:       glib2-branding-%{branding_name} = %{version}
-Obsoletes:      glib2-branding-%{branding_name} < %{version}
-Provides:       gio-branding = %{gio_version}
+%package        -n gio-branding-%{theme_name}
+Summary:        %{theme_version_clean} definitions of default settings and applications
+Requires:       %{gio_real_package}
+Supplements:    (%{gio_real_package} and branding-%{theme_name})
 Conflicts:      gio-branding
-
+Provides:       glib2-branding-%{theme_name} = %{version}
+Obsoletes:      glib2-branding-%{theme_name} < %{version}
+Provides:       gio-branding
 %glib2_gsettings_schema_requires
-Requires:       desktop-file-utils
-Requires:       %{gio_real_package} = %{gio_version}
-Requires:       gnome-shell-extension-dash-to-dock
-Requires:       gnome-shell-extension-desktop-icons
-Requires:       gnome-shell-extension-topicons-plus
-Requires:       gnome-shell-extension-user-theme
-Requires:       materia-%{branding_name}-gtk-theme
-Requires:       hack-fonts
-Requires:       noto-sans-fonts
-Requires:       (paper-icon-theme or paper-icon-theme-cursors)
-Requires:       papirus-%{branding_name}-icon-theme
-Requires:       sound-theme-materia
-Requires:       sound-theme-freedesktop
-Requires:       wallpaper-branding-%{branding_name}
-# Materia GTK theme depends on M+ and Roboto fonts:
-Requires:       mplus-fonts
-Requires:       google-roboto-fonts
-
 BuildArch:      noarch
 
+Requires:       desktop-file-utils
+Requires:       gnome-shell-extension-appindicator
+Requires:       gnome-shell-extension-dash-to-dock
+Requires:       gnome-shell-extension-desktop-icons
+Requires:       gnome-shell-extension-user-theme
+Requires:       google-roboto-fonts
+Requires:       hack-fonts
+Requires:       materia-gtk-theme-%{theme_name}
+# Materia GTK theme depends on M+ and Roboto fonts:
+Requires:       mplus-fonts
+Requires:       noto-sans-fonts
+Requires:       (paper-icon-theme or paper-icon-theme-cursors)
+Requires:       papirus-icon-theme-%{theme_name}
+Requires:       sound-theme-freedesktop
+Requires:       sound-theme-materia
+Requires:       wallpaper-branding-%{theme_name}
 
-%description -n gio-branding-%{branding_name}
-This package provides %{ubranding_name} defaults for settings stored with
+
+%description -n gio-branding-%{theme_name}
+This package provides %{theme_version_clean} defaults for settings stored with
 GSettings and applications used by the MIME system.
 
 
 ################################################################################
-# grub2-branding
+# grub2
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
 ################################################################################
 
-%package -n grub2-branding-%{branding_name}
-Summary:        %{ubranding_name} branding for GRUB2's graphical console
-
-Supplements:    packageand(grub2:branding-%{branding_name})
+%package        -n grub2-branding-%{theme_name}
+Summary:        %{theme_version_clean} branding for GRUB2
+Requires:       grub2
+Supplements:    (grub2 and branding-%{theme_name})
+Conflicts:      grub2-branding
 Provides:       grub2-branding = %{version}
-Conflicts:      otherproviders(grub2-branding)
-
+BuildArch:      noarch
 %if 0%{?update_bootloader_requires:1}
 %update_bootloader_requires
 %endif
-# grub2 is required in all cases in order to have /etc/default/grub in place during post.
-# Otherwise it may happen that grub2 is installed after the branding packae.
-Requires:       grub2
-
-BuildArch:      noarch
 
 
-%description -n grub2-branding-%{branding_name}
-%{ubranding_name} %{version} branding for the GRUB2's graphical console
-
+%description -n grub2-branding-%{theme_name}
+%{theme_version_clean} branding for the GRUB2's graphical console
 
 
 ################################################################################
-# gtk2-branding
+# gtk2
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/gtk2-branding/gtk2-branding.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/gtk2-branding/gtk2-branding.spec
 ################################################################################
 
 %define gtk2_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk2)
-%define gtk2_version %(rpm -q --qf '%%{version}' %{gtk2_real_package})
+# libgtk-2_0-0
 
-%package -n gtk2-branding-%{branding_name}
-Summary:        The GTK+ toolkit library (version 2) -- %{ubranding_name} theme configuration
-License:        BSD-3-Clause
-
-Supplements:    packageand(gtk2:branding-%{branding_name})
-Provides:       gtk2-branding = %{gtk2_version}
+%package        -n gtk2-branding-%{theme_name}
+Summary:        The GTK+ toolkit library (version 2) -- %{theme_version_clean} theme configuration
+Requires:       %{gtk2_real_package}
+Provides:       gtk2-branding
 Conflicts:      gtk2-branding
-
-Requires:       %{gtk2_real_package} = %{gtk2_version}
-Requires:       materia-%{branding_name}-gtk-theme
-Requires:       papirus-%{branding_name}-icon-theme
-
+Supplements:    (gtk2 and branding-%{theme_name})
 BuildArch:      noarch
 
+Requires:       materia-gtk-theme-%{theme_name}
+Requires:       noto-sans-fonts
+Requires:       papirus-icon-theme-%{theme_name}
 
-%description -n gtk2-branding-%{branding_name}
+
+%description -n gtk2-branding-%{theme_name}
 GTK+ is a multi-platform toolkit for creating graphical user interfaces.
 Offering a complete set of widgets, GTK+ is suitable for projects
 ranging from small one-off projects to complete application suites.
 
-This package provides the %{ubranding_name} theme configuration for
+This package provides the %{theme_version_clean} theme configuration for
 widgets and icon themes.
 
 
 ################################################################################
-# gtk3-branding
+# gtk3
 #
 # Based on:
 # https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/gtk3-branding/gtk3-branding.spec?expand=1
 ################################################################################
 
 %define gtk3_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk3)
-%define gtk3_version %(rpm -q --qf '%%{version}' %{gtk3_real_package})
+# libgtk-3-0
 
-%package -n gtk3-branding-%{branding_name}
-Summary:        The GTK+ toolkit library (version 3) -- %{ubranding_name} theme configuration
-License:        BSD-3-Clause
-
-Supplements:    packageand(gtk3:branding-%{branding_name})
-Provides:       gtk3-branding = %{gtk3_version}
+%package        -n gtk3-branding-%{theme_name}
+Summary:        The GTK+ toolkit library (version 3) -- %{theme_version_clean} theme configuration
+Requires:       %{gtk3_real_package}
+Supplements:    (gtk3 and branding-%{theme_name})
 Conflicts:      gtk3-branding
-
-Requires:       %{gtk3_real_package} = %{gtk3_version}
-Requires:       materia-%{branding_name}-gtk-theme
-Requires:       papirus-%{branding_name}-icon-theme
-
+Provides:       gtk3-branding
 BuildArch:      noarch
 
+Requires:       materia-gtk-theme-%{theme_name}
+Requires:       noto-sans-fonts
+Requires:       papirus-icon-theme-%{theme_name}
 
-%description -n gtk3-branding-%{branding_name}
+
+%description -n gtk3-branding-%{theme_name}
 GTK+ is a multi-platform toolkit for creating graphical user interfaces.
 Offering a complete set of widgets, GTK+ is suitable for projects
 ranging from small one-off projects to complete application suites.
 
-This package provides the %{ubranding_name} theme configuration for
+This package provides the %{theme_version_clean} theme configuration for
 widgets and icon themes.
 
 
-
 ################################################################################
-# libreoffice-branding
+# libreoffice
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.2/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
 ################################################################################
 
-%package -n libreoffice-branding-%{branding_name}
-Summary:        %{ubranding_name} %{version} branding for LibreOffice
-License:        BSD-3-Clause
-
-Supplements:    (libreoffice and branding-%{branding_name})
-Provides:       libreoffice-branding = %{version}
+%package        -n libreoffice-branding-%{theme_name}
+Summary:        %{theme_version_clean} branding for LibreOffice
+Supplements:    (libreoffice and branding-%{theme_name})
 Conflicts:      libreoffice-branding
+Provides:       libreoffice-branding = %{version}
 
 Requires:       libreoffice-icon-theme-papirus
 
 
-%description -n libreoffice-branding-%{branding_name}
-%{ubranding_name} %{version} branding for LibreOffice
+%description -n libreoffice-branding-%{theme_name}
+Linux %{theme_version_clean} branding for LibreOffice
 
 
 ################################################################################
-# plymouth-branding
+# plymouth
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.2/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
 ################################################################################
 
-%package -n plymouth-branding-%{branding_name}
-Summary:        %{ubranding_name} branding for Plymouth bootsplash
-License:        GPL-2.0-or-later
-
-Supplements:    (plymouth and branding-%{branding_name})
-Provides:       plymouth-branding = %{version}
-Conflicts:      plymouth-branding
-
+%package        -n plymouth-branding-%{theme_name}
+Summary:        %{theme_version_clean} branding for Plymouth bootsplash
+Requires:       distribution-logos-%{theme_name}
+Requires:       plymouth-theme-bgrt
 PreReq:         plymouth-theme-bgrt
 PreReq:         plymouth-scripts
-Requires:       plymouth-theme-bgrt
-
+Supplements:    (plymouth and branding-%{theme_name})
+Conflicts:      plymouth-branding
+Provides:       plymouth-branding = %{version}
 BuildArch:      noarch
 
 
-%description -n plymouth-branding-%{branding_name}
-%{ubranding_name} %{version} branding for the plymouth bootsplash
+%description -n plymouth-branding-%{theme_name}
+Linux %{theme_version_clean} branding for the plymouth bootsplash
 
 
 ################################################################################
-# wallpaper-branding
+# wallpaper
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
 ################################################################################
 
-%package -n wallpaper-branding-%{branding_name}
-Summary:        %{ubranding_name} default wallpapers
-License:        BSD-3-Clause
-
+%package        -n wallpaper-branding-%{theme_name}
+Summary:        %{theme_version_clean} default wallpapers
+#Conflicts:      wallpaper-branding
 #Provides:       wallpaper-branding = %%{version}
-#Conflicts:      otherproviders(wallpaper-branding)
+BuildArch:      noarch
 
-Requires:       floripa-wallpaper-pack >= 1.1.0
 # Just in case anyone wants to revert to openSUSE defaults, it does not hurt
 Requires:       wallpaper-branding-openSUSE
 
-BuildArch:      noarch
+# I decided to move the wallpapers and discontinue the floripa-wallpaper-pack package
+# https://en.opensuse.org/openSUSE:Package_dependencies#Renaming_a_package
+Provides:       floripa-wallpaper-pack
+Obsoletes:      floripa-wallpaper-pack <= 1.1.0
+Conflicts:      floripa-wallpaper-pack
 
 
-%description -n wallpaper-branding-%{branding_name}
-%{ubranding_name} %{version} default wallpapers
+%description -n wallpaper-branding-%{theme_name}
+Linux %{theme_version_clean} default wallpapers
 
 
 ################################################################################
-# yast2-qt-branding
+# yast2-qt
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.1/branding-openSUSE/branding-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/branding-openSUSE/branding-openSUSE.spec
 ################################################################################
 
-%package -n yast2-qt-branding-%{branding_name}
-Summary:        %{ubranding_name} branding for yast2-qt
-License:        BSD-3-Clause
-
-Provides:       yast2-qt-branding = %{version}
-Conflicts:      otherproviders(yast2-qt-branding)
-
+%package        -n yast2-qt-branding-%{theme_name}
+Summary:        %{theme_version_clean} branding for YaST2 Qt
 Requires:       adobe-sourcesanspro-fonts
+Requires:       distribution-logos-%{theme_name}
 Requires:       google-opensans-fonts
-
+Supplements:    (libyui-qt and branding-%{theme_name})
+Conflicts:      yast2-qt-branding
+Provides:       yast2-qt-branding = %{version}
 BuildArch:      noarch
 
 
-%description -n yast2-qt-branding-%{branding_name}
-%{ubranding_name} %{version} branding and themes for yast2-qt
+%description -n yast2-qt-branding-%{theme_name}
+Linux %{theme_version_clean} branding for YaST2 Qt
 
 
 %prep
@@ -355,72 +362,85 @@ BuildArch:      noarch
 
 %install
 
-# gdm-branding
+# distribution-logos
+cd distribution-logos
+mkdir -p %{buildroot}%{_datadir}/pixmaps/distribution-logos/
+install -m0644 ./* %{buildroot}%{_datadir}/pixmaps/distribution-logos/
+cd ..
+
+# gdm
 cd gdm
 install -d %{buildroot}%{_sysconfdir}/gdm
 install -m0644 custom.conf %{buildroot}%{_sysconfdir}/gdm/custom.conf
 mkdir -p %{buildroot}%{_datadir}/gdm/greeter/images/
-install -m0644 distributor.svg %{buildroot}%{_datadir}/gdm/greeter/images/
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.svg %{buildroot}%{_datadir}/gdm/greeter/images/distributor.svg
 cd ..
 
-# gfxboot-branding
+# gfxboot
 cd gfxboot
-install -d %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}
-cp -ar %{_sysconfdir}/bootsplash/themes/openSUSE/* %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/
-rm %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/back.jpg
-rm %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/gfxboot.cfg
-install -m0644 back.jpg %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/
-install -m0644 gfxboot.cfg %{buildroot}%{_sysconfdir}/bootsplash/themes/%{ubranding_name}/cdrom/
+install -d %{buildroot}%{_sysconfdir}/bootsplash/themes/%{theme_name}
+cp -ar %{_sysconfdir}/bootsplash/themes/openSUSE/* %{buildroot}%{_sysconfdir}/bootsplash/themes/%{theme_name}/
+rm %{buildroot}%{_sysconfdir}/bootsplash/themes/%{theme_name}/cdrom/back.jpg
+rm %{buildroot}%{_sysconfdir}/bootsplash/themes/%{theme_name}/cdrom/gfxboot.cfg
+install -m0644 back.jpg %{buildroot}%{_sysconfdir}/bootsplash/themes/%{theme_name}/cdrom/
+install -m0644 gfxboot.cfg %{buildroot}%{_sysconfdir}/bootsplash/themes/%{theme_name}/cdrom/
 cd ..
 
-# gio-branding
+# gio
 cd gio
 install -d %{buildroot}%{_sysconfdir}
 install -m0644 gnome_defaults.conf %{buildroot}%{_sysconfdir}/
 install -d %{buildroot}%{_datadir}/glib-2.0/schemas
-install -m0644 %{ubranding_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
+install -m0644 %{theme_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
 cd ..
 
-# grub2-branding
+# grub2
 cd grub2
-install -d %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}
-cp -ar %{_datadir}/grub2/themes/openSUSE/* %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
-rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/highlight_c.png
-rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/logo.png
-rm %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/theme.txt
-install -m0644 highlight_c.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
-install -m0644 logo.png %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
-install -m0644 theme.txt %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/
-sed -i 's/openSUSE/%{ubranding_name}/g' %{buildroot}%{_datadir}/grub2/themes/%{ubranding_name}/activate-theme
+install -d %{buildroot}%{_datadir}/grub2/themes/%{theme_name}
+cp -ar %{_datadir}/grub2/themes/openSUSE/* %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/
+rm %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/highlight_c.png
+rm %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/logo.png
+rm %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/theme.txt
+install -m0644 highlight_c.png %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/
+install -m0644 logo.png %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/
+install -m0644 theme.txt %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/
+sed -i 's/openSUSE/%{theme_name}/g' %{buildroot}%{_datadir}/grub2/themes/%{theme_name}/activate-theme
 cd ..
 
-# gtk2-branding
+# gtk2
 cd gtk2
 install -d %{buildroot}%{_sysconfdir}/gtk-2.0
 install -m0644 gtkrc %{buildroot}%{_sysconfdir}/gtk-2.0/
 cd ..
 
-# gtk3-branding
+# gtk3
 cd gtk3
 install -d %{buildroot}%{_sysconfdir}/gtk-3.0
 install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 cd ..
 
-# libreoffice-branding
+# libreoffice
 cd libreoffice
 install -d %{buildroot}%{_libdir}/libreoffice/share/registry
-install -m0644 %{branding_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
+install -m0644 %{theme_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
 install -d %{buildroot}%{_datadir}/libreoffice/program/
 cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
 cd ..
 
-# plymouth-branding
-cd plymouth
+# plymouth
 install -d %{buildroot}%{_datadir}/plymouth/themes/spinner
-install -m0644 * %{buildroot}%{_datadir}/plymouth/themes/spinner/
+cp -a %{_datadir}/plymouth/plymouthd.defaults %{buildroot}%{_datadir}/plymouth/
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.png %{buildroot}%{_datadir}/plymouth/themes/spinner/watermark.png
+
+# wallpaper
+cd wallpaper
+rm -rf wallpapers/*/original
+mkdir -p %{buildroot}%{_datadir}/{gnome-background-properties,wallpapers}
+mv gnome-background-properties/%{theme_name}-default.xml %{buildroot}%{_datadir}/gnome-background-properties/
+mv wallpapers/* %{buildroot}%{_datadir}/wallpapers/
 cd ..
 
-# yast2-qt-branding
+# yast2-qt
 cd yast2-qt
 install -d %{buildroot}%{_datadir}/YaST2/theme/current/wizard
 cp -a %{_datadir}/YaST2/theme/current/wizard/* %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
@@ -430,15 +450,16 @@ do
     rm -rf %{buildroot}%{_datadir}/YaST2/theme/current/wizard/$file || true
     install -m0644 $file %{buildroot}%{_datadir}/YaST2/theme/current/wizard/
 done
+ln -sf %{_datadir}/pixmaps/distribution-logos/light-dual-branding.png %{buildroot}%{_datadir}/YaST2/theme/current/wizard/logo.png
 
 
-%post -n gfxboot-branding-%{branding_name}
-gfxboot --update-theme %{ubranding_name}
+%post -n gfxboot-branding-%{theme_name}
+gfxboot --update-theme %{theme_name}
 
 
-%post -n grub2-branding-%{branding_name}
-%{_datadir}/grub2/themes/%{ubranding_name}/activate-theme
-%if 0%{?update_bootloader_check_type_refresh_post:1}
+%post -n grub2-branding-%{theme_name}
+%{_datadir}/grub2/themes/%{theme_name}/activate-theme
+%if 0%{?update_bootloader_check_type_refresh_post:1} 
 %update_bootloader_check_type_refresh_post grub2 grub2-efi
 %else
 if test -e /boot/grub2/grub.cfg ; then
@@ -447,62 +468,69 @@ fi
 %endif
 
 
-%posttrans -n grub2-branding-%{branding_name}
+%posttrans -n grub2-branding-%{theme_name}
 %{?update_bootloader_posttrans}
 
 
-%postun -n grub2-branding-%{branding_name}
+%postun -n grub2-branding-%{theme_name}
 if [ $1 = 0 ] ; then
-  rm -rf /boot/grub2/themes/%{ubranding_name}
+  rm -rf /boot/grub2/themes/%{theme_name}
 fi
 
 
-%files -n gdm-branding-%{branding_name}
+%files -n distribution-logos-%{theme_name}
+%{_datadir}/pixmaps/distribution-logos/
+
+
+%files -n gdm-branding-%{theme_name}
 %config(noreplace) %{_sysconfdir}/gdm/custom.conf
 %{_datadir}/gdm/greeter/images/distributor.svg
 %dir %{_datadir}/gdm/greeter/images/
 
 
-%files -n gfxboot-branding-%{branding_name}
+%files -n gfxboot-branding-%{theme_name}
 %{_sysconfdir}/bootsplash
 %ghost /boot/message
 
 
-%files -n gio-branding-%{branding_name}
+%files -n gio-branding-%{theme_name}
 %defattr (-, root, root)
 %config (noreplace) %{_sysconfdir}/gnome_defaults.conf
-%{_datadir}/glib-2.0/schemas/%{ubranding_name}-branding.gschema.override
+%{_datadir}/glib-2.0/schemas/%{theme_name}-branding.gschema.override
 
 
-%files -n grub2-branding-%{branding_name}
+%files -n grub2-branding-%{theme_name}
 %{_datadir}/grub2
 #%%dir /boot/grub2
 #%%dir /boot/grub2/themes
-%ghost /boot/grub2/themes/%{ubranding_name}
+%ghost /boot/grub2/themes/%{theme_name}
 
 
-%files -n gtk2-branding-%{branding_name}
+%files -n gtk2-branding-%{theme_name}
 %defattr (-, root, root)
 %config %{_sysconfdir}/gtk-2.0/gtkrc
 
 
-%files -n gtk3-branding-%{branding_name}
+%files -n gtk3-branding-%{theme_name}
 %config(noreplace) %{_sysconfdir}/gtk-3.0/settings.ini
 
 
-%files -n plymouth-branding-%{branding_name}
+%files -n libreoffice-branding-%{theme_name}
+%{_datadir}/libreoffice/program/
+%{_libdir}/libreoffice/share/registry/%{theme_name}.xcd
+
+
+%files -n plymouth-branding-%{theme_name}
+%{_datadir}/plymouth/plymouthd.defaults
 %{_datadir}/plymouth/themes/spinner/watermark.png
 
 
-%files -n libreoffice-branding-%{branding_name}
-%{_datadir}/libreoffice/program/
-%{_libdir}/libreoffice/share/registry/%{branding_name}.xcd
+%files -n wallpaper-branding-%{theme_name}
+%{_datadir}/gnome-background-properties
+%{_datadir}/wallpapers
 
 
-%files -n wallpaper-branding-%{branding_name}
-
-
-%files -n yast2-qt-branding-%{branding_name}
+%files -n yast2-qt-branding-%{theme_name}
 %dir %{_datadir}/YaST2
 %dir %{_datadir}/YaST2/theme
 %dir %{_datadir}/YaST2/theme/current

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+    <wallpaper deleted="false">
+        <name>Barra da Lagoa</name>
+        <name xml:lang="pt">Barra da Lagoa</name>
+        <name xml:lang="pt_BR">Barra da Lagoa</name>
+        <filename>/usr/share/wallpapers/Barra-da-Lagoa/Barra-da-Lagoa.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Praia da Joaquina</name>
+        <name xml:lang="pt">Praia da Joaquina</name>
+        <name xml:lang="pt_BR">Praia da Joaquina</name>
+        <filename>/usr/share/wallpapers/Praia-da-Joaquina/Praia-da-Joaquina.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Praia de Itaguaçu</name>
+        <name xml:lang="pt">Praia de Itaguaçu</name>
+        <name xml:lang="pt_BR">Praia de Itaguaçu</name>
+        <filename>/usr/share/wallpapers/Praia-de-Itaguacu/Praia-de-Itaguacu.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Prainha da Barra da Lagoa</name>
+        <name xml:lang="pt">Prainha da Barra da Lagoa</name>
+        <name xml:lang="pt_BR">Prainha da Barra da Lagoa</name>
+        <filename>/usr/share/wallpapers/Prainha-da-Barra-da-Lagoa/Prainha-da-Barra-da-Lagoa.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Praia da Ponta do Recife</name>
+        <name xml:lang="pt">Praia da Ponta do Recife</name>
+        <name xml:lang="pt_BR">Praia da Ponta do Recife</name>
+        <filename>/usr/share/wallpapers/Praia-da-Ponta-do-Recife/Praia-da-Ponta-do-Recife.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Beira-mar Norte</name>
+        <name xml:lang="pt">Beira-mar Norte</name>
+        <name xml:lang="pt_BR">Beira-mar Norte</name>
+        <filename>/usr/share/wallpapers/Beira-mar-Norte/Beira-mar-Norte.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
+</wallpapers>
