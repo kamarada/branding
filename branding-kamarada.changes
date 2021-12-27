@@ -1,5 +1,15 @@
 -------------------------------------------------------------------
-Thu Sep 10 02:30:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
+Mon Dec 27 03:20:00 UTC 2021 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.3
+
+- Linux Kamarada 15.3 branding
+  * GNOME Shell Extensions - unmaintained TopIcons Plus replaced by Ubuntu's AppIndicator Support
+  * Old wallpapers moved from the floripa-wallpaper-pack package, which was discontinued
+  * New wallpapers: Praia da Ponta do Recife and Beira-mar Norte
+  * New package distribution-logos-kamarada (based on distribution-logos-openSUSE-Leap)
+
+-------------------------------------------------------------------
+<<<<<<< HEAD
+Thu Sep 10 02:30:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.2
 
 - Linux Kamarada 15.2 branding
   * New logo
