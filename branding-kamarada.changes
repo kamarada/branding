@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Mon Dec 27 03:20:00 UTC 2021 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.3
+
+- GNOME Shell Extensions - unmaintained TopIcons Plus replaced by Ubuntu's AppIndicator Support
+- Old wallpapers moved from the floripa-wallpaper-pack package, which was discontinued
+- New wallpapers:
+  * Praia da Ponta do Recife
+  * Beira-mar Norte
+- New package distribution-logos-kamarada (based on distribution-logos-openSUSE-Leap)
+
+-------------------------------------------------------------------
 Tue Feb  4 21:55:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
 
 - Moving the Calamares branding from the branding-kamarada package (/usr/share/calamares/) to the KIWI appliance (/etc/calamares/)
