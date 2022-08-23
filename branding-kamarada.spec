@@ -6,10 +6,10 @@
 ################################################################################
 
 %define theme_name kamarada
-%define theme_version_clean Kamarada 15.3
+%define theme_version_clean Kamarada 15.4
 
 Name:           branding-%{theme_name}
-Version:        15.3
+Version:        15.4
 Release:        0
 Summary:        %{theme_version_clean} branding
 License:        GPL-3.0
@@ -391,7 +391,7 @@ cd gio
 install -d %{buildroot}%{_sysconfdir}
 install -m0644 gnome_defaults.conf %{buildroot}%{_sysconfdir}/
 install -d %{buildroot}%{_datadir}/glib-2.0/schemas
-install -m0644 %{theme_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
+install -m0644 20_%{theme_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
 cd ..
 
 # grub2
@@ -496,7 +496,7 @@ fi
 %files -n gio-branding-%{theme_name}
 %defattr (-, root, root)
 %config (noreplace) %{_sysconfdir}/gnome_defaults.conf
-%{_datadir}/glib-2.0/schemas/%{theme_name}-branding.gschema.override
+%{_datadir}/glib-2.0/schemas/20_%{theme_name}-branding.gschema.override
 
 
 %files -n grub2-branding-%{theme_name}
