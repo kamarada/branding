@@ -116,6 +116,8 @@ default-zoom-level = 'small'
 name = 'Materia-Kamarada-dark-compact'
 
 [org.gnome.shell.extensions.dash-to-dock]
+## Dock position
+dock-position = 'LEFT'
 ## Disable Intelligent autohide
 dock-fixed = true
 ## Enable Panel mode: extend to the screen edge
