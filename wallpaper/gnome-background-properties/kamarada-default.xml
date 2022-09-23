@@ -71,4 +71,14 @@
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>
+    <wallpaper deleted="false">
+        <name>Praia do Meio</name>
+        <name xml:lang="pt">Praia do Meio</name>
+        <name xml:lang="pt_BR">Praia do Meio</name>
+        <filename>/usr/share/wallpapers/Praia-do-Meio/Praia-do-Meio.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
 </wallpapers>
