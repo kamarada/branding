@@ -61,4 +61,14 @@
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>
+    <wallpaper deleted="false">
+        <name>Lagoa da Conceição</name>
+        <name xml:lang="pt">Lagoa da Conceição</name>
+        <name xml:lang="pt_BR">Lagoa da Conceição</name>
+        <filename>/usr/share/wallpapers/Lagoa-da-Conceicao/Lagoa-da-Conceicao.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
 </wallpapers>
