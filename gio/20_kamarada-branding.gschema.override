@@ -6,7 +6,7 @@ toolkit-accessibility = false
 cursor-theme = "Paper"
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
 icon-theme = "Papirus"
-gtk-theme = "Materia-Kamarada"
+gtk-theme = "Orchis-Green"
 ## Interface font
 font-name = "Noto Sans 11"
 ## Document font

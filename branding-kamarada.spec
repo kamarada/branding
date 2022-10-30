@@ -158,8 +158,7 @@ Requires:       gnome-shell-extension-desktop-icons
 Requires:       gnome-shell-extension-user-theme
 Requires:       google-roboto-fonts
 Requires:       hack-fonts
-Requires:       materia-gtk-theme-%{theme_name}
-# Materia GTK theme depends on M+ and Roboto fonts:
+Requires:       orchis-gtk-theme
 Requires:       mplus-fonts
 Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
@@ -215,7 +214,7 @@ Conflicts:      gtk2-branding
 Supplements:    (gtk2 and branding-%{theme_name})
 BuildArch:      noarch
 
-Requires:       materia-gtk-theme-%{theme_name}
+Requires:       orchis-gtk-theme
 Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
@@ -247,7 +246,7 @@ Conflicts:      gtk3-branding
 Provides:       gtk3-branding
 BuildArch:      noarch
 
-Requires:       materia-gtk-theme-%{theme_name}
+Requires:       orchis-gtk-theme
 Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
