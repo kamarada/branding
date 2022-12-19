@@ -6,7 +6,7 @@ toolkit-accessibility = false
 cursor-theme = "Paper"
 ## Note: gtk[23]-branding-%{branding_name} must contain the same defaults for icon and gtk, otherwise the theme will change when gnome-settings-daemon starts
 icon-theme = "Papirus"
-gtk-theme = "Materia-Kamarada"
+gtk-theme = "Orchis-Green"
 ## Interface font
 font-name = "Noto Sans 11"
 ## Document font
@@ -22,7 +22,7 @@ show-battery-percentage=true
 
 [org.gnome.desktop.background]
 ## Default wallpaper
-picture-uri = "file:///usr/share/wallpapers/Praia-da-Ponta-do-Recife/Praia-da-Ponta-do-Recife.xml"
+picture-uri = "file:///usr/share/wallpapers/Praia-do-Meio/Praia-do-Meio.xml"
 picture-options = "stretched"
 primary-color = "#1b5e20"
 secondary-color = "#1b5e20"
@@ -31,7 +31,7 @@ show-desktop-icons = true
 
 [org.gnome.desktop.screensaver]
 ## Default lock screen
-picture-uri = "file:///usr/share/wallpapers/Beira-mar-Norte/Beira-mar-Norte.xml"
+picture-uri = "file:///usr/share/wallpapers/Lagoa-da-Conceicao/Lagoa-da-Conceicao.xml"
 picture-options = "stretched"
 primary-color = "#1b5e20"
 secondary-color = "#1b5e20"
@@ -113,9 +113,11 @@ overrides = {'Gtk/ShellShowsAppMenu': <0>}
 default-zoom-level = 'small'
 
 [org.gnome.shell.extensions.user-theme]
-name = 'Materia-Kamarada-dark-compact'
+name = 'Orchis-Green-Dark'
 
 [org.gnome.shell.extensions.dash-to-dock]
+## Dock position
+dock-position = 'LEFT'
 ## Disable Intelligent autohide
 dock-fixed = true
 ## Enable Panel mode: extend to the screen edge

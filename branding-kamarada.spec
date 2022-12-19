@@ -6,10 +6,10 @@
 ################################################################################
 
 %define theme_name kamarada
-%define theme_version_clean Kamarada 15.3
+%define theme_version_clean Kamarada 15.4
 
 Name:           branding-%{theme_name}
-Version:        15.3
+Version:        15.4
 Release:        0
 Summary:        %{theme_version_clean} branding
 License:        GPL-3.0
@@ -158,8 +158,7 @@ Requires:       gnome-shell-extension-desktop-icons
 Requires:       gnome-shell-extension-user-theme
 Requires:       google-roboto-fonts
 Requires:       hack-fonts
-Requires:       materia-gtk-theme-%{theme_name}
-# Materia GTK theme depends on M+ and Roboto fonts:
+Requires:       orchis-gtk-theme
 Requires:       mplus-fonts
 Requires:       noto-sans-fonts
 Requires:       (paper-icon-theme or paper-icon-theme-cursors)
@@ -215,7 +214,7 @@ Conflicts:      gtk2-branding
 Supplements:    (gtk2 and branding-%{theme_name})
 BuildArch:      noarch
 
-Requires:       materia-gtk-theme-%{theme_name}
+Requires:       orchis-gtk-theme
 Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
@@ -247,7 +246,7 @@ Conflicts:      gtk3-branding
 Provides:       gtk3-branding
 BuildArch:      noarch
 
-Requires:       materia-gtk-theme-%{theme_name}
+Requires:       orchis-gtk-theme
 Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
@@ -391,7 +390,7 @@ cd gio
 install -d %{buildroot}%{_sysconfdir}
 install -m0644 gnome_defaults.conf %{buildroot}%{_sysconfdir}/
 install -d %{buildroot}%{_datadir}/glib-2.0/schemas
-install -m0644 %{theme_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
+install -m0644 20_%{theme_name}-branding.gschema.override %{buildroot}%{_datadir}/glib-2.0/schemas/
 cd ..
 
 # grub2
@@ -496,7 +495,7 @@ fi
 %files -n gio-branding-%{theme_name}
 %defattr (-, root, root)
 %config (noreplace) %{_sysconfdir}/gnome_defaults.conf
-%{_datadir}/glib-2.0/schemas/%{theme_name}-branding.gschema.override
+%{_datadir}/glib-2.0/schemas/20_%{theme_name}-branding.gschema.override
 
 
 %files -n grub2-branding-%{theme_name}
