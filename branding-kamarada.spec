@@ -365,6 +365,9 @@ Linux %{theme_version_clean} branding for YaST2 Qt
 cd distribution-logos
 mkdir -p %{buildroot}%{_datadir}/pixmaps/distribution-logos/
 install -m0644 ./* %{buildroot}%{_datadir}/pixmaps/distribution-logos/
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo-Leap.svg
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo.svg
 cd ..
 
 # gdm
@@ -479,6 +482,9 @@ fi
 
 %files -n distribution-logos-%{theme_name}
 %{_datadir}/pixmaps/distribution-logos/
+# TODO create a separate package distribution-logos-kamarada-icons
+# See: https://build.opensuse.org/package/view_file/openSUSE:Leap:15.4/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
+%{_datadir}/icons/hicolor/*
 
 
 %files -n gdm-branding-%{theme_name}
