@@ -91,4 +91,14 @@
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>
+    <wallpaper deleted="false">
+        <name>Ribeirão Capivari</name>
+        <name xml:lang="pt">Ribeirão Capivari</name>
+        <name xml:lang="pt_BR">Ribeirão Capivari</name>
+        <filename>/usr/share/wallpapers/Ribeirao-Capivari/Ribeirao-Capivari.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
 </wallpapers>
