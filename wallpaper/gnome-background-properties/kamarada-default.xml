@@ -81,4 +81,14 @@
         <pcolor>#ffffff</pcolor>
         <scolor>#000000</scolor>
     </wallpaper>
+    <wallpaper deleted="false">
+        <name>Mirante Para Baía Sul</name>
+        <name xml:lang="pt">Mirante Para Baía Sul</name>
+        <name xml:lang="pt_BR">Mirante Para Baía Sul</name>
+        <filename>/usr/share/wallpapers/Mirante-Para-Baia-Sul/Mirante-Para-Baia-Sul.xml</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#ffffff</pcolor>
+        <scolor>#000000</scolor>
+    </wallpaper>
 </wallpapers>
