@@ -22,7 +22,7 @@ show-battery-percentage=true
 
 [org.gnome.desktop.background]
 ## Default wallpaper
-picture-uri = "file:///usr/share/wallpapers/Praia-do-Meio/Praia-do-Meio.xml"
+picture-uri = "file:///usr/share/wallpapers/Mirante-Para-Baia-Sul/Mirante-Para-Baia-Sul.xml"
 picture-options = "stretched"
 primary-color = "#1b5e20"
 secondary-color = "#1b5e20"
@@ -31,7 +31,7 @@ show-desktop-icons = true
 
 [org.gnome.desktop.screensaver]
 ## Default lock screen
-picture-uri = "file:///usr/share/wallpapers/Lagoa-da-Conceicao/Lagoa-da-Conceicao.xml"
+picture-uri = "file:///usr/share/wallpapers/Ribeirao-Capivari/Ribeirao-Capivari.xml"
 picture-options = "stretched"
 primary-color = "#1b5e20"
 secondary-color = "#1b5e20"
