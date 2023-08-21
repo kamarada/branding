@@ -41,6 +41,9 @@ BuildRequires:  gtk2
 # For directory ownership
 BuildRequires:  gtk3
 
+# gtk4-branding
+BuildRequires:  gtk4
+
 # libreoffice-branding
 # To be in sync with upstream (read below)
 BuildRequires:  libreoffice-branding-upstream
@@ -261,6 +264,37 @@ widgets and icon themes.
 
 
 ################################################################################
+# gtk4
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.5/gtk4-branding/gtk4-branding.spec?expand=1
+################################################################################
+
+%define gtk4_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk4)
+# libgtk-4-1
+
+%package        -n gtk4-branding-%{theme_name}
+Summary:        The GTK+ toolkit library (version 4) -- %{theme_version_clean} theme configuration
+Requires:       %{gtk4_real_package}
+Supplements:    (gtk4 and branding-%{theme_name})
+Conflicts:      gtk4-branding
+Provides:       gtk4-branding
+BuildArch:      noarch
+
+Requires:       orchis-gtk-theme
+Requires:       papirus-icon-theme-%{theme_name}
+
+
+%description -n gtk4-branding-%{theme_name}
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects
+ranging from small one-off projects to complete application suites.
+
+This package provides the %{theme_version_clean} theme configuration for
+widgets and icon themes.
+
+
+################################################################################
 # libreoffice
 #
 # Based on:
@@ -421,6 +455,12 @@ install -d %{buildroot}%{_sysconfdir}/gtk-3.0
 install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 cd ..
 
+# gtk4
+cd gtk4
+install -d %{buildroot}%{_datadir}/gtk-4.0
+install -m0644 settings.ini %{buildroot}%{_datadir}/gtk-4.0/
+cd ..
+
 # libreoffice
 cd libreoffice
 install -d %{buildroot}%{_libdir}/libreoffice/share/registry
@@ -518,6 +558,11 @@ fi
 
 %files -n gtk3-branding-%{theme_name}
 %config(noreplace) %{_sysconfdir}/gtk-3.0/settings.ini
+
+
+%files -n gtk4-branding-%{theme_name}
+%dir %{_datadir}/gtk-4.0
+%{_datadir}/gtk-4.0/settings.ini
 
 
 %files -n libreoffice-branding-%{theme_name}
