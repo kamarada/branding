@@ -282,6 +282,7 @@ Provides:       gtk4-branding
 BuildArch:      noarch
 
 Requires:       orchis-gtk-theme
+Requires:       noto-sans-fonts
 Requires:       papirus-icon-theme-%{theme_name}
 
 
