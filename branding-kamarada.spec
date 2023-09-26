@@ -85,7 +85,7 @@ Provides:       systemd-icon-branding-openSUSE = 84.87.20210910
 Conflicts:      systemd-icon-branding-openSUSE
 
 
-%description -n distribution-logos-%{theme_name}
+%description -n distribution-icons-%{theme_name}
 Icons with Linux %{theme_version_clean} distribution logos.
 
 
