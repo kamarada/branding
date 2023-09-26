@@ -68,14 +68,36 @@ Linux %{theme_version_clean} branding
 
 
 ################################################################################
+# distribution-icons
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.5/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
+################################################################################
+
+%package        -n distribution-icons-%{theme_name}
+Summary:        Icons with distribution logos
+BuildArch:      noarch
+
+Requires:       distribution-logos-%{theme_name}
+Provides:       systemd-icon-branding
+Obsoletes:      systemd-icon-branding-openSUSE < 84.87.20210910
+Provides:       systemd-icon-branding-openSUSE = 84.87.20210910
+Conflicts:      systemd-icon-branding-openSUSE
+
+
+%description -n distribution-logos-%{theme_name}
+Icons with Linux %{theme_version_clean} distribution logos.
+
+
+################################################################################
 # distribution-logos
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.5/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
 ################################################################################
 
 %package        -n distribution-logos-%{theme_name}
-Summary:        %{theme_version_clean} logos
+Summary:        Logos for Linux %{theme_version_clean}
 BuildArch:      noarch
 
 Obsoletes:      distribution-logos
@@ -396,14 +418,21 @@ Linux %{theme_version_clean} branding for YaST2 Qt
 
 %install
 
+# distribution-icons
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo-Leap.svg
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo.svg
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-symbolic.svg %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/distributor-logo-Leap-symbolic.svg
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-symbolic.svg %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/distributor-logo-symbolic.svg
+
+
 # distribution-logos
 cd distribution-logos
 mkdir -p %{buildroot}%{_datadir}/pixmaps/distribution-logos/
 install -m0644 ./* %{buildroot}%{_datadir}/pixmaps/distribution-logos/
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
-ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo-Leap.svg
-ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo.svg
 cd ..
+
 
 # gdm
 cd gdm
@@ -521,11 +550,12 @@ if [ $1 = 0 ] ; then
 fi
 
 
+%files -n distribution-icons-%{theme_name}
+%{_datadir}/icons/hicolor/*
+
+
 %files -n distribution-logos-%{theme_name}
 %{_datadir}/pixmaps/distribution-logos/
-# TODO create a separate package distribution-logos-kamarada-icons
-# See: https://build.opensuse.org/package/view_file/openSUSE:Leap:15.4/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
-%{_datadir}/icons/hicolor/*
 
 
 %files -n gdm-branding-%{theme_name}
