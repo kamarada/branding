@@ -44,13 +44,6 @@ BuildRequires:  gtk3
 # gtk4-branding
 BuildRequires:  gtk4
 
-# libreoffice-branding
-# To be in sync with upstream (read below)
-BuildRequires:  libreoffice-branding-upstream
-# For directory ownership
-BuildRequires:  libreoffice
-BuildRequires:  libreoffice-icon-themes
-
 # plymouth-branding
 # To be in sync with upstream (read below)
 BuildRequires:  plymouth-branding-openSUSE
@@ -326,15 +319,16 @@ widgets and icon themes.
 
 %package        -n libreoffice-branding-%{theme_name}
 Summary:        %{theme_version_clean} branding for LibreOffice
-Supplements:    (libreoffice and branding-%{theme_name})
-Conflicts:      libreoffice-branding
-Provides:       libreoffice-branding = %{version}
 
-Requires:       libreoffice-icon-theme-papirus
+Requires:       libreoffice-branding-openSUSE
 
 
 %description -n libreoffice-branding-%{theme_name}
 Linux %{theme_version_clean} branding for LibreOffice
+
+This package existed only to require libreoffice-icon-theme-papirus, but it is
+unmaintained. Let's transition to libreoffice-branding-openSUSE. Expect this
+package to be removed in a later Linux %{theme_version_clean} release.
 
 
 ################################################################################
@@ -489,14 +483,6 @@ cd ..
 cd gtk4
 install -d %{buildroot}%{_datadir}/gtk-4.0
 install -m0644 settings.ini %{buildroot}%{_datadir}/gtk-4.0/
-cd ..
-
-# libreoffice
-cd libreoffice
-install -d %{buildroot}%{_libdir}/libreoffice/share/registry
-install -m0644 %{theme_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
-install -d %{buildroot}%{_datadir}/libreoffice/program/
-cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
 cd ..
 
 # plymouth
