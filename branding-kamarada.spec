@@ -582,11 +582,6 @@ fi
 %{_datadir}/gtk-4.0/settings.ini
 
 
-%files -n libreoffice-branding-%{theme_name}
-%{_datadir}/libreoffice/program/
-%{_libdir}/libreoffice/share/registry/%{theme_name}.xcd
-
-
 %files -n plymouth-branding-%{theme_name}
 %{_datadir}/plymouth/plymouthd.defaults
 %{_datadir}/plymouth/themes/spinner/watermark.png
