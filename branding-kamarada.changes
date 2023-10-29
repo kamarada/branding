@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Sun Oct 29 18:00:00 UTC 2023 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.5
+
+- New wallpapers:
+  * Ribeirão Capivari
+  * Mirante Para Baía Sul
+- GTK 4 branding
+- Separate packages distribution-icons-kamarada and distribution-logos-kamarada
+- libreoffice-branding-kamarada is going to be discontinued in favor of libreoffice-branding-openSUSE
+
+-------------------------------------------------------------------
 Fri Feb 24 14:00:00 UTC 2023 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.4
 
 - Orchis GTK theme as default theme (replacing Materia, which is unmaintained now)
@@ -9,12 +19,24 @@ Fri Feb 24 14:00:00 UTC 2023 - Antônio Vinícius Menezes Medeiros <linuxkamarad
 -------------------------------------------------------------------
 Mon Dec 27 03:20:00 UTC 2021 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.3
 
-- GNOME Shell Extensions - unmaintained TopIcons Plus replaced by Ubuntu's AppIndicator Support
-- Old wallpapers moved from the floripa-wallpaper-pack package, which was discontinued
-- New wallpapers:
-  * Praia da Ponta do Recife
-  * Beira-mar Norte
-- New package distribution-logos-kamarada (based on distribution-logos-openSUSE-Leap)
+- Linux Kamarada 15.3 branding
+  * GNOME Shell Extensions - unmaintained TopIcons Plus replaced by Ubuntu's AppIndicator Support
+  * Old wallpapers moved from the floripa-wallpaper-pack package, which was discontinued
+  * New wallpapers: Praia da Ponta do Recife and Beira-mar Norte
+  * New package distribution-logos-kamarada (based on distribution-logos-openSUSE-Leap)
+
+-------------------------------------------------------------------
+<<<<<<< HEAD
+Thu Sep 10 02:30:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.2
+
+- Linux Kamarada 15.2 branding
+  * New logo
+  * New colors, combining the Material Design and the openSUSE color palettes
+  * New wallpapers
+  * GTK: Materia theme, replacing Adapta (development ended, project archived)
+  * Plymouth: new theme using your BGRT (UEFI logo)
+  * LibreOffice: Papirus as default icon style
+  * Mozilla Firefox as default web browser
 
 -------------------------------------------------------------------
 Tue Feb  4 21:55:00 UTC 2020 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com>
