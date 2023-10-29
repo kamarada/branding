@@ -6,10 +6,10 @@
 ################################################################################
 
 %define theme_name kamarada
-%define theme_version_clean Kamarada 15.4
+%define theme_version_clean Kamarada 15.5
 
 Name:           branding-%{theme_name}
-Version:        15.4
+Version:        15.5
 Release:        0
 Summary:        %{theme_version_clean} branding
 License:        GPL-3.0
@@ -41,12 +41,8 @@ BuildRequires:  gtk2
 # For directory ownership
 BuildRequires:  gtk3
 
-# libreoffice-branding
-# To be in sync with upstream (read below)
-BuildRequires:  libreoffice-branding-upstream
-# For directory ownership
-BuildRequires:  libreoffice
-BuildRequires:  libreoffice-icon-themes
+# gtk4-branding
+BuildRequires:  gtk4
 
 # plymouth-branding
 # To be in sync with upstream (read below)
@@ -65,14 +61,36 @@ Linux %{theme_version_clean} branding
 
 
 ################################################################################
+# distribution-icons
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.5/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
+################################################################################
+
+%package        -n distribution-icons-%{theme_name}
+Summary:        Icons with distribution logos
+BuildArch:      noarch
+
+Requires:       distribution-logos-%{theme_name}
+Provides:       systemd-icon-branding
+Obsoletes:      systemd-icon-branding-openSUSE < 84.87.20210910
+Provides:       systemd-icon-branding-openSUSE = 84.87.20210910
+Conflicts:      systemd-icon-branding-openSUSE
+
+
+%description -n distribution-icons-%{theme_name}
+Icons with Linux %{theme_version_clean} distribution logos.
+
+
+################################################################################
 # distribution-logos
 #
 # Based on:
-# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.3/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.5/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
 ################################################################################
 
 %package        -n distribution-logos-%{theme_name}
-Summary:        %{theme_version_clean} logos
+Summary:        Logos for Linux %{theme_version_clean}
 BuildArch:      noarch
 
 Obsoletes:      distribution-logos
@@ -261,6 +279,38 @@ widgets and icon themes.
 
 
 ################################################################################
+# gtk4
+#
+# Based on:
+# https://build.opensuse.org/package/view_file/openSUSE:Leap:15.5/gtk4-branding/gtk4-branding.spec?expand=1
+################################################################################
+
+%define gtk4_real_package %(rpm -q --qf '%%{name}' --whatprovides gtk4)
+# libgtk-4-1
+
+%package        -n gtk4-branding-%{theme_name}
+Summary:        The GTK+ toolkit library (version 4) -- %{theme_version_clean} theme configuration
+Requires:       %{gtk4_real_package}
+Supplements:    (gtk4 and branding-%{theme_name})
+Conflicts:      gtk4-branding
+Provides:       gtk4-branding
+BuildArch:      noarch
+
+Requires:       orchis-gtk-theme
+Requires:       noto-sans-fonts
+Requires:       papirus-icon-theme-%{theme_name}
+
+
+%description -n gtk4-branding-%{theme_name}
+GTK+ is a multi-platform toolkit for creating graphical user interfaces.
+Offering a complete set of widgets, GTK+ is suitable for projects
+ranging from small one-off projects to complete application suites.
+
+This package provides the %{theme_version_clean} theme configuration for
+widgets and icon themes.
+
+
+################################################################################
 # libreoffice
 #
 # Based on:
@@ -269,15 +319,16 @@ widgets and icon themes.
 
 %package        -n libreoffice-branding-%{theme_name}
 Summary:        %{theme_version_clean} branding for LibreOffice
-Supplements:    (libreoffice and branding-%{theme_name})
-Conflicts:      libreoffice-branding
-Provides:       libreoffice-branding = %{version}
 
-Requires:       libreoffice-icon-theme-papirus
+Requires:       libreoffice-branding-openSUSE
 
 
 %description -n libreoffice-branding-%{theme_name}
 Linux %{theme_version_clean} branding for LibreOffice
+
+This package existed only to require libreoffice-icon-theme-papirus, but it is
+unmaintained. Let's transition to libreoffice-branding-openSUSE. Expect this
+package to be removed in a later Linux %{theme_version_clean} release.
 
 
 ################################################################################
@@ -361,14 +412,21 @@ Linux %{theme_version_clean} branding for YaST2 Qt
 
 %install
 
+# distribution-icons
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo-Leap.svg
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo.svg
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-symbolic.svg %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/distributor-logo-Leap-symbolic.svg
+ln -sf %{_datadir}/pixmaps/distribution-logos/square-symbolic.svg %{buildroot}%{_datadir}/icons/hicolor/symbolic/apps/distributor-logo-symbolic.svg
+
+
 # distribution-logos
 cd distribution-logos
 mkdir -p %{buildroot}%{_datadir}/pixmaps/distribution-logos/
 install -m0644 ./* %{buildroot}%{_datadir}/pixmaps/distribution-logos/
-mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
-ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo-Leap.svg
-ln -sf %{_datadir}/pixmaps/distribution-logos/square-hicolor.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/distributor-logo.svg
 cd ..
+
 
 # gdm
 cd gdm
@@ -421,12 +479,10 @@ install -d %{buildroot}%{_sysconfdir}/gtk-3.0
 install -m0644 settings.ini %{buildroot}%{_sysconfdir}/gtk-3.0/
 cd ..
 
-# libreoffice
-cd libreoffice
-install -d %{buildroot}%{_libdir}/libreoffice/share/registry
-install -m0644 %{theme_name}.xcd %{buildroot}%{_libdir}/libreoffice/share/registry/
-install -d %{buildroot}%{_datadir}/libreoffice/program/
-cp -ar %{_datadir}/libreoffice/program/* %{buildroot}%{_datadir}/libreoffice/program/
+# gtk4
+cd gtk4
+install -d %{buildroot}%{_datadir}/gtk-4.0
+install -m0644 settings.ini %{buildroot}%{_datadir}/gtk-4.0/
 cd ..
 
 # plymouth
@@ -480,11 +536,12 @@ if [ $1 = 0 ] ; then
 fi
 
 
+%files -n distribution-icons-%{theme_name}
+%{_datadir}/icons/hicolor/*
+
+
 %files -n distribution-logos-%{theme_name}
 %{_datadir}/pixmaps/distribution-logos/
-# TODO create a separate package distribution-logos-kamarada-icons
-# See: https://build.opensuse.org/package/view_file/openSUSE:Leap:15.4/distribution-logos-openSUSE/distribution-logos-openSUSE.spec?expand=1
-%{_datadir}/icons/hicolor/*
 
 
 %files -n gdm-branding-%{theme_name}
@@ -520,9 +577,9 @@ fi
 %config(noreplace) %{_sysconfdir}/gtk-3.0/settings.ini
 
 
-%files -n libreoffice-branding-%{theme_name}
-%{_datadir}/libreoffice/program/
-%{_libdir}/libreoffice/share/registry/%{theme_name}.xcd
+%files -n gtk4-branding-%{theme_name}
+%dir %{_datadir}/gtk-4.0
+%{_datadir}/gtk-4.0/settings.ini
 
 
 %files -n plymouth-branding-%{theme_name}

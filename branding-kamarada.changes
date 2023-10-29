@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Sun Oct 29 18:00:00 UTC 2023 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.5
+
+- New wallpapers:
+  * Ribeirão Capivari
+  * Mirante Para Baía Sul
+- GTK 4 branding
+- Separate packages distribution-icons-kamarada and distribution-logos-kamarada
+- libreoffice-branding-kamarada is going to be discontinued in favor of libreoffice-branding-openSUSE
+
+-------------------------------------------------------------------
 Fri Feb 24 14:00:00 UTC 2023 - Antônio Vinícius Menezes Medeiros <linuxkamarada@gmail.com> - 15.4
 
 - Orchis GTK theme as default theme (replacing Materia, which is unmaintained now)
