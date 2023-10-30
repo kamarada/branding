@@ -320,14 +320,14 @@ widgets and icon themes.
 %package        -n libreoffice-branding-%{theme_name}
 Summary:        %{theme_version_clean} branding for LibreOffice
 
-Requires:       libreoffice-branding-openSUSE
+Requires:       libreoffice-branding-upstream
 
 
 %description -n libreoffice-branding-%{theme_name}
 Linux %{theme_version_clean} branding for LibreOffice
 
 This package existed only to require libreoffice-icon-theme-papirus, but it is
-unmaintained. Let's transition to libreoffice-branding-openSUSE. Expect this
+unmaintained. Let's transition to libreoffice-branding-upstream. Expect this
 package to be removed in a later Linux %{theme_version_clean} release.
 
 
