@@ -6,10 +6,10 @@
 ################################################################################
 
 %define theme_name kamarada
-%define theme_version_clean Kamarada 15.5
+%define theme_version_clean Kamarada 15.6
 
 Name:           branding-%{theme_name}
-Version:        15.5
+Version:        15.6
 Release:        0
 Summary:        %{theme_version_clean} branding
 License:        GPL-3.0
