@@ -173,6 +173,7 @@ Requires:       desktop-file-utils
 Requires:       gnome-shell-extension-appindicator
 Requires:       gnome-shell-extension-dash-to-dock
 Requires:       gnome-shell-extension-desktop-icons
+Requires:       gnome-shell-extension-gsconnect
 Requires:       gnome-shell-extension-user-theme
 Requires:       google-roboto-fonts
 Requires:       hack-fonts
