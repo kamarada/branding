@@ -493,8 +493,9 @@ ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.png %{buildroot}%{_da
 # wallpaper
 cd wallpaper
 rm -rf wallpapers/*/original
-mkdir -p %{buildroot}%{_datadir}/{gnome-background-properties,wallpapers}
-mv gnome-background-properties/%{theme_name}-default.xml %{buildroot}%{_datadir}/gnome-background-properties/
+mkdir -p %{buildroot}%{_datadir}/{backgrounds,gnome-background-properties,wallpapers}
+mv backgrounds/* %{buildroot}%{_datadir}/backgrounds/
+mv gnome-background-properties/* %{buildroot}%{_datadir}/gnome-background-properties/
 mv wallpapers/* %{buildroot}%{_datadir}/wallpapers/
 cd ..
 
@@ -588,6 +589,7 @@ fi
 
 
 %files -n wallpaper-branding-%{theme_name}
+%{_datadir}/backgrounds
 %{_datadir}/gnome-background-properties
 %{_datadir}/wallpapers
 
