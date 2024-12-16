@@ -492,6 +492,7 @@ ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.png %{buildroot}%{_da
 
 # wallpaper
 cd wallpaper
+rm -rf backgrounds/kamarada/original/
 rm -rf wallpapers/*/original
 mkdir -p %{buildroot}%{_datadir}/{backgrounds,gnome-background-properties,wallpapers}
 mv backgrounds/* %{buildroot}%{_datadir}/backgrounds/
