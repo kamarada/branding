@@ -6,10 +6,10 @@
 ################################################################################
 
 %define theme_name kamarada
-%define theme_version_clean Kamarada 15.5
+%define theme_version_clean Kamarada 15.6
 
 Name:           branding-%{theme_name}
-Version:        15.5
+Version:        15.6
 Release:        0
 Summary:        %{theme_version_clean} branding
 License:        GPL-3.0
@@ -492,9 +492,11 @@ ln -sf %{_datadir}/pixmaps/distribution-logos/light-inline.png %{buildroot}%{_da
 
 # wallpaper
 cd wallpaper
+rm -rf backgrounds/kamarada/original/
 rm -rf wallpapers/*/original
-mkdir -p %{buildroot}%{_datadir}/{gnome-background-properties,wallpapers}
-mv gnome-background-properties/%{theme_name}-default.xml %{buildroot}%{_datadir}/gnome-background-properties/
+mkdir -p %{buildroot}%{_datadir}/{backgrounds,gnome-background-properties,wallpapers}
+mv backgrounds/* %{buildroot}%{_datadir}/backgrounds/
+mv gnome-background-properties/* %{buildroot}%{_datadir}/gnome-background-properties/
 mv wallpapers/* %{buildroot}%{_datadir}/wallpapers/
 cd ..
 
@@ -588,6 +590,7 @@ fi
 
 
 %files -n wallpaper-branding-%{theme_name}
+%{_datadir}/backgrounds
 %{_datadir}/gnome-background-properties
 %{_datadir}/wallpapers
 
