@@ -88,7 +88,7 @@ disabled-gtk-modules = [ "pk-gtk-module" ]
 help = ['Help', '<Super>F1']
 
 [org.gnome.shell]
-enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'desktop-icons@csoriano', 'gsconnect@andyholmes.github.io']
+enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'gsconnect@andyholmes.github.io', 'ding@rastersoft.com']
 ## Default apps shown in the gnome-shell dash
 favorite-apps = ['firefox.desktop', 'chromium-browser.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop']
 
