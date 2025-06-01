@@ -88,9 +88,10 @@ disabled-gtk-modules = [ "pk-gtk-module" ]
 help = ['Help', '<Super>F1']
 
 [org.gnome.shell]
-enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'desktop-icons@csoriano', 'gsconnect@andyholmes.github.io']
+enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'appindicatorsupport@rgcjonas.gmail.com', 'gsconnect@andyholmes.github.io', 'ding@rastersoft.com', 'lockkeys@vaina.lt']
+
 ## Default apps shown in the gnome-shell dash
-favorite-apps = ['firefox.desktop', 'chromium-browser.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Screenshot.desktop']
+favorite-apps = ['firefox.desktop', 'chromium-browser.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.gedit.desktop']
 
 [org.gnome.gnome-panel.applet.window-list]
 ## Display all workspaces in the gnome-panel window list applet
@@ -141,6 +142,15 @@ customize-alphas = true
 min-alpha = 0.5
 ## Minimum opacity
 max-alpha = 1
+
+[org.gnome.shell.extensions.gsconnect]
+enabled = false
+
+[org.gnome.shell.extensions.lockkeys]
+## Indicator Style = Notifications Only
+style='none'
+## Notifications = Osd
+notification-preferences='osd'
 
 [org.gnome.gedit.preferences.editor]
 ## Display line numbers
