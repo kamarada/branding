@@ -1,33 +1,38 @@
 # Maintainer: Antonio Medeiros <linuxkamarada@gmail.com>
 
-pkgname=kamarada-gnome-backgrounds
-pkgver=20250904
+pkgname=(
+    'kamarada-distribution-logos'
+    'kamarada-gnome-backgrounds'
+)
+pkgbase=branding
+pkgver=20250930
 pkgrel=1
-pkgdesc='Background images and data for Linux Kamarada GNOME'
 arch=(any)
 url='https://github.com/kamarada/branding'
 license=('GPL-3.0')
 makedepends=('git')
-optdepends=('manjaro-gnome-backgrounds')
 source=('git+https://github.com/kamarada/branding.git#branch=testing')
 sha256sums=('SKIP')
 
-prepare() {
-    cd "$srcdir/branding"
-
-    cd "wallpaper"
-    rm -rf backgrounds/kamarada/original/
-    rm -rf wallpapers/*/original
+pkgver() {
+    cd "$pkgbase"
+    git show -s --format=%cd --date=format:%Y%m%d HEAD
 }
 
-package() {
-    set -ex
-    echo "Installing files for $pkgname"
+package_kamarada-distribution-logos() {
+    pkgdesc='Icons with Linux Kamarada distribution logos'
 
-    cd "$srcdir/branding"
+    cd "$pkgbase/distribution-logos"
+    install -Dm644 kamarada-logo-text.{png,svg} -t "$pkgdir/usr/share/pixmaps/"
+}
 
-    # wallpaper
-    cd "wallpaper"
+package_kamarada-gnome-backgrounds() {
+    pkgdesc='Linux Kamarada default wallpapers'
+    optdepends=('manjaro-gnome-backgrounds')
+
+    cd "$pkgbase/wallpaper"
+    rm -rf backgrounds/kamarada/original/
+    rm -rf wallpapers/*/original
     mkdir -p "$pkgdir/usr/share/backgrounds"
     mv backgrounds/* "$pkgdir/usr/share/backgrounds/"
     mkdir -p "$pkgdir/usr/share/gnome-background-properties"
