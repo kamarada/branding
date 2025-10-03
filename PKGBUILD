@@ -23,9 +23,7 @@ package_kamarada-distribution-logos() {
     pkgdesc='Icons with Linux Kamarada distribution logos'
 
     cd "$pkgbase/distribution-logos"
-    mkdir -p "$pkgdir/usr/share/pixmaps"
-    install -m644 logo_text_white.png "$pkgdir/usr/share/pixmaps/kamarada-logo-text-dark.png"
-    install -m644 logo_text_white.svg "$pkgdir/usr/share/pixmaps/kamarada-logo-text-dark.svg"
+    install -Dm644 kamarada-logo-text-dark.{png,svg} -t "$pkgdir/usr/share/pixmaps/"
 }
 
 package_kamarada-gnome-backgrounds() {
