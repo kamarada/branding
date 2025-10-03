@@ -6,7 +6,7 @@ pkgname=(
 )
 pkgbase=branding
 pkgver=20251003
-pkgrel=2
+pkgrel=3
 arch=(any)
 url='https://github.com/kamarada/branding'
 license=('GPL-3.0')
