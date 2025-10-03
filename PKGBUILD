@@ -5,7 +5,7 @@ pkgname=(
     'kamarada-gnome-backgrounds'
 )
 pkgbase=branding
-pkgver=20250930
+pkgver=20251003
 pkgrel=1
 arch=(any)
 url='https://github.com/kamarada/branding'
@@ -23,7 +23,8 @@ package_kamarada-distribution-logos() {
     pkgdesc='Icons with Linux Kamarada distribution logos'
 
     cd "$pkgbase/distribution-logos"
-    install -Dm644 kamarada-logo-text.{png,svg} -t "$pkgdir/usr/share/pixmaps/"
+    install -Dm644 logo_text_white.png -t "$pkgdir/usr/share/pixmaps/kamarada-logo-text-dark.png"
+    install -Dm644 logo_text_white.svg -t "$pkgdir/usr/share/pixmaps/kamarada-logo-text-dark.svg"
 }
 
 package_kamarada-gnome-backgrounds() {
